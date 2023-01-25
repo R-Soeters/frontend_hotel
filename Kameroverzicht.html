@@ -7,6 +7,68 @@
     <title>Document</title>
 </head>
 <body>
-    Dit wordt een kameroverzicht
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Kammertype</th>
+            <th scope="col">Kammernummer</th>
+            <th scope="col">Prijs</th>
+            <th scope="col">Beschrijving</th>
+            <th scope="col">Foto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"></th>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row"></th>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row"></th>
+            <td colspan="2"></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+      <script>
+        /*function haalOp() {
+            //Backend aanroepen
+            fetch("http://localhost:8080/reserveringen%22)
+                .then(res => res.json()) //anonimous function
+                .then(data => {
+                    //Data is uit de lijst van reserveringen
+                    console.log(data)
+
+                    let x = "";
+                    //for 
+                    data.forEach(reservering => {
+                        x += 
+                            <tr>
+                                <td>${reservering.id}</td>
+                                <td>${reservering.reservationNumber}</td>
+                                <td>${reservering.date}</td>
+                                <td>${reservering.costs}</td>
+                            </tr>
+                        
+                    });
+
+                    document.getElementById("reserveringen-body").innerHTML = x;
+                })
+        }
+        haalOp();
+
+        //Named Function
+        //function handleResponse(res) {
+        //    return res.json();
+        //}
+        */
+    </script>
 </body>
 </html>
