@@ -7,14 +7,24 @@
     <title>Document</title>
     <script>
         function naardedb() {
-            fetch("http://localhost:5000")
-            .then(r => console.log(r))
+            fetch("http://localhost:5000/michael/a")
+            .then(r => r.json())
+            .then(d => verwerk(d) )
+
+        }
+        function verwerk(data){
+            for(var x =0; x < data.length; x++){
+                document.getElementById("overzicht").innerHTML += "-"+data[x][1]+"<br>";
+            }
+
         }
     </script>
 </head>
 <body>
     <button onclick="naardedb()">Hallo</button>
-    <div>
+
+    <div id="overzicht">
+
 
     </div>
     <h1>maar wat</h1>
