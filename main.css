@@ -1,5 +1,57 @@
 
-.btn-primary{
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+}
+
+#reservering {
+    border-style: solid;
+    border-width: 1px;
+    border-color: darkgray;
+}
+
+#hotelphoto {
+    margin: 50px 0px 0px 0px;
+}
+
+#history {
+    border-style: solid;
+    border-width: 1px;
+    border-color: darkgray;
+}
+
+.form-group {
+    margin: 5px;
+}
+
+.btn-primary, .btn-secondary {
+    background-color: green;
+    border: none;
+    margin: 15px 0px 15px 0px;
+}
+
+.btn-primary {
+    margin: 20px 0px 20px 0px;
+}
+
+.btn-primary:hover {
+    background-color: lightgreen;
+}
+
+.btn-secondary:hover {
+    background-color: lightgreen;
+}
+
+.input-group-btn {
+    margin: 5px;
+}
+
+/* .btn-primary{
     font-size: 50px;
     color:white ;
     background-color: grey;
@@ -8,7 +60,7 @@
 
 .btn-primary:hover {
 background-color:green;
-}
+} */
 
 .button{
     color: white;
@@ -106,22 +158,3 @@ margin-top:50px;
 #locatie{
     margin-top: 50px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
