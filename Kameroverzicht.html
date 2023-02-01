@@ -18,14 +18,45 @@
             }
 
         }
+        /*function slaKameroptypeOp(){
+            var kamertype = document.getElementById("kamerVeldtype").value
+            fetch("http://localhost:5000/sendKamerinfo/"+kamertype)
+        }*/
     </script>
 </head>
 <body>
     <button onclick="naardedb()">Kamers Laten Zien</button>
-
-    <div id="overzicht">
-
-
+    <form action="http://localhost:5000/sendKamerinfo">
+            <table style="width:40%">
+            <tr>
+                <td><label for="ftype">kamer type: </label></td>
+                <td><select name="ftype" id="ftype" value="">
+                        <option value="1 persoonskamer">1 persoonskamer</option>
+                        <option value="2 persoonskamer">2 persoonskamer</option>
+                        <option value="familiekamer">familiekamer</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="fprijs">kamer prijs: </label></td>
+                <td><input type="number" step="0.01" id="fprijs" name="fprijs" value=""></td>
+            </tr>
+            <tr>
+                <td><label for="fbeschrijving">kamer beschrijving: </label></td>
+                <td><input type="text" id="fbeschrijving" name="fbeschrijving" value=""></td>
+            </tr>
+            <tr>
+                <td><label for="ffoto">kamer foto: </label></td>
+                <td><input type="text" id="ffoto" name="ffoto" value=""></td>
+            </tr>
+            <tr>
+                <td><label for="fnummer">kamer nummer: </label></td>
+                <td><input type="number" step="1" id="fnummer" name="fnummer" value=""></td>
+            </tr>
+        </table>
+        <input type="submit" value="nieuwe kamer aanmaken">
+    </form>
+        <div id="overzicht">
     </div>
     <h1></h1>
 </body>
