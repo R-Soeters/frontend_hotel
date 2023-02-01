@@ -12,22 +12,36 @@
             .then(d => verwerk(d) )
 
         }
-        function verwerk(data){
-            document.getElementById("overzicht").innerHTML += "<table>"+
-            "<tbody>"
-                for(var x =0; x < data.length; x++){
-                // "<h3>"+"-Kamer type :"+data[x][1]+", Kamer prijs: "+data[x][2]+", Kamer beschrijving: "+data[x][3]+", Kamer foto: "+data[x][4]+", Kamer nummer: "+data[x][5]+"</h3>";
-                document.getElementById("overzicht").innerHTML +=
-                "<tr>"+
-                    "<td>"+data[x][1]+"</td>"+
-                    "<td>"+data[x][2]+"</td>"+
-                    "<td>"+data[x][3]+"</td>"+
-                    "<td>"+data[x][4]+"</td>"+
-                    "<td>"+data[x][5]+"</td>"+
-                    "</tr>"
-                }
-                document.getElementById("overzicht").innerHTML += "</tbody>"+"</table>"
-            }
+        function addRow(kamertable) {
+            // Get a reference to the table
+            let tableRef = document.getElementById(kamertable);
+
+            // Insert a row at the end of the table
+            let newRow = tableRef.insertRow(-1);
+
+            // Insert a cell in the row at index 0
+            let newCell = newRow.insertCell(0);
+
+            // Append a text node to the cell
+            let newText = document.createTextNode('New bottom row');
+            newCell.appendChild(newText);
+        }
+        // function verwerk(data){
+        //     document.getElementById("overzicht").innerHTML += "<table>"+
+        //     "<tbody>"
+        //         for(var x =0; x < data.length; x++){
+        //         // "<h3>"+"-Kamer type :"+data[x][1]+", Kamer prijs: "+data[x][2]+", Kamer beschrijving: "+data[x][3]+", Kamer foto: "+data[x][4]+", Kamer nummer: "+data[x][5]+"</h3>";
+        //         document.getElementById("overzicht").innerHTML +=
+        //         "<tr>"+
+        //             "<td>"+data[x][1]+"</td>"+
+        //             "<td>"+data[x][2]+"</td>"+
+        //             "<td>"+data[x][3]+"</td>"+
+        //             "<td>"+data[x][4]+"</td>"+
+        //             "<td>"+data[x][5]+"</td>"+
+        //             "</tr>"
+        //         }
+        //         document.getElementById("overzicht").innerHTML += "</tbody>"+"</table>"
+        //     }
             /*function slaKameroptypeOp(){
             var kamertype = document.getElementById("kamerVeldtype").value
             fetch("http://localhost:5000/sendKamerinfo/"+kamertype)
@@ -37,7 +51,7 @@
 <body>
     <button onclick="naardedb()">Kamers Laten Zien</button>
     <form action="http://localhost:5000/sendKamerinfo">
-            <table style="width:40%">
+            <table style="width:40%" id="kamertable">
             <tr>
                 <td><label for="ftype">kamer type: </label></td>
                 <td><select name="ftype" id="ftype" value="">
