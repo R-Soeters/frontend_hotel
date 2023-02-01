@@ -13,31 +13,47 @@
 
         }
         function verwerk(data){
-            document.getElementById("overzicht").innerHTML += "<table>"+
-            "<tbody>"
-                for(var x =0; x < data.length; x++){
-                // "<h3>"+"-Kamer type :"+data[x][1]+", Kamer prijs: "+data[x][2]+", Kamer beschrijving: "+data[x][3]+", Kamer foto: "+data[x][4]+", Kamer nummer: "+data[x][5]+"</h3>";
-                document.getElementById("overzicht").innerHTML +=
-                "<tr>"+
-                    "<td>"+data[x][1]+"</td>"+
-                    "<td>"+data[x][2]+"</td>"+
-                    "<td>"+data[x][3]+"</td>"+
-                    "<td>"+data[x][4]+"</td>"+
-                    "<td>"+data[x][5]+"</td>"+
-                    "</tr>"
-                }
-                document.getElementById("overzicht").innerHTML += "</tbody>"+"</table>"
-            }
-            /*function slaKameroptypeOp(){
+             let bodyelement = document.getElementById("kameroverview");
+             var tb = document.createElement("TB");
+                 for(var x =0; x < data.length; x++){
+                 // "<h3>"+"-Kamer type :"+data[x][1]+", Kamer prijs: "+data[x][2]+", Kamer beschrijving: "+data[x][3]+", Kamer foto: "+data[x][4]+", Kamer nummer: "+data[x][5]+"</h3>";
+                 var tr = document.createElement("TR");
+                 var td1 = document.createElement("TD");
+                 td1.innerHTML = data[x][1];
+                 var td2 = document.createElement("TD");
+                 td2.innerHTML = data[x][2];
+                 var td3 = document.createElement("TD");
+                 td3.innerHTML = data[x][3];
+                 var td4 = document.createElement("TD");
+                 td4.innerHTML = data[x][4];
+                 var td5 = document.createElement("TD");
+                 td5.innerHTML = data[x][5];
+                 tr.appendChild(td1);
+                 tr.appendChild(td2);
+                 tr.appendChild(td3);
+                 tr.appendChild(td4);
+                 tr.appendChild(td5);
+                 bodyelement.appendChild(tr);
+                //  document.getElementById("kamertable").innerHTML +=
+                //  "<tr>"+
+                //      "<td>"+data[x][1]+"</td>"+
+                //      "<td>"+data[x][2]+"</td>"+
+                //      "<td>"+data[x][3]+"</td>"+
+                //      "<td>"+data[x][4]+"</td>"+
+                //      "<td>"+data[x][5]+"</td>"+
+                //      "</tr>"
+                 }
+             }
+            function slaKameroptypeOp(){
             var kamertype = document.getElementById("kamerVeldtype").value
             fetch("http://localhost:5000/sendKamerinfo/"+kamertype)
-        }*/
+        }
     </script>
 </head>
 <body>
     <button onclick="naardedb()">Kamers Laten Zien</button>
     <form action="http://localhost:5000/sendKamerinfo">
-            <table style="width:40%">
+            <table style="width:40%" id="kamertable">
             <tr>
                 <td><label for="ftype">kamer type: </label></td>
                 <td><select name="ftype" id="ftype" value="">
@@ -77,8 +93,7 @@
                 <th scope="col">Kamer Nummer</th>
               </tr>
             </thead>
-            <tbody>
-                <span id="overzicht"></span>
+            <tbody id="kameroverview">
               <!-- <tr>
                 <th scope="row">2</th>
                 <td>Jacob</td>
