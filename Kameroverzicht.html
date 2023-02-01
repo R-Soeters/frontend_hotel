@@ -18,14 +18,16 @@
             }
 
         }
+        function slaKamerop(){
+            var kamernaam = document.getElementById("kamerVeld").value
+            fetch("http://localhost:5000/sendKamerinfo/"+kamernaam)
+        }
     </script>
 </head>
 <body>
     <button onclick="naardedb()">Kamers Laten Zien</button>
-
+    <input id="kamerVeld"><button onclick="slaKamerop()">nieuwe kamer aanmaken</button>
     <div id="overzicht">
-
-
     </div>
     <h1></h1>
 </body>
