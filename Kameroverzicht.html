@@ -7,7 +7,7 @@
     <title>Kameroverzicht</title>
     <script>
         function naardedb() {
-            fetch("http://localhost:5000/getKamerinfo/a")
+            fetch("https://yc2301hotelbackend.azurewebsites.net/getKamerinfo/a")
             .then(r => r.json())
             .then(d => verwerk(d) )
 
@@ -20,13 +20,13 @@
         }
         /*function slaKameroptypeOp(){
             var kamertype = document.getElementById("kamerVeldtype").value
-            fetch("http://localhost:5000/sendKamerinfo/"+kamertype)
+            fetch("https://yc2301hotelbackend.azurewebsites.net/sendKamerinfo/"+kamertype)
         }*/
     </script>
 </head>
 <body>
     <button onclick="naardedb()">Kamers Laten Zien</button>
-    <form action="http://localhost:5000/sendKamerinfo">
+    <form action="https://yc2301hotelbackend.azurewebsites.net/sendKamerinfo">
             <table style="width:40%">
             <tr>
                 <td><label for="ftype">kamer type: </label></td>
