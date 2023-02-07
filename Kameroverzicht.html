@@ -26,7 +26,6 @@
         function boekKamer() {
 
         }
-
         function verwerk(data){
              let bodyelement = document.getElementById("kameroverview");
              var tb = document.createElement("TB");
@@ -52,6 +51,7 @@
                  tr.appendChild(td5);
                  tr.appendChild(td6);
                  bodyelement.appendChild(tr);
+                 sortTable();
                 //  document.getElementById("kamertable").innerHTML +=
                 //  "<tr>"+
                 //      "<td>"+data[x][1]+"</td>"+
@@ -66,10 +66,43 @@
             // var kamertype = document.getElementById("kamerVeldtype").value
             // fetch("https://yc2301hotelbackend.azurewebsites.net/sendKamerinfo"+kamertype)
         // }
+    function sortTable() {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("kameroverview");
+        switching = true;
+        /*Make a loop that will continue until
+        no switching has been done:*/
+        while (switching) {
+            //start by saying: no switching is done:
+            switching = false;
+            rows = table.rows;
+            /*Loop through all table rows (except the
+            first, which contains table headers):*/
+            for (i = 1; i < (rows.length - 1); i++) {
+                //start by saying there should be no switching:
+                shouldSwitch = false;
+                /*Get the two elements you want to compare,
+                one from current row and one from the next:*/
+                x = rows[i].getElementsByTagName("TD")[0];
+                y = rows[i + 1].getElementsByTagName("TD")[0];
+                //check if the two rows should switch place:
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                    //if so, mark as a switch and break the loop:
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+            if (shouldSwitch) {
+                /*If a switch has been marked, make the switch
+                and mark that a switch has been done:*/
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+    }
     </script>
 </head>
 <body>
-    <button onclick="setTimeout(newFuntion, 2000)">time button</button>
     <button onclick="naardedb()">Kamers Laten Zien</button>
     <form action="https://yc2301hotelbackend.azurewebsites.net/sendKamerinfo">
             <table style="width:40%">
