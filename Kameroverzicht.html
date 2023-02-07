@@ -43,15 +43,12 @@
                  td5.innerHTML = data[x][5];
                  var td6 = document.createElement("TD");
                  td6.innerHTML = "<button onclick='reserveerKamer("+data[x][0]+")'>Reserveer Kamer</button>";
-                 var td7 = document.createElement("TD");
-                 td7.innerHTML = "<button onclick='boekKamer()'>Boek Kamer</button>";
                  tr.appendChild(td1);
                  tr.appendChild(td2);
                  tr.appendChild(td3);
                  tr.appendChild(td4);
                  tr.appendChild(td5);
                  tr.appendChild(td6);
-                 tr.appendChild(td7);
                  bodyelement.appendChild(tr);
                 //  document.getElementById("kamertable").innerHTML +=
                 //  "<tr>"+
@@ -112,7 +109,6 @@
                 <th scope="col">Kamer Foto</th>
                 <th scope="col">Kamer Nummer</th>
                 <th scope="col">Reserveer Kamer</th>
-                <th scope="col">Boek Kamer</th>
               </tr>
             </thead>
             <tbody id="kameroverview" style="text-align: center">
