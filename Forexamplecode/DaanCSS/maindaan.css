@@ -21,18 +21,29 @@ background-color:green;
     border:none; 
 }
 
-tr {
-    background-color: rgb(255, 0, 47);
+tbody tr {
+    border-color: #FFCCCB;
+    border-width: 5px;
+    
 }
 
 th {
     background-color: white; 
 }
 
+.naarbeneden{
+    margin-bottom: 5px !important; 
+    vertical-align:bottom !important;
+}
+
 .tekstbovenaantabel{
     color: grey;
     background-color: white;
+
+
 }
+
+
 #paragraaf1 {
 padding:10px;
 margin-left: 50px;
