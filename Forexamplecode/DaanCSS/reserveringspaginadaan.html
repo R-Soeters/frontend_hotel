@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserveringsoverzicht</title>
+
+    <link href="daanreserveringspagina.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h4 id="Reserveringsoverzichttitel">Reserveringsoverzicht</h4>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" class="tekstbovenaantabel">KamerID</th>
+            <th scope="col" class="tekstbovenaantabel">Gekozen kamer</th>
+            <th scope="col" class="tekstbovenaantabel">Beschrijving gekozen kamer</th>
+            <th scope="col" class="tekstbovenaantabel">TEST</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" class="tekst">1 <br>
+                (Opmerking devs: ID uit database)</th>
+            
+            <td class="tekst"><b>Eenpersoonskamer</b>
+                <br>
+    
+                <img id="eenpersoonskamer" src="eenpersoonskamer.jpg"> </td>
+            <td>
+                <br>
+                <tekst class="tekst">De eenpersoonskamer is ideaal om even helemaal tot rust te komen..........</tekst> 
+                <br>
+                <br>
+                <b class="tekst">Faciliteiten:</b> <tekst class="tekst">TV, eenpersoonsbed, mini-bar, kluisje, douche. Ontbijt inbegrepen.</tekst>
+                <br>
+                <br>
+                <b class="tekst">Prijs:</b> <tekst class="tekst">vanaf €60,00 per nacht</tekst>
+                <br>
+                <br>
+            </td>     
+        </tr>
+        </tbody>
+      </table>
+      <div class="container">
+        <div class="form-groupcol-lg-2">
+          <form action="/action_page.php">
+              <label for="inputDatum1" id="datumtekst">&nbsp; Aankomstdatum:</label>
+              <input type="date" id="arrDate" name="arrivalDate">
+          </form>
+        </div>
+        <br>
+       <div class="form-group-col-lg-2">
+          <form action="/action_page.php">
+              <label for="inputDatum2" id="datumtekst">&nbsp; &nbsp; &nbsp; Vertrekdatum:&nbsp; &nbsp; &nbsp; </label>
+              <input type="date" id="depDate" name="departureDate">
+          </form>
+        </div>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <label class="form-check-label" for="defaultCheck1">
+         <b>Ik ben member</b>
+        </label>
+      </div>
+      <br>
+      <form>
+        <div class="form-group">
+          <label for="exampleInputEmail1"><b>Voor- en achternaam</b></label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Voor- en achternaam">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1"><b>Adresgegevens - Postcode</b></label>
+          <input type="Adresgegevens" class="form-control" id="exampleInputPassword1" placeholder="Postcode">
+        </div>      
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1"><b>Adresgegevens - Straatnaam, huisnummer</b></label>
+            <input type="adresgegevens" class="form-control" id="exampleInputEmail1" aria-describedby="adresHelp" placeholder="Straatnaam + huisnummer">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1"><b>E-mailadres</b></label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mailadres">
+            <small id="ondertekst" class="form-text text-muted">Uw mailadres blijft altijd privé</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1"><b>Telefoonnummer</b></label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="06-xxxxxxxxxx">
+            <small id="ondertekst" class="form-text text-muted">Bij voorkeur uw mobiele telefoonnummer</small>
+          </div>
+      </form>
+      <br>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Betaalmethode
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">iDEAL</a>
+          <a class="dropdown-item" href="#">Op locatie betalen</a>
+        </div>
+      </div>
+     <div>
+        <button id="knoprechts">
+Boek nu!
+        </button>
+     </div>
+
+
+    </body>
+
+</html>
