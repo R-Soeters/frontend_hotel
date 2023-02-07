@@ -30,7 +30,7 @@ footer {
 }
 
 .btn-primary, .btn-secondary {
-    background-color: blue;
+    background-color: #5C5CFF !important;
     border: none;
     margin: 20px 0px 20px 0px;
 }
@@ -40,15 +40,25 @@ footer {
 }
 
 .btn-primary:hover {
-    background-color: lightgreen;
+    background-color: #8A8AFF !important;
 }
 
 .btn-secondary:hover {
-    background-color: lightgreen;
+    background-color: #8A8AFF !important;
 }
 
+/* Aantal gasten knopjes CSS */
 .input-group-btn {
-    margin: 5px;
+    padding: 5px;
+}
+
+.btn {
+    background-color: #5C5CFF;
+    padding: 8px;
+}
+
+.btn:hover {
+    background-color: #8A8AFF;
 }
 
 #paragraaf1 {
