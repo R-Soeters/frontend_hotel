@@ -42,7 +42,7 @@
                 var td3 = document.createElement("TD");
                 td3.innerHTML = data[x][3];
                 var td4 = document.createElement("TD");
-                td4.innerHTML = data[x][4];
+                td4.innerHTML = "<img src="+data[x][4]+">";
                 var td5 = document.createElement("TD");
                 td5.innerHTML = data[x][5];
                 var td6 = document.createElement("TD");
@@ -130,7 +130,7 @@
             <table style="width:40%">
             <tr>
                 <td><label for="ftype">kamer type: </label></td>
-                <td><select name="ftype" id="ftype" value="">
+                <td><select name="ftype" id="ftype" value="" class="knoppen">
                         <option value="1 persoonskamer">1 persoonskamer</option>
                         <option value="2 persoonskamer">2 persoonskamer</option>
                         <option value="familiekamer">familiekamer</option>
@@ -154,19 +154,19 @@
                 <td><input type="number" step="1" id="fnummer" name="fnummer" value=""></td>
             </tr>
         </table>
-        <input type="submit" value="nieuwe kamer aanmaken">
+        <input type="submit" value="nieuwe kamer aanmaken" id="knopnieuwekamer">
     </form>
         <br>
         <h4 id="kameroverzichttitel">Kameroverzicht</h4>
         <table class="table">
             <thead>
-              <tr>
-                <th scope="col">Kamer Type</th>
-                <th scope="col">Kamer Prijs</th>
-                <th scope="col">Kamer Beschrijving</th>
-                <th scope="col">Kamer Foto</th>
-                <th scope="col">Kamer Nummer</th>
-                <th scope="col">Reserveer Kamer</th>
+              <tr class="titels">
+                <th scope="col">Kamertype</th>
+                <th scope="col">Kamerprijs</th>
+                <th scope="col" >Kamerbeschrijving</th>
+                <th scope="col" >Kamerfoto</th>
+                <th scope="col">Kamernummer</th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody id="kameroverview" style="text-align: center">
