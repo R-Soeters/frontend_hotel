@@ -11,14 +11,14 @@
         }
 
         function naardedb() {
-            fetch("https://yc2301hotelbackend.azurewebsites.net/getKamerinfo/a")
+            fetch("http://localhost:5000/getKamerinfo/a")
             .then(r => r.json())
             .then(d => verwerk(d) )
 
         }
 
         function reserveerKamer(kamerid) {
-            fetch("https://yc2301hotelbackend.azurewebsites.net/dbreserveerkamer/"+kamerid)
+            fetch("http://localhost:5000/dbreserveerkamer/"+kamerid)
             sessionStorage.kamerid = kamerid
             window.location.href="Reserveringspagina.html"
         }

@@ -7,44 +7,52 @@
     <title>Reserveringspagina</title>
     
     <script>
-        function checkid(){
-            let kamerid = sessionStorage.getItem("kamerid");
-            return kamerid
-        }
-
         function fetchkamer(){ 
-            kamerid = checkid();
-            fetch("https://yc2301hotelbackend.azurewebsites.net/dbfetchkamer/"+kamerid)
+            let kamerid = sessionStorage.getItem("kamerid");
+            fetch("http://localhost:5000/dbfetchkamer/"+kamerid)
             .then(r => r.json())
-            .then(d => verwerk(d) )
+            .then(d => verwerk(d))
         }
 
         function verwerk(data){
+            let kamerType = data[0][1];
+            let kamerPrijs = data[0][2];
+            let kamerBeschrijving = data[0][3];
+            let kamerFoto = data[0][4];
+            let kamerNummer = data[0][5];
+
+            alert(data[0][4])
+
+            document.getElementById("kType").innerHTML = kamerType;
+            document.getElementById("kPrijs").innerHTML = kamerPrijs;
+            document.getElementById("kBeschrijving").innerHTML = kamerBeschrijving;
+            document.getElementById("kFoto").innerHTML = "<img src="+kamerFoto+">";
+            document.getElementById("kNummer").innerHTML = kamerNummer;
+
             let bodyelement = document.getElementById("kamerinformatie");
             var tb = document.createElement("TB");
 
-            for(var x =0; x < data.length; x++){
-                // "<h3>"+"-Kamer type :"+data[x][1]+", Kamer prijs: "+data[x][2]+", Kamer beschrijving: "+data[x][3]+", Kamer foto: "+data[x][4]+", Kamer nummer: "+data[x][5]+"</h3>";
-                var tr = document.createElement("TR");
-                var td1 = document.createElement("TD");
-                td1.innerHTML = data[x][1];
-                var td2 = document.createElement("TD");
-                td2.innerHTML = data[x][2];
-                var td3 = document.createElement("TD");
-                td3.innerHTML = data[x][3];
-                var td4 = document.createElement("TD");
-                td4.innerHTML = data[x][4];
-                var td5 = document.createElement("TD");
-                td5.innerHTML = data[x][5];
+            // for(var x =0; x < data.length; x++){
+            //     // "<h3>"+"-Kamer type :"+data[x][1]+", Kamer prijs: "+data[x][2]+", Kamer beschrijving: "+data[x][3]+", Kamer foto: "+data[x][4]+", Kamer nummer: "+data[x][5]+"</h3>";
+            //     var tr = document.createElement("TR");
+            //     var td1 = document.createElement("TD");
+            //     td1.innerHTML = data[x][5];
+            //     var td2 = document.createElement("TD");
+            //     td2.innerHTML = data[x][1];
+            //     var td3 = document.createElement("TD");
+            //     td3.innerHTML = data[x][3];
+            //     var td4 = document.createElement("TD");
+            //     td4.innerHTML = data[x][4];
+            //     var td5 = document.createElement("TD");
+            //     td5.innerHTML = data[x][5];
 
-                    tr.appendChild(td1);
-                    tr.appendChild(td2);
-                    tr.appendChild(td3);
-                    tr.appendChild(td4);
-                    tr.appendChild(td5);
-                    tr.appendChild(td6);
-                    bodyelement.appendChild(tr);
-                 }
+            //         tr.appendChild(td1);
+            //         tr.appendChild(td2);
+            //         tr.appendChild(td3);
+            //         // tr.appendChild(td4);
+            //         // tr.appendChild(td5);
+            //         bodyelement.appendChild(tr);
+                //  }
                 }
     fetchkamer();
     </script>
@@ -56,38 +64,38 @@
 </head>
 
 <body>
-    <button onclick="checkid()">Check kamer id</button>
-    <div id="kloptid"></div>
 
     <h4 id="Reserveringsoverzichttitel">Reserveringsoverzicht</h4>
 
     <table class="table">
         <thead>
           <tr>
+            <th scope="col" class="tekstbovenaantabel">Foto</th>
             <th scope="col" class="tekstbovenaantabel">Kamernummer</th>
-            <th scope="col" class="tekstbovenaantabel">Gekozen kamer</th>
-            <th scope="col" class="tekstbovenaantabel">Beschrijving gekozen kamer</th>
-            <th scope="col" class="tekstbovenaantabel">TEST</th>
+            <th scope="col" class="tekstbovenaantabel">kamertype</th>
+            <th scope="col" class="tekstbovenaantabel">Beschrijving</th>
+
           </tr>
         </thead>
         <tbody id="kamerinformatie">
           <tr>
-            <th scope="row" class="tekst"> placeholdertekst<br>
+
+            <td id="kFoto"><img src="kFoto"></td>
+
+            <th scope="row" id="kNummer"> <br>
             </th>
-            
-            <td class="tekst"><b>Eenpersoonskamer</b>
-                <br>
-    
-                <img id="eenpersoonskamer" src="eenpersoonskamer.jpg"> </td>
+
+            <td id="kType"><b></b>
+              </td>
             <td>
                 <br>
-                <tekst class="tekst">De eenpersoonskamer is ideaal om even helemaal tot rust te komen..........</tekst> 
+                <tekst id="kBeschrijving"></tekst> 
                 <br>
                 <br>
                 <b class="tekst">Faciliteiten:</b> <tekst class="tekst">TV, eenpersoonsbed, mini-bar, kluisje, douche. Ontbijt inbegrepen.</tekst>
                 <br>
                 <br>
-                <b class="tekst">Prijs:</b> <tekst class="tekst">vanaf €60,00 per nacht</tekst>
+                <b id="kPrijs">Prijs:</b> <tekst class="tekst">vanaf €60,00 per nacht</tekst>
                 <br>
                 <br>
             </td>     
