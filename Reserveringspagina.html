@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reserveringspagina</title>
     <script>
-        function checkid(){
+        function getresinfo() { 
             let kamerid = sessionStorage.getItem("kamerid");
-            document.getElementById("kloptid").innerHTML = kamerid;
+            fetch("https://localhost:5000/getReservering/"+kamerid)
+            .then(r => r.json())
         }
+        getresinfo();
     </script>
 
 </head>
