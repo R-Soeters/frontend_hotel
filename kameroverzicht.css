@@ -20,14 +20,15 @@
         border:none; 
     }
     
-    tbody tr {
-        border-color: #FFCCCB;
+    .table tr {
+        border-color: #FFCCCB !important; 
         border-width: 5px;
         
     }
     
     th {
         background-color: white; 
+    
     }
     
     .naarbeneden{
@@ -80,14 +81,53 @@
     }
     
     .form-groupcol-lg-2{
-        margin-left:-50px
+        margin-left:-50px;
     }
     
     .form-group-col-lg-2{
         margin-left: -47px;
     }
+
+    #kameroverzichttitel {
+        margin-bottom: 50px;
+        color: grey;
+    }
+
+    tbody, thead {
+        color: gray;
+    }
+
+    .titels{
+        text-align: center;
+    }
     
+    .knoppen, button {
+        background-color: #5C5CFF;
+        color: white;
+        border: 0px;
+        padding: 10px;
+        border-radius: 10px !important;
+    }
+
+h4{
+    margin-left: 10px;
+}
+
+table{
+    margin-left:10px;
+    margin-right: 50px !important; 
+}
+
+.table{
+    padding-right:  10px;
+}
     
-    
-    
-    
+#knopnieuwekamer{
+    margin-left:10px;
+    background-color: #5C5CFF;
+    color: white;
+    border: 0px;
+    padding: 10px;
+    border-radius: 10px !important;
+} 
+
