@@ -21,8 +21,6 @@
             let kamerFoto = data[0][4];
             let kamerNummer = data[0][5];
 
-            alert(data[0][4])
-
             document.getElementById("kType").innerHTML = kamerType;
             document.getElementById("kPrijs").innerHTML = kamerPrijs;
             document.getElementById("kBeschrijving").innerHTML = kamerBeschrijving;
@@ -55,6 +53,11 @@
                 //  }
                 }
     fetchkamer();
+    function boekKamer(kamerid) {
+            let kamerid2 = sessionStorage.getItem("kamerid");
+            fetch("https://yc2301hotelbackend.azurewebsites.net/dbboekkamer/"+kamerid2)
+            alert("Kamer geboekt!")
+        }
     </script>
 
     <link href="daanreserveringspagina.css" rel="stylesheet" type="text/css">
@@ -90,12 +93,9 @@
             <td>
                 <br>
                 <tekst id="kBeschrijving"></tekst> 
-                <br>
-                <br>
                 <b class="tekst">Faciliteiten:</b> <tekst class="tekst">TV, eenpersoonsbed, mini-bar, kluisje, douche. Ontbijt inbegrepen.</tekst>
                 <br>
-                <br>
-                <b id="kPrijs">Prijs:</b> <tekst class="tekst">vanaf €60,00 per nacht</tekst>
+                <b>Prijs:</b> <tekst class="tekst">vanaf €<b id=kPrijs></b> per nacht</tekst>
                 <br>
                 <br>
             </td>     
@@ -160,7 +160,7 @@
         </div>
       </div>
      <div>
-        <button id="knoprechts">
+        <button id="knoprechts" onclick="boekKamer()">
             Boek nu!
         </button>
      </div>
