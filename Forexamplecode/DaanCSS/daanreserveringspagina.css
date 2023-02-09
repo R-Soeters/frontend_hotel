@@ -1,0 +1,72 @@
+#Reserveringsoverzichttitel{
+    color:grey
+}
+
+html {
+    max-width: 1500px;
+    }
+#knoprechts{
+float: right;
+margin-right: 50px;
+background-color: #8A8AFF;
+border: none;
+margin-bottom: 50px;
+height: 75px !important;
+width: 125px !important;
+text-align: center;
+color: white;
+
+}
+
+#eenpersoonskamer{
+    height: 200px;
+    width: 300px;;
+}
+
+tr{
+    color: grey;
+}
+
+tbody tr {
+    border-color: black;
+    border-width: 3px;
+    background-color: #FFCCCB;
+}
+
+#datumtekst{
+    color: grey
+}
+
+.form-group-col-lg-2{
+margin-left: -640px;
+}
+
+.form-groupcol-lg-2{
+    margin-left: -620px;
+}
+
+.form-check{
+    margin-left: 18px;
+    color: orange;
+    font-size: large;
+    margin-top: -85px;
+}
+
+.form-group{
+    width: 500px;
+    margin-left:18px;
+    color: grey;
+}
+
+#ondertekst{
+    color:orange !important;
+}
+
+.form-control{
+    color: grey !important;
+}
+
+.dropdown{
+margin-left: 18px;
+margin-top: -10px;
+}
