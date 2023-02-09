@@ -141,25 +141,29 @@
                     <h4 id="Reserveringtitel">Kameroverzicht Capital Hotel</h4>
                 </div>
                 <div class="col-12 mb-3">
-                    <label for="ftype" class="form-label">Kamer type</label>
+                    <label for="ftype" class="form-label">Kamertype:</label>
                     <select name="ftype" id="ftype" value="" class="form-control">
                         <option value="1 persoonskamer">1 persoonskamer</option>
                         <option value="2 persoonskamer">2 persoonskamer</option>
-                        <option value="familiekamer">familiekamer</option>
+                        <option value="familiekamer">Familiekamer</option>
+                        <option value="mindervalidekamer">Mindervalidekamer</option>
                     </select>
                 </div>
                 <div class="col-12 mb-3">
-                    <label for="fprijs" class="form-label">Prijs</label>
+                    <label for="fprijs" class="form-label">Prijs:</label>
                     <input type="number" step="0.01" id="fprijs" name="fprijs" value="" class="form-control" placeholder="Vul hier een prijs in">
                 </div>
                 <div class="col-12 mb-3">
-                    <!-- Hier plaats je de beschrijving veld -->
+                    <label for="fbeschrijving">Kamerbeschrijving:</label>
+                    <input type="text" id="fbeschrijving" name="fbeschrijving" value="" class="form-control" placeholder="Vul hier je kamerbeschrijving in">
                 </div>
                 <div class="col-12 mb-3">
-                    <!-- Hier plaats je de foto veld-->
+                    <label for="ffoto">Kamerfoto:</label>
+                    <input type="text" id="ffoto" name="ffoto" value="" class="form-control" placeholder="Plak hier de URL van je kamerfoto">
                 </div>
                 <div class="col-12 mb-3">
-                    <!-- Hier plaats je de kamer nummer -->
+                    <label for="fnummer">Kamernummer:</label>
+                    <input type="number" step="1" id="fnummer" name="fnummer" value="" class="form-control" placeholder="Vul hier het kamernummer in">
                 </div>
                 <div class="col-12">
                     <button class="btn btn-primary" type="submit" id="knopnieuwekamer">Nieuwe kamer aanmaken</button>
@@ -167,21 +171,6 @@
             </div>
         </div>
     </form>
-
-            <!-- 
-            <tr>
-                <td><label for="fbeschrijving">kamer beschrijving: </label></td>
-                <td><input type="text" id="fbeschrijving" name="fbeschrijving" value=""></td>
-            </tr>
-            <tr>
-                <td><label for="ffoto">kamer foto: </label></td>
-                <td><input type="text" id="ffoto" name="ffoto" value=""></td>
-            </tr>
-            <tr>
-                <td><label for="fnummer">kamer nummer: </label></td>
-                <td><input type="number" step="1" id="fnummer" name="fnummer" value=""></td>
-            </tr>
-        </table> -->
 
     <div class="container">
         <div class="row">
