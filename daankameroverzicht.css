@@ -1,0 +1,100 @@
+
+#Reserveringtitel{
+    margin-top: 5px;
+    color: grey
+    }
+
+.btn-primary{
+    font-size: 50px;
+    color:white ;
+    background-color: grey;
+    border:none;
+}
+
+.btn-primary:hover {
+background-color:green;
+}
+
+.button{
+    color: white;
+    background-color: grey;
+    border:none; 
+}
+
+tbody tr {
+    border-color: #FFCCCB;
+    border-width: 5px;
+    
+}
+
+th {
+    background-color: white; 
+}
+
+.naarbeneden{
+    margin-bottom: 5px !important; 
+    vertical-align:bottom !important;
+}
+
+.tekstbovenaantabel{
+    color: grey;
+    background-color: white;
+
+
+}
+
+
+#eenpersoonskamer{
+    height: 200px;
+    width: 290px;
+}
+
+#tweepersoonskamer{
+    height: 200px;
+    width: 290px;
+
+}
+
+#familiekamer{
+    height: 200px;
+    width: 290px;
+}
+
+#invalidekamer{
+    height: 200px;
+    width: 290px;
+
+}
+
+.tekst{
+    color: gray;
+}
+
+.table{
+
+margin-top: -35px;
+}
+
+#datumtekst{
+    color: gray;
+
+}
+
+.form-groupcol-lg-2{
+    margin-left:-50px
+}
+
+.form-group-col-lg-2{
+    margin-left: -47px;
+}
+
+
+
+
+
+
+
+
+
+
+

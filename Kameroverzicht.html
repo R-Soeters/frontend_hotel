@@ -47,9 +47,10 @@
                 td5.innerHTML = data[x][5];
                 var td6 = document.createElement("TD");
                 td6.innerHTML = "<button onclick='reserveerKamer("+data[x][0]+")'>Reserveer Kamer</button>";
+                var td7 = data[x][7];
                 var td8 = data[x][8];
-                
-                if(time-td8 > 1200) {
+                                
+                if((time-td8 > 1200 || time-td8 == null) && td7 == null) {
                     tr.appendChild(td1);
                     tr.appendChild(td2);
                     tr.appendChild(td3);
@@ -58,15 +59,6 @@
                     tr.appendChild(td6);
                     bodyelement.appendChild(tr);
                  }
-                else if(time-td8 == null) { 
-                    tr.appendChild(td1);
-                    tr.appendChild(td2);
-                    tr.appendChild(td3);
-                    tr.appendChild(td4);
-                    tr.appendChild(td5);
-                    tr.appendChild(td6);
-                    bodyelement.appendChild(tr);
-                }
                 else {
                     continue
                 }
