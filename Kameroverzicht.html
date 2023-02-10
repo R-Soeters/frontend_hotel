@@ -11,16 +11,16 @@
         }
 
         function naardedb() {
-            fetch("http://localhost:5000/getKamerinfo/a")
+            fetch("https://yc2301hotelbackend.azurewebsites.net/getKamerinfo/a")
             .then(r => r.json())
             .then(d => verwerk(d) )
 
         }
 
         function reserveerKamer(kamerid) {
-            fetch("http://localhost:5000/dbreserveerkamer/"+kamerid)
+            fetch("https://yc2301hotelbackend.azurewebsites.net/dbreserveerkamer/"+kamerid)
             sessionStorage.kamerid = kamerid
-            window.location.href="Reserveringspagina.html"
+            window.location.href="reserveringspagina.html"
         }
 
         function boekKamer() {
@@ -42,7 +42,7 @@
                 var td3 = document.createElement("TD");
                 td3.innerHTML = data[x][3];
                 var td4 = document.createElement("TD");
-                td4.innerHTML = "<img src="+data[x][4]+">";
+                td4.innerHTML = "<img class='img-fluid' src="+data[x][4]+">";
                 var td5 = document.createElement("TD");
                 td5.innerHTML = data[x][5];
                 var td6 = document.createElement("TD");
@@ -125,68 +125,138 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </head>
 <body>
-    <!-- <button onclick="naardedb()">Kamers Laten Zien</button> -->
-    <h4 id="Reserveringtitel">Kameroverzicht Capital Hotel</h4>
-    <form action="http://localhost:5000/sendKamerinfo">
-            <table style="width:40%">
-            <tr>
-                <td><label for="ftype">kamer type: </label></td>
-                <td><select name="ftype" id="ftype" value="" class="knoppen">
+
+    <nav class="row navbar navbar-inverse navbar-static-top navbar-expand-lg navbar-light bg-light pb-5 mb-5">
+        <div class="col-lg-12" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="navbar-brand">Capital Hotels <span class="sr-only"></span></li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="kameroverzicht.html">Kameroverzicht</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="boekingsoverzicht.html">Boekingsoverzicht</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Member</a>
+              </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="contact.html">Contact</a>
+              </li>
+            </ul>
+        </div>
+        </nav>
+
+    <form action="https://yc2301hotelbackend.azurewebsites.net/sendKamerinfo">
+        <div class="container mb-5">
+            <div class="row">
+                <div class="col-12">
+                    <!-- <button onclick="naardedb()">Kamers Laten Zien</button> -->
+                    <h4 id="Reserveringtitel">Kameroverzicht Capital Hotel</h4>
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="ftype" class="form-label">Kamertype:</label>
+                    <select name="ftype" id="ftype" value="" class="form-control">
                         <option value="1 persoonskamer">1 persoonskamer</option>
                         <option value="2 persoonskamer">2 persoonskamer</option>
-                        <option value="familiekamer">familiekamer</option>
+                        <option value="familiekamer">Familiekamer</option>
+                        <option value="mindervalidekamer">Mindervalidekamer</option>
                     </select>
-                </td>
-            </tr>
-            <tr>
-                <td><label for="fprijs">kamer prijs: </label></td>
-                <td><input type="number" step="0.01" id="fprijs" name="fprijs" value=""></td>
-            </tr>
-            <tr>
-                <td><label for="fbeschrijving">kamer beschrijving: </label></td>
-                <td><input type="text" id="fbeschrijving" name="fbeschrijving" value=""></td>
-            </tr>
-            <tr>
-                <td><label for="ffoto">kamer foto: </label></td>
-                <td><input type="text" id="ffoto" name="ffoto" value=""></td>
-            </tr>
-            <tr>
-                <td><label for="fnummer">kamer nummer: </label></td>
-                <td><input type="number" step="1" id="fnummer" name="fnummer" value=""></td>
-            </tr>
-        </table>
-        <input type="submit" value="nieuwe kamer aanmaken" id="knopnieuwekamer">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="fprijs" class="form-label">Prijs:</label>
+                    <input type="number" step="0.01" id="fprijs" name="fprijs" value="" class="form-control" placeholder="Vul hier een prijs in">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="fbeschrijving">Kamerbeschrijving:</label>
+                    <input type="text" id="fbeschrijving" name="fbeschrijving" value="" class="form-control" placeholder="Vul hier je kamerbeschrijving in">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="ffoto">Kamerfoto:</label>
+                    <input type="text" id="ffoto" name="ffoto" value="" class="form-control" placeholder="Plak hier de URL van je kamerfoto">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="fnummer">Kamernummer:</label>
+                    <input type="number" step="1" id="fnummer" name="fnummer" value="" class="form-control" placeholder="Vul hier het kamernummer in">
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-primary" type="submit" id="knopnieuwekamer">Nieuwe kamer aanmaken</button>
+                </div>
+            </div>
+        </div>
     </form>
-        <br>
-        <h4 id="kameroverzichttitel">Kameroverzicht</h4>
-        <table class="table">
-            <thead>
-              <tr class="titels">
-                <th scope="col">Kamertype</th>
-                <th scope="col">Kamerprijs</th>
-                <th scope="col" >Kamerbeschrijving</th>
-                <th scope="col" >Kamerfoto</th>
-                <th scope="col">Kamernummer</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody id="kameroverview" style="text-align: center">
-              <!-- <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr> -->
-            </tbody>
-          </table>
-        <!-- <div id="overzicht"> -->
-    <!-- </div> -->
-    <h1></h1>
 
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4 id="kameroverzichttitel">Kameroverzicht</h4>
+            </div>
+            <div class="col-12">
+                <table class="table">
+                    <thead>
+                        <tr class="titels">
+                            <th scope="col">Kamertype</th>
+                            <th scope="col">Kamerprijs</th>
+                            <th scope="col">Kamerbeschrijving</th>
+                            <th scope="col">Kamerfoto</th>
+                            <th scope="col">Kamernummer</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="kameroverview">
+                    <!-- <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td colspan="2">Larry the Bird</td>
+                        <td>@twitter</td>
+                    </tr> -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center text-lg-start">
+        <!-- Grid container -->
+        <div class="container p-4">
+          <!--Grid row-->
+          <div class="row">
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+              <h5 class="text-uppercase">Capital Hotels</h5>
+            </div>
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+              <h5 class="text-uppercase"><a href="contact.html">Contact</a></h5>
+            </div>
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+              <h5 class="text-uppercase">Social Media</h5>
+              <p>
+                <a href="#">Facebook</a><br>
+                <a href="#">Instagram</a>
+              </p>
+            </div>
+            <!--Grid column-->
+          </div>
+          <!--Grid row-->
+        </div>
+        <!-- Grid container -->
+      
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.1);">
+          <p>© 2023:
+          <a href="#">Capital Hotels</a></p>
+        </div>
+        <!-- Copyright -->
+      </footer>
+       
 </body>
 </html>

@@ -83,19 +83,20 @@
         </tbody>
       </table>
       <div class="container">
-        <div class="form-groupcol-lg-2">
+        <div class="form-group col-lg-2">
           <form action="/action_page.php">
-              <label for="inputDatum1" id="datumtekst">&nbsp; Aankomstdatum:</label>
-              <input type="date" id="arrDate" name="arrivalDate">
+            <label for="Aankomstdatum">Aankomstdatum:</label>
+            <input type="date" id="Aankomstdatum" name="Aankomstdatum">
           </form>
         </div>
         <br>
-       <div class="form-group-col-lg-2">
+       <div class="form-group col-lg-2">
           <form action="/action_page.php">
-              <label for="inputDatum2" id="datumtekst">&nbsp; &nbsp; &nbsp; Vertrekdatum:&nbsp; &nbsp; &nbsp; </label>
-              <input type="date" id="depDate" name="departureDate">
+            <label for="Vertrekdatum">Vertrekdatum:</label>
+            <input type="date" id="Vertrekdatum" name="Vertrekdatum">
           </form>
         </div>
+        <input type="submit" name="Verzenden">
       </div>
       <div class="form-check">
         <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
@@ -162,4 +163,25 @@
      </div>
 
 </body>
+
+<body>
+    <label for="begindatum">begindatum:</label>
+
+    <input type="date" id="start" name="trip-start"
+       value="2023-02-07"
+       min="2023-01-01" max="2025-12-31">
+
+</body>
+
+<body>
+    <label for="einddatum">einddatum:</label>
+
+    <input type="date" id="start" name="trip-start"
+       value="2023-02-07"
+       min="2023-01-01" max="2025-12-31">
+
+</body>
+
+
+
 </html>

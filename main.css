@@ -1,15 +1,4 @@
-
 /* CSS voor index.html */
-body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-footer {
-    margin-top: auto;
-}
-
 .navbar {
     background-image: url("hotelbanner1.jpg");
     background-repeat: no-repeat;
@@ -29,6 +18,7 @@ footer {
     margin: 5px;
 }
 
+/* Zoekbalk: Kamertype en Zoeken knop */
 .btn-primary, .btn-secondary {
     background-color: #5C5CFF !important;
     border: none;
@@ -47,7 +37,7 @@ footer {
     background-color: #8A8AFF !important;
 }
 
-/* Aantal gasten knopjes CSS */
+/* Zoekbalk: aantal gasten knopjes CSS */
 .input-group-btn {
     padding: 5px;
 }
@@ -61,16 +51,18 @@ footer {
     background-color: #8A8AFF;
 }
 
-#paragraaf1 {
+/* div met de geschiedenis */
+#history {
 padding: 10px;
 width: 100%;
 height: 100%;
-background-color: #D57E1C;
+background-color: #f7b76e;
 border-style: solid;
 border-width: 2px;
 border-color: black;
 }
 
+/* Foto van hotel in geschiedenis */
 #Oudhotel {
     width: 300px;
     height: 300px;
@@ -78,11 +70,8 @@ border-color: black;
     margin-top: 25px;
 }
 
-#teksthistorie {
-    text-align: center; 
-}
-
-#paragraaf2 {
+/* div over wellness */
+#wellness {
     padding: 10px;
     width: 100%;
     height: 100%;
@@ -92,6 +81,7 @@ border-color: black;
     border-color: black;
 }
 
+/* foto's in de wellness div */
 #saunafoto {
     margin-top:75px;
     width: 250px;
@@ -103,4 +93,26 @@ border-color: black;
 margin-top: 25px;
 width: 200px;
 height: 200px; 
+}
+
+/* Footer CSS */
+footer {
+    margin-top: 30px;
+    background-color: rgb(217, 231, 250);
+    border: solid;
+    border-width: 1px;
+    border-color: darkgray;
+}
+
+.text-uppercase {
+    color: gray;
+}
+
+a, p {
+    color: gray;
+    text-decoration: none;
+}
+
+a:hover {
+    color: black;
 }
