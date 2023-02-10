@@ -125,6 +125,30 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </head>
 <body>
+
+    <nav class="row navbar navbar-inverse navbar-static-top navbar-expand-lg navbar-light bg-light pb-5 mb-5">
+        <div class="col-lg-12" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="navbar-brand">Capital Hotels <span class="sr-only"></span></li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="kameroverzicht.html">Kameroverzicht</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="boekingsoverzicht.html">Boekingsoverzicht</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Member</a>
+              </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="contact.html">Contact</a>
+              </li>
+            </ul>
+        </div>
+        </nav>
+
     <form action="https://yc2301hotelbackend.azurewebsites.net/sendKamerinfo">
         <div class="container mb-5">
             <div class="row">
@@ -170,7 +194,7 @@
                 <h4 id="kameroverzichttitel">Kameroverzicht</h4>
             </div>
             <div class="col-12">
-                <table class="table table-striped">
+                <table class="table">
                     <thead>
                         <tr class="titels">
                             <th scope="col">Kamertype</th>
@@ -198,5 +222,41 @@
             </div>
         </div>
     </div>
+
+    <footer class="text-center text-lg-start">
+        <!-- Grid container -->
+        <div class="container p-4">
+          <!--Grid row-->
+          <div class="row">
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+              <h5 class="text-uppercase">Capital Hotels</h5>
+            </div>
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+              <h5 class="text-uppercase"><a href="contact.html">Contact</a></h5>
+            </div>
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+              <h5 class="text-uppercase">Social Media</h5>
+              <p>
+                <a href="#">Facebook</a><br>
+                <a href="#">Instagram</a>
+              </p>
+            </div>
+            <!--Grid column-->
+          </div>
+          <!--Grid row-->
+        </div>
+        <!-- Grid container -->
+      
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.1);">
+          <p>© 2023:
+          <a href="#">Capital Hotels</a></p>
+        </div>
+        <!-- Copyright -->
+      </footer>
+       
 </body>
 </html>
