@@ -8,19 +8,23 @@
     
     <script>
       function checkMember() {
-        fetch("https://yc2301hotelbackend.azurewebsites.net/checkmember/")
-        if () {
-          
-        }
-        else {
-          memberSuccesvol();
-        }
+        let abcde = "test@test.nl"
+        fetch("http://localhost:5000/checkMember/a")
+        .then(r => r.json())
+        .then(d => checkDubbeleemail(d))
       }
 
-      function memberSuccesvol(memberEmail, memberPassword, memberPostcode, memberStraat, memberTelefoonnummer) {
-        fetch("https://yc2301hotelbackend.azurewebsites.net/createmember/")
-        alert("U bent nu een member!")
+      function checkDubbeleemail(data) {
+        for (var x=0; x < data.length; x++) {
+          if (data[x][0] == "super@goed.nl") {
+            alert("Dit e-mailadres bestaat al."+data[x][0])
+            break
+          }
+          else {
+            alert("Uw account is gemaakt!")
+          }
         }
+      }
     </script>
 
     <link href="daanreserveringspagina.css" rel="stylesheet" type="text/css">
@@ -30,35 +34,8 @@
 </head>
 
 <body>
-      </div>
-      <br>
-      <form>
-        <div class="form-group">
-          <label for="exampleInputEmail1"><b>E-mailadres</b></label>
-          <input type="email" class="form-control" id="memberEmail" aria-describedby="emailHelp" placeholder="Voor- en achternaam">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1"><b>Wachtwoord</b></label>
-          <input type="Adresgegevens" class="form-control" id="memberPassword" placeholder="Postcode">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1"><b>Adresgegevens - Postcode</b></label>
-          <input type="Adresgegevens" class="form-control" id="memberPostcode" placeholder="Postcode">
-        </div>      
-        </div>
-        <div class="form-group">
-            <label for="exampleInputEmail1"><b>Adresgegevens - Straatnaam, huisnummer</b></label>
-            <input type="adresgegevens" class="form-control" id="memberStraat" aria-describedby="adresHelp" placeholder="Straatnaam + huisnummer">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1"><b>Telefoonnummer</b></label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="06-xxxxxxxxxx">
-            <small id="ondertekst" class="form-text text-muted">Bij voorkeur uw mobiele telefoonnummer</small>
-          </div>
-      </form>
-      <br>
-        <button onclick="checkMember()">Ik wil graag member worden.</button>
-
+  <button onclick="checkMember()">Laat member zien</button>
 </body>
+
 
 </html>
