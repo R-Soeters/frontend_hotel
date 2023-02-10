@@ -7,58 +7,37 @@
     <title>Reserveringspagina</title>
     
     <script>
-        function fetchkamer(){ 
-            let kamerid = sessionStorage.getItem("kamerid");
-            fetch("https://yc2301hotelbackend.azurewebsites.net/dbfetchkamer/"+kamerid)
-            .then(r => r.json())
-            .then(d => verwerk(d))
+      function fetchkamer(){ 
+        let kamerid = sessionStorage.getItem("kamerid");
+        fetch("https://localhost:5000/dbfetchkamer/"+kamerid)
+        .then(r => r.json())
+        .then(d => verwerk(d))
+      }
+
+      function verwerk(data){
+        let kamerType = data[0][1];
+        let kamerPrijs = data[0][2];
+        let kamerBeschrijving = data[0][3];
+        let kamerFoto = data[0][4];
+        let kamerNummer = data[0][5];
+
+        document.getElementById("kType").innerHTML = kamerType;
+        document.getElementById("kPrijs").innerHTML = kamerPrijs;
+        document.getElementById("kBeschrijving").innerHTML = kamerBeschrijving;
+        document.getElementById("kFoto").innerHTML = "<img src="+kamerFoto+">";
+        document.getElementById("kNummer").innerHTML = kamerNummer;
+
+        let bodyelement = document.getElementById("kamerinformatie");
+        var tb = document.createElement("TB");
         }
+      fetchkamer();
 
-        function verwerk(data){
-            let kamerType = data[0][1];
-            let kamerPrijs = data[0][2];
-            let kamerBeschrijving = data[0][3];
-            let kamerFoto = data[0][4];
-            let kamerNummer = data[0][5];
+      function boekKamer(kamerid) {
+        let kamerid2 = sessionStorage.getItem("kamerid");
+          fetch("http://localhost:5000/dbboekkamer/"+kamerid2)
+          alert("Kamer geboekt!")
+      }
 
-            document.getElementById("kType").innerHTML = kamerType;
-            document.getElementById("kPrijs").innerHTML = kamerPrijs;
-            document.getElementById("kBeschrijving").innerHTML = kamerBeschrijving;
-            document.getElementById("kFoto").innerHTML = "<img src="+kamerFoto+">";
-            document.getElementById("kNummer").innerHTML = kamerNummer;
-
-            let bodyelement = document.getElementById("kamerinformatie");
-            var tb = document.createElement("TB");
-
-            // for(var x =0; x < data.length; x++){
-            //     // "<h3>"+"-Kamer type :"+data[x][1]+", Kamer prijs: "+data[x][2]+", Kamer beschrijving: "+data[x][3]+", Kamer foto: "+data[x][4]+", Kamer nummer: "+data[x][5]+"</h3>";
-            //     var tr = document.createElement("TR");
-            //     var td1 = document.createElement("TD");
-            //     td1.innerHTML = data[x][5];
-            //     var td2 = document.createElement("TD");
-            //     td2.innerHTML = data[x][1];
-            //     var td3 = document.createElement("TD");
-            //     td3.innerHTML = data[x][3];
-            //     var td4 = document.createElement("TD");
-            //     td4.innerHTML = data[x][4];
-            //     var td5 = document.createElement("TD");
-            //     td5.innerHTML = data[x][5];
-
-            //         tr.appendChild(td1);
-            //         tr.appendChild(td2);
-            //         tr.appendChild(td3);
-            //         // tr.appendChild(td4);
-            //         // tr.appendChild(td5);
-            //         bodyelement.appendChild(tr);
-                //  }
-                }
-    fetchkamer();
-    function boekKamer(kamerid) {
-            let kamerid2 = sessionStorage.getItem("kamerid");
-            fetch("https://yc2301hotelbackend.azurewebsites.net/dbboekkamer/"+kamerid2)
-            alert("Kamer geboekt!")
-        }
-        getresinfo();
     </script>
 
     <link href="daanreserveringspagina.css" rel="stylesheet" type="text/css">
@@ -125,45 +104,61 @@
         </label>
       </div>
       <br>
-      <form>
+      <form action="http://localhost:5000/sendGastgegevens">
         <div class="form-group">
-          <label for="exampleInputEmail1"><b>Voor- en achternaam</b></label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Voor- en achternaam">
+          <label for="kvoornaam"><b>Voornaam</b></label>
+          <input type="text" name="kvoornaam" class="form-control" id="kvoornaami" aria-describedby="emailHelp" placeholder="Voornaam">
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1"><b>Adresgegevens - Postcode</b></label>
-          <input type="Adresgegevens" class="form-control" id="exampleInputPassword1" placeholder="Postcode">
-        </div>      
+          <label for="kachternaam"><b>Achternaam</b></label>
+          <input type="text" name="kachternaam" class="form-control" id="kachternaami" aria-describedby="emailHelp" placeholder="Achternaam">
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail1"><b>Adresgegevens - Straatnaam, huisnummer</b></label>
-            <input type="adresgegevens" class="form-control" id="exampleInputEmail1" aria-describedby="adresHelp" placeholder="Straatnaam + huisnummer">
+          <label for="kvoorvoegsel"><b>Voorvoegsel</b></label>
+          <input type="text" name="kvoorvoegsel" class="form-control" id="kvoorvoegseli" aria-describedby="emailHelp" placeholder="Voorvoegsel">
+        </div>    
+        <div class="form-group">
+          <label for="kadres"><b>Straatnaam en huisnummer</b></label>
+          <input type="text" name="kadres" class="form-control" id="kadresi" aria-describedby="adresHelp" placeholder="Straatnaam + huisnummer">
+        </div>
+        <div class="form-group">
+          <label for="kpcode"><b>Postcode</b></label>
+          <input type="text" name=kpcode class="form-control" id="kpcodei" placeholder="Postcode">
+        </div>
+        <div class="form-group">
+          <label for="kland"><b>Land woonplaats</b></label>
+          <input type="text" name=kland class="form-control" id="klandi" placeholder="Land">
+        </div>       
+        </div>
+        <div class="form-group">
+          <label for="kemail"><b>E-mailadres</b></label>
+          <input type="email" name="kemail" class="form-control" id="kemaili" aria-describedby="emailHelp" placeholder="E-mailadres">
+          <small id="ondertekst" class="form-text text-muted">Uw mailadres blijft altijd privé</small>
+        </div>
+        <div class="form-group">
+          <label for="ktel"><b>Telefoonnummer</b></label>
+          <input type="tel" name=ktel class="form-control" id="kteli" aria-describedby="emailHelp" placeholder="06-xxxxxxxxxx">
+          <small id="ondertekst" class="form-text text-muted">Bij voorkeur uw mobiele telefoonnummer</small>
+        </div>
+        <div class="form-group">
+          <label for="kbetaalmethode"><b>Betaalmethoden</b></label>
+          <br><br>
+          <div class="dropdown">
+            <select name="kbetaalmethode" id="kbetaalmethodei">
+              <option value="ideal">iDEAL</option>
+              <option value="contant">Betalen bij aankomst</option>
+            </select>
           </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1"><b>E-mailadres</b></label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mailadres">
-            <small id="ondertekst" class="form-text text-muted">Uw mailadres blijft altijd privé</small>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1"><b>Telefoonnummer</b></label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="06-xxxxxxxxxx">
-            <small id="ondertekst" class="form-text text-muted">Bij voorkeur uw mobiele telefoonnummer</small>
-          </div>
+        </div>
+          <!-- Boek nu button verplaatst binnen de form-->
+        <div>
+          <button type="submit" id="knoprechts" onclick="boekKamer();">
+              Boek nu!
+          </button>
+        </div>
       </form>
       <br>
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Betaalmethode
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">iDEAL</a>
-          <a class="dropdown-item" href="#">Op locatie betalen</a>
-        </div>
-      </div>
-     <div>
-        <button id="knoprechts" onclick="boekKamer()">
-            Boek nu!
-        </button>
+
      </div>
 
 </body>

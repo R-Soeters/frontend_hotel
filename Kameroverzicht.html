@@ -11,14 +11,14 @@
         }
 
         function naardedb() {
-            fetch("https://yc2301hotelbackend.azurewebsites.net/getKamerinfo/a")
+            fetch("http://localhost:5000/getKamerinfo/a")
             .then(r => r.json())
             .then(d => verwerk(d) )
 
         }
 
         function reserveerKamer(kamerid) {
-            fetch("https://yc2301hotelbackend.azurewebsites.net/dbreserveerkamer/"+kamerid)
+            fetch("http://localhost:5000/dbreserveerkamer/"+kamerid)
             sessionStorage.kamerid = kamerid
             window.location.href="Reserveringspagina.html"
         }
@@ -127,7 +127,7 @@
 <body>
     <!-- <button onclick="naardedb()">Kamers Laten Zien</button> -->
     <h4 id="Reserveringtitel">Kameroverzicht Capital Hotel</h4>
-    <form action="https://yc2301hotelbackend.azurewebsites.net/sendKamerinfo">
+    <form action="http://localhost:5000/sendKamerinfo">
             <table style="width:40%">
             <tr>
                 <td><label for="ftype">kamer type: </label></td>
