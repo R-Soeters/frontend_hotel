@@ -127,7 +127,10 @@
         aankomst = urlParams.get('aankomst');
         vertrek = urlParams.get('vertrek');
         aantalGast = urlParams.get('gasten');
-        alert("hij doet het" + typeKamer + aankomst + vertrek + aantalGast);
+        var divf = document.getElementById('filters');
+        divf.innerHTML = `Je gekozen filters:<br>
+        Kamertype: ${typeKamer} Aankomst: ${aankomst} Vertrek: ${vertrek} Aantal gasten: ${aantalGast}`;
+        //alert("hij doet het" + typeKamer + aankomst + vertrek + aantalGast);
     }
 
     </script>
@@ -203,6 +206,7 @@
         <div class="row">
             <div class="col-12">
                 <h4 id="kameroverzichttitel">Kameroverzicht</h4>
+                <div id="filters"></div>
             </div>
             <div class="col-12">
                 <table class="table">
