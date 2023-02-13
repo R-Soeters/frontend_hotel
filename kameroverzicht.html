@@ -6,10 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kameroverzicht</title>
     <script>
-        function newFuntion() {
-            console.log("Hello Michael.")
-        }
-
+        
         function naardedb() {
             fetch("https://yc2301hotelbackend.azurewebsites.net/getKamerinfo/a")
             .then(r => r.json())
@@ -23,6 +20,8 @@
             sessionStorage.kamerprijs = kamerprijs
             window.location.href="reserveringspagina.html"
         }
+        kamerTypekeuze = '';
+                
 
         function topprogrammatuur(defoto, rij){
             defoto.src="ster2.png";
@@ -40,7 +39,11 @@
             var tb = document.createElement("TB");
             const currentTime = new Date();
             let time = parseInt(currentTime.getTime()/1000);
-
+            
+            const queryString = window.location.search;
+            urlParams = new URLSearchParams(queryString);
+            kamerTypekeuze = urlParams.get('typekamer');
+            
             for(var x =0; x < data.length; x++){
                 // "<h3>"+"-Kamer type :"+data[x][1]+", Kamer prijs: "+data[x][2]+", Kamer beschrijving: "+data[x][3]+", Kamer foto: "+data[x][4]+", Kamer nummer: "+data[x][5]+"</h3>";
                 var tr = document.createElement("TR");
@@ -58,8 +61,17 @@
                 td6.innerHTML = "<button onclick='reserveerKamer("+data[x][0]+", "+data[x][2]+")'>Reserveer Kamer</button>";
                 var td7 = data[x][7];
                 var td8 = data[x][8];
-                                
-                if((time-td8 > 1200 || time-td8 == null) && td7 == null) {
+                //alert(data[x][1]);
+
+                if((time-td8 > 1200 || time-td8 == null) && td7 == null && kamerTypekeuze == null) {
+                    tr.appendChild(td1);
+                    tr.appendChild(td2);
+                    tr.appendChild(td3);
+                    tr.appendChild(td4);
+                    tr.appendChild(td5);
+                    tr.appendChild(td6);
+                    bodyelement.appendChild(tr);
+                 } else if ((time-td8 > 1200 || time-td8 == null) && td7 == null && data[x][1] == kamerTypekeuze) {
                     tr.appendChild(td1);
                     tr.appendChild(td2);
                     tr.appendChild(td3);
@@ -120,18 +132,7 @@
     }
     naardedb();
 
-    window.onload = function() {
-        const queryString = window.location.search;
-        urlParams = new URLSearchParams(queryString);
-        typeKamer = urlParams.get('typekamer');
-        aankomst = urlParams.get('aankomst');
-        vertrek = urlParams.get('vertrek');
-        aantalGast = urlParams.get('gasten');
-        var divf = document.getElementById('filters');
-        divf.innerHTML = `Je gekozen filters:<br>
-        Kamertype: ${typeKamer} Aankomst: ${aankomst} Vertrek: ${vertrek} Aantal gasten: ${aantalGast}`;
-        //alert("hij doet het" + typeKamer + aankomst + vertrek + aantalGast);
-    }
+    
 
     </script>
     <link href="kameroverzicht.css" rel="stylesheet" type="text/css">
