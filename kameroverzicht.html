@@ -8,7 +8,7 @@
     <script>
         
         function naardedb() {
-            fetch("https://yc2301hotelbackend.azurewebsites.net/getKamerinfo/a")
+            fetch("http://localhost:5000/getKamerinfo/a")
             .then(r => r.json())
             .then(d => verwerk(d) )
 
