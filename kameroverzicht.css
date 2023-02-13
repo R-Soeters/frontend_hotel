@@ -4,6 +4,13 @@
     background-repeat: no-repeat;
 }
 
+#memberknop{
+    margin-left: 850px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
 h4 {
     margin-top: 5px !important;
     color: grey !important;
