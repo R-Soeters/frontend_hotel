@@ -32,42 +32,47 @@
         }
       fetchkamer();
 
-      function boekKamer(kamerid) {
-        // Calculate the difference in days & total price  
+      function sendgastgegevensenboekkamer() {
         let startdata = new Date(document.getElementById("startdat").value);
         let einddata = new Date(document.getElementById("einddat").value);
         let kamerprijs = sessionStorage.getItem("kamerprijs");
         let timediff = einddata.getTime() - startdata.getTime();
-
         let daydiff = Math.floor(timediff / (1000*3600*24)); //last number are miliseconds in a day, total is rounded to a whole number
         startdata = document.getElementById("startdat").value;
         einddata = document.getElementById("einddat").value;
 
         if (daydiff > 0) {
           let totaleprijs = Math.floor((daydiff*kamerprijs)*100) / 100;
-
-          // Voeg toe aan boeking tabel in database
-          let betmetho = document.getElementById("kbetaalmethodei").value;
           let kamerid2 = sessionStorage.getItem("kamerid");
           document.getElementById("kamid").value = kamerid2;
           document.getElementById("totprijs").value = totaleprijs;
-        } else{
+          var gegevens = {};
+          gegevens.kvoornaam = document.getElementById("kvoornaami").value;
+          gegevens.kachternaam = document.getElementById("kachternaami").value;
+          gegevens.kvoorvoegsel = document.getElementById("kvoorvoegseli").value;
+          gegevens.kadres = document.getElementById("kadresi").value;
+          gegevens.kpcode = document.getElementById("kpcodei").value;
+          gegevens.kland = document.getElementById("klandi").value;
+          gegevens.kemail = document.getElementById("kemaili").value;
+          gegevens.ktel = document.getElementById("kteli").value;
+          gegevens.kbetaalmethode = document.getElementById("kbetaalmethodei").value;
+          gegevens.kstartdata = startdata;
+          gegevens.keinddata = einddata;
+          gegevens.ktotaleprijs = totaleprijs;
+          gegevens.kkamerid = kamerid2;
+          var gegevensjson = JSON.stringify(gegevens);
+          fetch("https://yc2301hotelbackend.azurewebsites.net/sendGastgegevens", {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+                  body: gegevensjson
+              })
+        } else {
           alert("Einddatum moet later zijn dan de begindatum");
         }
+        window.location.href="boekingsbevestiging.html";
       }
-
-      function validateForm() {
-        let startdata = new Date(document.getElementById("startdat").value);
-        let einddata = new Date(document.getElementById("einddat").value);
-        let timediff = einddata.getTime() - startdata.getTime();
-        let daydiff = Math.floor(timediff / (1000*3600*24)); 
-        if (daydiff <= 0) {
-          return false
-        }
-      }
-
-
-
     </script>
 
     <link href="daanreserveringspagina.css" rel="stylesheet" type="text/css">
@@ -77,6 +82,30 @@
 </head>
 
 <body>
+  <nav class="row navbar navbar-inverse navbar-static-top navbar-expand-lg navbar-light bg-light pb-5 mb-5">
+    <div class="col-lg-12" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="navbar-brand">Capital Hotels <span class="sr-only"></span></li>
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">Home <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="kameroverzicht.html">Kameroverzicht</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="boekingsoverzicht.html">Boekingsoverzicht</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <li>
+            <button type="button" class="btn btn-primary" id="memberknop">Member worden</button>
+        </li>
+        </ul>
+    </div>
+   
+ 
+    </nav>
 
     <h4 id="Reserveringsoverzichttitel">Reserveringsoverzicht</h4>
 
@@ -122,7 +151,6 @@
         </label>
       </div>
       <br>
-      <form action="https://yc2301hotelbackend.azurewebsites.net/sendGastgegevens" onsubmit="return validateForm()" >
         <br><br><br><br>
         <div class="form-check">
           <label for="kbegindat">begindatum:</label>
@@ -187,15 +215,49 @@
         </div>
           <!-- Boek nu button verplaatst binnen de form-->
         <div>
-          <button type="submit" id="knoprechts" onclick="boekKamer();">
+          <button type="submit" id="knoprechts" onclick="sendgastgegevensenboekkamer();">
               Boek nu!
           </button>
         </div>
-      </form>
       <br>
 
      </div>
 
+     <footer class="text-center text-lg-start">
+      <!-- Grid container -->
+      <div class="container p-4">
+        <!--Grid row-->
+        <div class="row">
+          <!--Grid column-->
+          <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+            <h5 class="text-uppercase">Capital Hotels</h5>
+          </div>
+          <!--Grid column-->
+          <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+            <h5 class="text-uppercase"><a href="contact.html">Contact</a></h5>
+          </div>
+          <!--Grid column-->
+          <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+            <h5 class="text-uppercase">Social Media</h5>
+            <p>
+              <a href="#">Facebook</a><br>
+              <a href="#">Instagram</a>
+            </p>
+          </div>
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </div>
+      <!-- Grid container -->
+    
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.1);">
+        <p>© 2023:
+        <a href="#">Capital Hotels</a></p>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    
 </body>
 
 </html>

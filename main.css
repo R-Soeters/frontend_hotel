@@ -19,21 +19,24 @@
 }
 
 /* Zoekbalk: Kamertype en Zoeken knop */
-.btn-primary, .btn-secondary {
+#kamerSelect, #buttonZoek {
     background-color: #5C5CFF !important;
     border: none;
     margin: 20px 0px 20px 0px;
+    color: white;
+    border-radius: 5px;
 }
 
-.btn-secondary {
+#kamerSelect {
+    padding: 5px;
     margin-top: 30px;
 }
 
-.btn-primary:hover {
-    background-color: #8A8AFF !important;
+#buttonZoek {
+    padding: 8px;
 }
 
-.btn-secondary:hover {
+#kamerSelect:hover, #buttonZoek:hover {
     background-color: #8A8AFF !important;
 }
 
