@@ -10,6 +10,18 @@
       
     <script src="jquery-3.6.1.min.js"></script>
 
+    <script>
+      function zoekKamer() {
+      console.log("test kamerSelect"); 
+      var k = document.getElementById('kamerSelect').value;
+      var ad = document.getElementById('arrDate').value;
+      var vd = document.getElementById('depDate').value;
+      var g = document.getElementById('quantity').value;
+      console.log(k, ad, g);
+      window.location = "kameroverzicht.html?typekamer=" + k + "&aankomst=" + ad + "&vertrek=" + vd + "&gasten=" + g;
+      }
+    </script>
+
     <title>Capital Hotels</title>
   </head>
     
@@ -37,18 +49,17 @@
     </div>
     </nav>
 
-    <div class="container mb-5" id="reservering">
-      <form>
-        <div class="row g-3 align-items-center">
-            <div class="form-group col-lg-3">
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Zoek op kamertype</button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                <button class="dropdown-item" type="button">Eénpersoonskamer</button>
-                <button class="dropdown-item" type="button">Tweepersoonskamer</button>
-                <button class="dropdown-item" type="button">Familiekamer</button>
-                <button class="dropdown-item" type="button">Mindervalidekamer</button>
-                    </div>
-            </div>
+      <div class="container mb-5" id="reservering">
+        <form>
+          <div class="row g-3 align-items-center">
+              <div class="form-group col-lg-3">
+                <select id="kamerSelect">
+                  <option>Eénpersoonskamer</option>
+                  <option>Tweepersoonskamer</option>
+                  <option>Familiekamer</option>
+                  <option>Mindervalidekamer</option>
+                </select>
+              </div>
             
         <div class="form-group col-lg-2">
             <form action="/action_page.php">
@@ -79,7 +90,9 @@
                     </span>
                 </div>
         </div>
-            <div class="col-lg-2"><button type="submit" class="btn btn-primary" id="buttonZoek">Zoeken</button></div>
+            <div class="col-lg-2">
+                <input type="button" onclick="zoekKamer()" value="Zoek" id="buttonZoek">
+            </div>
       </div>
     </form>
     </div>
@@ -206,6 +219,7 @@ var quantity=0;
     });
     
 });      
+
       </script>
   </body>
 </html>
