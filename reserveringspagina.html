@@ -9,7 +9,7 @@
     <script>
       function fetchkamer(){ 
         let kamerid = sessionStorage.getItem("kamerid");
-        fetch("http://localhost:5000/dbfetchkamer/"+kamerid)
+        fetch("https://yc2301hotelbackend.azurewebsites.net/dbfetchkamer/"+kamerid)
         .then(r => r.json())
         .then(d => verwerk(d))
       }
@@ -61,7 +61,7 @@
           gegevens.ktotaleprijs = totaleprijs;
           gegevens.kkamerid = kamerid2;
           var gegevensjson = JSON.stringify(gegevens);
-          fetch("http://localhost:5000/sendGastgegevens", {
+          fetch("https://yc2301hotelbackend.azurewebsites.net/sendGastgegevens", {
                   method: 'POST',
                   headers: {
                       'Content-Type': 'application/json',
