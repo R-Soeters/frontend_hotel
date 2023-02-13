@@ -11,14 +11,14 @@
         }
 
         function naardedb() {
-            fetch("https://yc2301hotelbackend.azurewebsites.net/getKamerinfo/a")
+            fetch("http://localhost:5000/getKamerinfo/a")
             .then(r => r.json())
             .then(d => verwerk(d) )
 
         }
 
         function reserveerKamer(kamerid, kamerprijs) {
-            fetch("https://yc2301hotelbackend.azurewebsites.net/dbreserveerkamer/"+kamerid)
+            fetch("http://localhost:5000/dbreserveerkamer/"+kamerid)
             sessionStorage.kamerid = kamerid
             sessionStorage.kamerprijs = kamerprijs
             window.location.href="reserveringspagina.html"
@@ -141,7 +141,7 @@
         </div>
         </nav>
 
-    <form action="https://yc2301hotelbackend.azurewebsites.net/sendKamerinfo">
+    <form action="https://localhost:5000/sendKamerinfo">
         <div class="container mb-5">
             <div class="row">
                 <div class="col-12">

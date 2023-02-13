@@ -9,7 +9,7 @@
     <script>
       function fetchkamer(){ 
         let kamerid = sessionStorage.getItem("kamerid");
-        fetch("https://yc2301hotelbackend.azurewebsites.net/dbfetchkamer/"+kamerid)
+        fetch("http://localhost:5000/dbfetchkamer/"+kamerid)
         .then(r => r.json())
         .then(d => verwerk(d))
       }
@@ -32,43 +32,47 @@
         }
       fetchkamer();
 
-      function boekKamer(kamerid) {
-        // Calculate the difference in days & total price  
+      function sendgastgegevensenboekkamer() {
         let startdata = new Date(document.getElementById("startdat").value);
         let einddata = new Date(document.getElementById("einddat").value);
         let kamerprijs = sessionStorage.getItem("kamerprijs");
         let timediff = einddata.getTime() - startdata.getTime();
-
         let daydiff = Math.floor(timediff / (1000*3600*24)); //last number are miliseconds in a day, total is rounded to a whole number
         startdata = document.getElementById("startdat").value;
         einddata = document.getElementById("einddat").value;
 
         if (daydiff > 0) {
           let totaleprijs = Math.floor((daydiff*kamerprijs)*100) / 100;
-
-          // Voeg toe aan boeking tabel in database
-          let betmetho = document.getElementById("kbetaalmethodei").value;
           let kamerid2 = sessionStorage.getItem("kamerid");
           document.getElementById("kamid").value = kamerid2;
           document.getElementById("totprijs").value = totaleprijs;
-        } else{
+          var gegevens = {};
+          gegevens.kvoornaam = document.getElementById("kvoornaami").value;
+          gegevens.kachternaam = document.getElementById("kachternaami").value;
+          gegevens.kvoorvoegsel = document.getElementById("kvoorvoegseli").value;
+          gegevens.kadres = document.getElementById("kadresi").value;
+          gegevens.kpcode = document.getElementById("kpcodei").value;
+          gegevens.kland = document.getElementById("klandi").value;
+          gegevens.kemail = document.getElementById("kemaili").value;
+          gegevens.ktel = document.getElementById("kteli").value;
+          gegevens.kbetaalmethode = document.getElementById("kbetaalmethodei").value;
+          gegevens.kstartdata = startdata;
+          gegevens.keinddata = einddata;
+          gegevens.ktotaleprijs = totaleprijs;
+          gegevens.kkamerid = kamerid2;
+          var gegevensjson = JSON.stringify(gegevens);
+          fetch("http://localhost:5000/sendGastgegevens", {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+                  body: gegevensjson
+              })
+        } else {
           alert("Einddatum moet later zijn dan de begindatum");
         }
-        window.location.href="boekingsbevestiging.html"
+        window.location.href="boekingsbevestiging.html";
       }
-
-      function validateForm() {
-        let startdata = new Date(document.getElementById("startdat").value);
-        let einddata = new Date(document.getElementById("einddat").value);
-        let timediff = einddata.getTime() - startdata.getTime();
-        let daydiff = Math.floor(timediff / (1000*3600*24)); 
-        if (daydiff <= 0) {
-          return false
-        }
-      }
-
-
-
     </script>
 
     <link href="daanreserveringspagina.css" rel="stylesheet" type="text/css">
@@ -123,7 +127,6 @@
         </label>
       </div>
       <br>
-      <form action="https://yc2301hotelbackend.azurewebsites.net/sendGastgegevens" onsubmit="return validateForm()" >
         <br><br><br><br>
         <div class="form-check">
           <label for="kbegindat">begindatum:</label>
@@ -188,11 +191,10 @@
         </div>
           <!-- Boek nu button verplaatst binnen de form-->
         <div>
-          <button type="submit" id="knoprechts" onclick="boekKamer();">
+          <button type="submit" id="knoprechts" onclick="sendgastgegevensenboekkamer();" href="">
               Boek nu!
           </button>
         </div>
-      </form>
       <br>
 
      </div>
