@@ -24,6 +24,14 @@
             window.location.href="reserveringspagina.html"
         }
 
+        function topprogrammatuur(defoto, rij){
+            defoto.src="ster2.png";
+            fetch('https://catfact.ninja/fact')
+            .then(u=>u.json())
+            .then(cf=>document.getElementById("feit"+rij).innerHTML=cf.fact)
+            
+        }
+
         function boekKamer() {
 
         }
@@ -37,7 +45,7 @@
                 // "<h3>"+"-Kamer type :"+data[x][1]+", Kamer prijs: "+data[x][2]+", Kamer beschrijving: "+data[x][3]+", Kamer foto: "+data[x][4]+", Kamer nummer: "+data[x][5]+"</h3>";
                 var tr = document.createElement("TR");
                 var td1 = document.createElement("TD");
-                td1.innerHTML = data[x][1];
+                td1.innerHTML = data[x][1] + "<br> <img id=stertransparant width=30px onclick=\"topprogrammatuur(this, "+data[x][0]+")\" src=stertransparant.png><div id=feit"+data[x][0]+" ></div>";
                 var td2 = document.createElement("TD");
                 td2.innerHTML = data[x][2];
                 var td3 = document.createElement("TD");
