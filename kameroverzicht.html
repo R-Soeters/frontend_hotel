@@ -13,9 +13,15 @@
 
         }
 
+<<<<<<< HEAD
         function reserveerKamer(kamerid) {
             fetch("http://localhost:5000/dbreserveerkamer/"+kamerid)
+=======
+        function reserveerKamer(kamerid, kamerprijs) {
+            fetch("https://yc2301hotelbackend.azurewebsites.net/dbreserveerkamer/"+kamerid)
+>>>>>>> main
             sessionStorage.kamerid = kamerid
+            sessionStorage.kamerprijs = kamerprijs
             window.location.href="reserveringspagina.html"
         }
 
@@ -42,7 +48,7 @@
                 var td5 = document.createElement("TD");
                 td5.innerHTML = data[x][5];
                 var td6 = document.createElement("TD");
-                td6.innerHTML = "<button onclick='reserveerKamer("+data[x][0]+")'>Reserveer Kamer</button>";
+                td6.innerHTML = "<button onclick='reserveerKamer("+data[x][0]+", "+data[x][2]+")'>Reserveer Kamer</button>";
                 var td7 = data[x][7];
                 var td8 = data[x][8];
                                 
@@ -58,18 +64,9 @@
                 else {
                     continue
                 }
-
-                //  document.getElementById("kamertable").innerHTML +=
-                //  "<tr>"+
-                //      "<td>"+data[x][1]+"</td>"+
-                //      "<td>"+data[x][2]+"</td>"+
-                //      "<td>"+data[x][3]+"</td>"+
-                //      "<td>"+data[x][4]+"</td>"+
-                //      "<td>"+data[x][5]+"</td>"+
-                //      "</tr>"
-                 }
-            sortTable();
             }
+            sortTable();
+        }
             // function slaKameroptypeOp(){
             // var kamertype = document.getElementById("kamerVeldtype").value
             // fetch("http://yc2301hotelbackend.azurewebsites.net/sendKamerinfo"+kamertype)
@@ -122,7 +119,35 @@
     <script src="http://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </head>
 <body>
+<<<<<<< HEAD
     <form action="http://localhost:5000/sendKamerinfo">
+=======
+
+    <nav class="row navbar navbar-inverse navbar-static-top navbar-expand-lg navbar-light bg-light pb-5 mb-5">
+        <div class="col-lg-12" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="navbar-brand">Capital Hotels <span class="sr-only"></span></li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="kameroverzicht.html">Kameroverzicht</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="boekingsoverzicht.html">Boekingsoverzicht</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Member</a>
+              </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="contact.html">Contact</a>
+              </li>
+            </ul>
+        </div>
+        </nav>
+
+    <form action="https://yc2301hotelbackend.azurewebsites.net/sendKamerinfo">
+>>>>>>> main
         <div class="container mb-5">
             <div class="row">
                 <div class="col-12">
@@ -167,7 +192,7 @@
                 <h4 id="kameroverzichttitel">Kameroverzicht</h4>
             </div>
             <div class="col-12">
-                <table class="table table-striped">
+                <table class="table">
                     <thead>
                         <tr class="titels">
                             <th scope="col">Kamertype</th>
@@ -195,5 +220,41 @@
             </div>
         </div>
     </div>
+
+    <footer class="text-center text-lg-start">
+        <!-- Grid container -->
+        <div class="container p-4">
+          <!--Grid row-->
+          <div class="row">
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+              <h5 class="text-uppercase">Capital Hotels</h5>
+            </div>
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+              <h5 class="text-uppercase"><a href="contact.html">Contact</a></h5>
+            </div>
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+              <h5 class="text-uppercase">Social Media</h5>
+              <p>
+                <a href="#">Facebook</a><br>
+                <a href="#">Instagram</a>
+              </p>
+            </div>
+            <!--Grid column-->
+          </div>
+          <!--Grid row-->
+        </div>
+        <!-- Grid container -->
+      
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.1);">
+          <p>© 2023:
+          <a href="#">Capital Hotels</a></p>
+        </div>
+        <!-- Copyright -->
+      </footer>
+       
 </body>
 </html>
