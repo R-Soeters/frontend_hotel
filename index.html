@@ -11,13 +11,12 @@
     <script src="jquery-3.6.1.min.js"></script>
 
     <script>
+      // Functie om de zoekbalk values mee te nemen naar kameroverzicht.html
       function zoekKamer() {
-      console.log("test kamerSelect"); 
       var k = document.getElementById('kamerSelect').value;
       var ad = document.getElementById('arrDate').value;
       var vd = document.getElementById('depDate').value;
       var g = document.getElementById('quantity').value;
-      console.log(k, ad, g);
       window.location = "kameroverzicht.html?typekamer=" + k + "&aankomst=" + ad + "&vertrek=" + vd + "&gasten=" + g;
       }
     </script>
