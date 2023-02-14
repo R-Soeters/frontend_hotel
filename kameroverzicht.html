@@ -8,14 +8,14 @@
     <script>
         
         function naardedb() {
-            fetch("http://localhost:5000/getKamerinfo/a")
+            fetch("https://yc2301hotelbackend.azurewebsites.net/getKamerinfo/a")
             .then(r => r.json())
             .then(d => verwerk(d) )
 
         }
 
         function reserveerKamer(kamerid, kamerprijs, kamertype) {
-            fetch("http://localhost:5000/dbreserveerkamer/"+kamerid)
+            fetch("https://yc2301hotelbackend.azurewebsites.net/dbreserveerkamer/"+kamerid)
             sessionStorage.kamerid = kamerid
             sessionStorage.kamerprijs = kamerprijs
             sessionStorage.kamertype = kamertype
