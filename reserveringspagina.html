@@ -9,7 +9,7 @@
     <script>
       function fetchkamer(){ 
         let kamerid = sessionStorage.getItem("kamerid");
-        fetch("https://yc2301hotelbackend.azurewebsites.net/dbfetchkamer/"+kamerid)
+        fetch("http://localhost:5000/dbfetchkamer/"+kamerid)
         .then(r => r.json())
         .then(d => verwerk(d))
       }
@@ -61,19 +61,29 @@
           gegevens.ktotaleprijs = totaleprijs;
           gegevens.kkamerid = kamerid2;
           var gegevensjson = JSON.stringify(gegevens);
+
+          let bevestigingsdata = [];
           fetch("https://yc2301hotelbackend.azurewebsites.net/sendGastgegevens", {
                   method: 'POST',
                   headers: {
                       'Content-Type': 'application/json',
                   },
                   body: gegevensjson
-              });
-          window.location.href="boekingsbevestiging.html";
+              })
+              .then(res => res.json())
+              .then((data) => { 
+                console.log(data);
+                sessionStorage.setItem("Data", data);
+                window.location.href="boekingsbevestiging.html"
+                });
+          
         } else {
           alert("Einddatum moet later zijn dan de begindatum");
         }
+        //window.location.href="boekingsbevestiging.html";
         
       }
+
     </script>
 
     <link href="daanreserveringspagina.css" rel="stylesheet" type="text/css">
