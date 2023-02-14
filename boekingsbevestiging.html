@@ -6,7 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <p>kamer is geboekt! gefeliciteerd!</p>
+    <div>
+        <b>Bedankt voor je boeking met nummer <span id="boeknummer"></span>!</b>
+    </div>
+
+    <div>
+        Kamertype: <span id="btype"></span> <br>
+        Aankomst: <span id="baankomst"></span> <br>
+        Vertrek: <span id="bvertrek"></span> <br>
+        Aantal gasten: <span id="baantal"></span> <br>
+        Prijs: <span id="bprijs"></span> <br>
+    </div>
+
+    <script>
+        function vulData(){
+            let allData = sessionStorage.getItem("Data");
+            splitData = allData.split(",");
+            alert(splitData[0]);
+
+            document.getElementById("boeknummer").innerHTML = splitData[0];
+            document.getElementById("btype").innerHTML = sessionStorage.getItem("kamertype");
+            document.getElementById("baankomst").innerHTML = splitData[3];
+            document.getElementById("bvertrek").innerHTML = splitData[4];
+            document.getElementById("baantal").innerHTML = sessionStorage.getItem("kamerprijs");
+            document.getElementById("bprijs").innerHTML = splitData[2];
+        }
+        window.onload = vulData();
+    </script>
 </body>
 </html>
