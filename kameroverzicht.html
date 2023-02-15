@@ -14,10 +14,11 @@
 
         }
 
-        function reserveerKamer(kamerid, kamerprijs) {
+        function reserveerKamer(kamerid, kamerprijs, kamertype) {
             fetch("https://yc2301hotelbackend.azurewebsites.net/dbreserveerkamer/"+kamerid)
             sessionStorage.kamerid = kamerid
             sessionStorage.kamerprijs = kamerprijs
+            sessionStorage.kamertype = kamertype
             window.location.href="reserveringspagina.html"
         }
         kamerTypekeuze = '';
@@ -58,7 +59,7 @@
                 var td5 = document.createElement("TD");
                 td5.innerHTML = data[x][5];
                 var td6 = document.createElement("TD");
-                td6.innerHTML = "<button onclick='reserveerKamer("+data[x][0]+", "+data[x][2]+")'>Reserveer Kamer</button>";
+                td6.innerHTML = "<button onclick='reserveerKamer("+data[x][0]+", "+data[x][2]+", `"+data[x][1]+"`)'>Reserveer Kamer</button>";
                 var td7 = data[x][7];
                 var td8 = data[x][8];
                 //alert(data[x][1]);
