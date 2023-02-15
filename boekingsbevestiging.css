@@ -1,0 +1,36 @@
+/* Navbar CSS */
+.navbar {
+    background-image: url("hotelbanner1.jpg");
+    background-repeat: no-repeat;
+}
+
+#memberknop{
+    margin-left: 850px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+/* Footer CSS */
+footer {
+    margin-top: 250px;
+    background-color: rgb(217, 231, 250);
+    border: solid;
+    border-width: 1px;
+    border-color: darkgray;
+
+}
+
+.text-uppercase {
+    color: gray;
+}
+
+footer a, p {
+    color: gray;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: black;
+}
+
