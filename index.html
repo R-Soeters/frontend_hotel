@@ -11,13 +11,12 @@
     <script src="jquery-3.6.1.min.js"></script>
 
     <script>
+      // Functie om de zoekbalk values mee te nemen naar kameroverzicht.html
       function zoekKamer() {
-      console.log("test kamerSelect"); 
       var k = document.getElementById('kamerSelect').value;
       var ad = document.getElementById('arrDate').value;
       var vd = document.getElementById('depDate').value;
       var g = document.getElementById('quantity').value;
-      console.log(k, ad, g);
       window.location = "kameroverzicht.html?typekamer=" + k + "&aankomst=" + ad + "&vertrek=" + vd + "&gasten=" + g;
       }
     </script>
@@ -40,11 +39,9 @@
                 <a class="nav-link" href="boekingsoverzicht.html">Boekingsoverzicht</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Member</a>
-          </li>
-            <li class="nav-item">
               <a class="nav-link" href="contact.html">Contact</a>
           </li>
+          <button type="button" class="btn btn-primary" id="memberknop">Member worden</button>
         </ul>
     </div>
     </nav>
@@ -54,10 +51,10 @@
           <div class="row g-3 align-items-center">
               <div class="form-group col-lg-3">
                 <select id="kamerSelect">
-                  <option>Eénpersoonskamer</option>
-                  <option>Tweepersoonskamer</option>
-                  <option>Familiekamer</option>
-                  <option>Mindervalidekamer</option>
+                  <option value="1 persoonskamer">Eénpersoonskamer</option>
+                  <option value="2 persoonskamer">Tweepersoonskamer</option>
+                  <option value="familiekamer">Familiekamer</option>
+                  <option value="Mindervalidekamer">Mindervalidekamer</option>
                 </select>
               </div>
             
@@ -102,7 +99,7 @@
 
                     <div class="d-flex justify-content-center">
 
-                        <img src="pexels-photo-96444.jpeg" id="hotelphoto" alt="Hotel photo" width="400" height="500">
+                        <img src="lobbyfoto-index.avif" id="hotelphoto" alt="Hotel photo" width="587" height="831">
 
                     </div>
 

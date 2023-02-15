@@ -6,10 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kameroverzicht</title>
     <script>
-        function newFuntion() {
-            console.log("Hello Michael.")
-        }
-
+        
         function naardedb() {
             fetch("https://yc2301hotelbackend.azurewebsites.net/getKamerinfo/a")
             .then(r => r.json())
@@ -17,12 +14,15 @@
 
         }
 
-        function reserveerKamer(kamerid, kamerprijs) {
+        function reserveerKamer(kamerid, kamerprijs, kamertype) {
             fetch("https://yc2301hotelbackend.azurewebsites.net/dbreserveerkamer/"+kamerid)
             sessionStorage.kamerid = kamerid
             sessionStorage.kamerprijs = kamerprijs
+            sessionStorage.kamertype = kamertype
             window.location.href="reserveringspagina.html"
         }
+        kamerTypekeuze = '';
+                
 
         function topprogrammatuur(defoto, rij){
             defoto.src="ster2.png";
@@ -40,7 +40,11 @@
             var tb = document.createElement("TB");
             const currentTime = new Date();
             let time = parseInt(currentTime.getTime()/1000);
-
+            
+            const queryString = window.location.search;
+            urlParams = new URLSearchParams(queryString);
+            kamerTypekeuze = urlParams.get('typekamer');
+            
             for(var x =0; x < data.length; x++){
                 // "<h3>"+"-Kamer type :"+data[x][1]+", Kamer prijs: "+data[x][2]+", Kamer beschrijving: "+data[x][3]+", Kamer foto: "+data[x][4]+", Kamer nummer: "+data[x][5]+"</h3>";
                 var tr = document.createElement("TR");
@@ -55,11 +59,20 @@
                 var td5 = document.createElement("TD");
                 td5.innerHTML = data[x][5];
                 var td6 = document.createElement("TD");
-                td6.innerHTML = "<button onclick='reserveerKamer("+data[x][0]+", "+data[x][2]+")'>Reserveer Kamer</button>";
+                td6.innerHTML = "<button onclick='reserveerKamer("+data[x][0]+", "+data[x][2]+", `"+data[x][1]+"`)'>Reserveer Kamer</button>";
                 var td7 = data[x][7];
                 var td8 = data[x][8];
-                                
-                if((time-td8 > 1200 || time-td8 == null) && td7 == null) {
+                //alert(data[x][1]);
+
+                if((time-td8 > 1200 || time-td8 == null) && td7 == null && kamerTypekeuze == null) {
+                    tr.appendChild(td1);
+                    tr.appendChild(td2);
+                    tr.appendChild(td3);
+                    tr.appendChild(td4);
+                    tr.appendChild(td5);
+                    tr.appendChild(td6);
+                    bodyelement.appendChild(tr);
+                 } else if ((time-td8 > 1200 || time-td8 == null) && td7 == null && data[x][1] == kamerTypekeuze) {
                     tr.appendChild(td1);
                     tr.appendChild(td2);
                     tr.appendChild(td3);
@@ -76,7 +89,7 @@
         }
             // function slaKameroptypeOp(){
             // var kamertype = document.getElementById("kamerVeldtype").value
-            // fetch("https://yc2301hotelbackend.azurewebsites.net/sendKamerinfo"+kamertype)
+            // fetch("http://yc2301hotelbackend.azurewebsites.net/sendKamerinfo"+kamertype)
         // }
 
         function getTime() { 
@@ -120,23 +133,14 @@
     }
     naardedb();
 
-    window.onload = function() {
-        const queryString = window.location.search;
-        urlParams = new URLSearchParams(queryString);
-        typeKamer = urlParams.get('typekamer');
-        aankomst = urlParams.get('aankomst');
-        vertrek = urlParams.get('vertrek');
-        aantalGast = urlParams.get('gasten');
-        var divf = document.getElementById('filters');
-        divf.innerHTML = `Je gekozen filters:<br>
-        Kamertype: ${typeKamer} Aankomst: ${aankomst} Vertrek: ${vertrek} Aantal gasten: ${aantalGast}`;
-        //alert("hij doet het" + typeKamer + aankomst + vertrek + aantalGast);
-    }
+    
 
     </script>
     <link href="kameroverzicht.css" rel="stylesheet" type="text/css">
+    <script src="jquery-3.6.1.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
 </head>
 <body>
 
