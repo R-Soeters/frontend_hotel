@@ -20,79 +20,82 @@
       window.location = "kameroverzicht.html?typekamer=" + k + "&aankomst=" + ad + "&vertrek=" + vd + "&gasten=" + g;
       }
     </script>
-
     <title>Capital Hotels</title>
   </head>
     
   <body>
     <nav class="row navbar navbar-inverse navbar-static-top navbar-expand-lg navbar-light bg-light pb-5 mb-5">
-    <div class="col-lg-12" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="navbar-brand">Capital Hotels <span class="sr-only"></span></li>
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">Home <span class="sr-only"></span></a>
+      <div class="col-lg-12" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+              <li class="navbar-brand">Capital Hotels <span class="sr-only"></span></li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="index.html">Home <span class="sr-only"></span></a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="kameroverzicht.html">Kameroverzicht</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="boekingsoverzicht.html">Boekingsoverzicht</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="memberaccount.html">Dedicated Member</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="kameroverzicht.html">Kameroverzicht</a>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="boekingsoverzicht.html">Boekingsoverzicht</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
-          </li>
           <a href="Memberworden.html"><button type="button" class="btn btn-primary" id="memberknop">Member worden</button></a>
         </ul>
     </div>
     </nav>
 
-      <div class="container mb-5" id="reservering">
+    <div class="container mb-5" id="reservering">
         <form>
           <div class="row g-3 align-items-center">
-              <div class="form-group col-lg-3">
-                <select id="kamerSelect">
-                  <option value="1 persoonskamer">Eénpersoonskamer</option>
-                  <option value="2 persoonskamer">Tweepersoonskamer</option>
-                  <option value="familiekamer">Familiekamer</option>
-                  <option value="Mindervalidekamer">Mindervalidekamer</option>
-                </select>
-              </div>
-            
-        <div class="form-group col-lg-2">
-            <form action="/action_page.php">
-                <label for="inputDatum1">Aankomst:</label><br>
-                <input type="date" id="arrDate" name="arrivalDate">
-            </form>
-        </div>
-         <div class="form-group col-lg-2">   
-            <form action="/action_page.php">
-                <label for="inputDatum2">Vertrek:</label><br>
-                <input type="date" id="depDate" name="departureDate">
-            </form>
-        </div>
-   
-      <div class="form-group col-lg-2">
-          <label for="inputDatum2">Aantal gasten:</label>
-                <div class="input-group">
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-left-minus btn btn-number" data-type="minus" data-field="">
-                            <span class="glyphicon glyphicon-minus"></span>
-                         </button>
-                    </span>
-                <div><input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="7" size="1"></div>
-                    <span class="input-group-btn">
-                        <button type="button" class="quantity-right-plus btn btn-number" data-type="plus" data-field="">
-                            <span class="glyphicon glyphicon-plus"></span>
-                        </button>
-                    </span>
+                <div class="form-group col-lg-3">
+                  <select id="kamerSelect">
+                    <option value="1 persoonskamer">Eénpersoonskamer</option>
+                    <option value="2 persoonskamer">Tweepersoonskamer</option>
+                    <option value="familiekamer">Familiekamer</option>
+                    <option value="Mindervalidekamer">Mindervalidekamer</option>
+                  </select>
                 </div>
-        </div>
-            <div class="col-lg-2">
-                <input type="button" onclick="zoekKamer()" value="Zoek" id="buttonZoek">
-            </div>
-      </div>
-    </form>
+              
+                <div class="form-group col-lg-2">
+                    <form action="/action_page.php">
+                        <label for="inputDatum1">Aankomst:</label><br>
+                        <input type="date" id="arrDate" name="arrivalDate">
+                    </form>
+                </div>
+                <div class="form-group col-lg-2">   
+                    <form action="/action_page.php">
+                        <label for="inputDatum2">Vertrek:</label><br>
+                        <input type="date" id="depDate" name="departureDate">
+                    </form>
+                </div>
+    
+                <div class="form-group col-lg-2">
+                  <label for="inputDatum2">Aantal gasten:</label>
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button type="button" class="quantity-left-minus btn btn-number" data-type="minus" data-field="">
+                                    <span class="glyphicon glyphicon-minus"></span>
+                                </button>
+                            </span>
+                        <div><input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="7" size="1"></div>
+                            <span class="input-group-btn">
+                                <button type="button" class="quantity-right-plus btn btn-number" data-type="plus" data-field="">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                            </span>
+                        </div>
+                </div>
+                <div class="col-lg-2">
+                    <input type="button" onclick="zoekKamer()" value="Zoek" id="buttonZoek">
+                </div>
+          </div>
+        </form>
     </div>
+
             <div class="row">
 
                 <div class="col-lg-6">
@@ -144,7 +147,7 @@
                         </div>
                     </div>
                 <div class="col-lg-1"></div>
-                </div>
+            </div>
       
                 <footer class="text-center text-lg-start">
                   <!-- Grid container -->
