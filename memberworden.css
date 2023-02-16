@@ -1,0 +1,43 @@
+.navbar {
+    background-image: url("hotelbanner1.jpg");
+    background-repeat: no-repeat;
+}
+
+button {
+    float: right;
+    padding: 10px;
+    margin-top: 10px !important;
+    background-color: #5C5CFF;
+    border: none;
+    color: white;
+}
+
+button:hover {
+    background-color: #8A8AFF;
+}
+
+h3, h5, label {
+    color: gray !important;
+}
+
+/* Footer CSS */
+footer {
+    margin-top: 30px;
+    background-color: rgb(217, 231, 250);
+    border: solid;
+    border-width: 1px;
+    border-color: darkgray;
+}
+
+.text-uppercase {
+    color: gray !important;
+}
+
+a, p {
+    color: gray !important;
+    text-decoration: none !important;
+}
+
+a:hover {
+    color: black !important;
+}
