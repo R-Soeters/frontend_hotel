@@ -68,69 +68,133 @@
       }
     </script>
 
-    <link href="daanreserveringspagina.css" rel="stylesheet" type="text/css">
+    <link href="memberworden.css" rel="stylesheet" type="text/css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
 </head>
 
 <body>
-  
-  <form id="memberWorden">
-    <br>
-    <div class="form-group">
-      <label for="kemail"><b>E-mailadres</b></label>
-      <input type="email" name="kemail" class="form-control" id="kemaili" aria-describedby="emailHelp" placeholder="E-mailadres" required>
+
+  <nav class="row navbar navbar-inverse navbar-static-top navbar-expand-lg navbar-light bg-light pb-5 mb-5">
+    <div class="col-lg-12" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="navbar-brand">Capital Hotels <span class="sr-only"></span></li>
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">Home <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="kameroverzicht.html">Kameroverzicht</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="boekingsoverzicht.html">Boekingsoverzicht</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+    </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+          <div class="col-12">
+
+            <h3>Member worden? Leuk!</h3><br>
+            <h5>Vul hier je gegevens in:</h5>
+
+            <form id="memberWorden">
+              <br>
+              <div class="form-group">
+                <label for="kemail"><b>E-mailadres</b></label>
+                <input type="email" name="kemail" class="form-control" id="kemaili" aria-describedby="emailHelp" placeholder="E-mailadres" required>
+              </div>
+
+              <div class="form-group">
+                <label for="kland"><b>Wachtwoord</b></label>
+                <input type="text" name=kland class="form-control" id="kwachtwoordi" placeholder="Wachtwoord" required>
+              </div>   
+              
+              <br>
+              
+              <div class="form-group">
+                <label for="kvoornaam"><b>Voornaam</b></label>
+                <input type="text" name="kvoornaam" class="form-control" id="kvoornaami" aria-describedby="emailHelp" placeholder="Voornaam" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="kachternaam"><b>Achternaam</b></label>
+                <input type="text" name="kachternaam" class="form-control" id="kachternaami" aria-describedby="emailHelp" placeholder="Achternaam" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="kvoorvoegsel"><b>Voorvoegsel</b></label>
+                <input type="text" name="kvoorvoegsel" class="form-control" id="kvoorvoegseli" aria-describedby="emailHelp" placeholder="Voorvoegsel" maxlength="10">
+              </div>    
+              
+              <div class="form-group">
+                <label for="kadres"><b>Straatnaam en huisnummer</b></label>
+                <input type="text" name="kadres" class="form-control" id="kadresi" aria-describedby="adresHelp" placeholder="Straatnaam + huisnummer" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="kpcode"><b>Postcode</b></label>
+                <input type="text" name=kpcode class="form-control" id="kpcodei" placeholder="Postcode" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="kland"><b>Land</b></label>
+                <input type="text" name=kland class="form-control" id="klandi" placeholder="Land" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="ktel"><b>Telefoonnummer</b></label>
+                <input type="tel" name=ktel class="form-control" id="kteli" aria-describedby="emailHelp" placeholder="06-xxxxxxxx" required>
+
+              </div>
+
+              <a href="memberaccount.html"><button type="submit" id="knoprechts" onclick="checkMember()">
+                Word Member!
+              </button></a>
+            </form>
+          </div>
+        </div>
     </div>
 
-    <div class="form-group">
-      <label for="kland"><b>Wachtwoord</b></label>
-      <input type="text" name=kland class="form-control" id="kwachtwoordi" placeholder="Wachtwoord" required>
-    </div>   
+    <footer class="text-center text-lg-start">
+      <!-- Grid container -->
+      <div class="container p-4">
+        <!--Grid row-->
+        <div class="row">
+          <!--Grid column-->
+          <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+            <h5 class="text-uppercase">Capital Hotels</h5>
+          </div>
+          <!--Grid column-->
+          <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+            <h5 class="text-uppercase"><a href="contact.html">Contact</a></h5>
+          </div>
+          <!--Grid column-->
+          <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+            <h5 class="text-uppercase">Social Media</h5>
+            <p>
+              <a href="#">Facebook</a><br>
+              <a href="#">Instagram</a>
+            </p>
+          </div>
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </div>
+      <!-- Grid container -->
     
-    <br>
-    
-    <div class="form-group">
-      <label for="kvoornaam"><b>Voornaam</b></label>
-      <input type="text" name="kvoornaam" class="form-control" id="kvoornaami" aria-describedby="emailHelp" placeholder="Voornaam" required>
-    </div>
-    
-    <div class="form-group">
-      <label for="kachternaam"><b>Achternaam</b></label>
-      <input type="text" name="kachternaam" class="form-control" id="kachternaami" aria-describedby="emailHelp" placeholder="Achternaam" required>
-    </div>
-    
-    <div class="form-group">
-      <label for="kvoorvoegsel"><b>Voorvoegsel</b></label>
-      <input type="text" name="kvoorvoegsel" class="form-control" id="kvoorvoegseli" aria-describedby="emailHelp" placeholder="Voorvoegsel" maxlength="10">
-    </div>    
-    
-    <div class="form-group">
-      <label for="kadres"><b>Straatnaam en huisnummer</b></label>
-      <input type="text" name="kadres" class="form-control" id="kadresi" aria-describedby="adresHelp" placeholder="Straatnaam + huisnummer" required>
-    </div>
-    
-    <div class="form-group">
-      <label for="kpcode"><b>Postcode</b></label>
-      <input type="text" name=kpcode class="form-control" id="kpcodei" placeholder="Postcode" required>
-    </div>
-    
-    <div class="form-group">
-      <label for="kland"><b>Land woonplaats</b></label>
-      <input type="text" name=kland class="form-control" id="klandi" placeholder="Land" required>
-    </div>
-    
-    <div class="form-group">
-      <label for="ktel"><b>Telefoonnummer</b></label>
-      <input type="tel" name=ktel class="form-control" id="kteli" aria-describedby="emailHelp" placeholder="06-xxxxxxxxxx" required>
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.1);">
+        <p>© 2023:
+        <a href="#">Capital Hotels</a></p>
+      </div>
+      <!-- Copyright -->
+    </footer>
 
-    </div>
-
-    <button type="submit" id="knoprechts" onclick="checkMember()">
-      Wordt Member!
-    </button>
-  </form>
 </body>
-
-
 </html>
