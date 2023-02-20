@@ -2,18 +2,21 @@
     color:grey
 }
 
-
+/* Boek nu knop */
 #knoprechts{
-float: right;
-margin-right: 1px;
-background-color: #8A8AFF;
-border: none;
-margin-bottom: 50px !important;
-height: 75px !important;
-width: 125px !important;
-text-align: center;
-color: white;
+    float: right;
+    margin-right: 1px;
+    background-color: #5C5CFF;
+    border: none;
+    margin-right: 10px;
+    text-align: center;
+    color: white;
+    padding: 15px;
+    border-radius: 10px !important;
+}
 
+#knoprechts:hover {
+    background-color: #8A8AFF;
 }
 
 #eenpersoonskamer{
@@ -65,8 +68,8 @@ margin-left: -640px;
 }
 
 .dropdown{
-margin-left: 18px;
-margin-top: -10px;
+    margin-left: 18px;
+    margin-top: -10px;
 }
 
 .navbar {
@@ -89,6 +92,11 @@ margin-top: -10px;
     position: absolute;
     top: 20px;
     right: 20px;
+    background-color: #5C5CFF;
+}
+
+#memberknop:hover {
+    background-color: #8A8AFF;
 }
 
 /* Footer CSS */

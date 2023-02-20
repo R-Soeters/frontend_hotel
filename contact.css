@@ -75,4 +75,9 @@ footer a:hover {
     position: absolute;
     top: 20px;
     right: 20px;
+    background-color: #5C5CFF;
+}
+
+#memberknop:hover {
+    background-color: #8A8AFF;
 }
