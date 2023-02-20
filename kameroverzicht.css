@@ -9,6 +9,11 @@
     position: absolute;
     top: 20px;
     right: 20px;
+    background-color: #5C5CFF;
+}
+
+#memberknop:hover {
+    background-color: #8A8AFF;
 }
 
 h4 {
@@ -55,7 +60,7 @@ table {
 }
     
 /* Knop om nieuwe kamer aan te maken */
-#knopnieuwekamer{
+#knopnieuwekamer {
     margin-left: 10px;
     background-color: #5C5CFF;
     color: white;
@@ -63,6 +68,10 @@ table {
     padding: 10px;
     border-radius: 10px !important;
 } 
+
+.knoppen:hover, button:hover, #knopnieuwekamer:hover {
+    background-color: #8A8AFF;
+}
 
 /* Footer CSS */
 footer {
