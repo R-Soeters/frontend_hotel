@@ -83,11 +83,12 @@ margin-top: -10px;
 }
 */
 
-#memberknop{
+/* Member worden knop */
+#memberknop {
     margin-left: 850px;
     position: absolute;
-    top: 0px;
-    right: 50px;
+    top: 20px;
+    right: 20px;
 }
 
 /* Footer CSS */
