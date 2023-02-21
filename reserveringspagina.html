@@ -63,7 +63,7 @@
           var gegevensjson = JSON.stringify(gegevens);
 
           let bevestigingsdata = [];
-          fetch("https://yc2301hotelbackend.azurewebsites.net/sendGastgegevens", {
+          fetch("http://localhost:5000/sendGastgegevens", {
                   method: 'POST',
                   headers: {
                       'Content-Type': 'application/json',
