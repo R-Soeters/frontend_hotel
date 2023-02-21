@@ -50,17 +50,14 @@ tbody tr {
     background-color: #FFCCCB;
 }
 
-#outputdatabse{
-    width: 1100px;
-}
-
 #kamerinformatie{
-    
+    text-align:center;
+
 }
 
 .table{
-width: 650px;
-height: 200px;;
+width: 400px;
+height: 150px;
 margin-left: auto;
 margin-right: auto;
 margin-top: 50px;
@@ -70,7 +67,7 @@ margin-top: 50px;
 #extrainfo {
     padding: 10px;
     width: 1100px;
-    height: 275px;;
+    height: 350px;;
     background-color: #FFCCCB;
     border-style: solid;
     border-width: 3px;
@@ -78,5 +75,17 @@ margin-top: 50px;
     margin-top: 75px !important;
     margin-left: auto;
     margin-right: auto;
+    color: grey;
+    
+}
+
+#minibar{
+width: 250px;
+float: right;
+margin-right: 15px;
+}
+
+#kamerinformatie{
+    text-align: left;
 }
 
