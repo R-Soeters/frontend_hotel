@@ -18,10 +18,6 @@
     margin: 5px;
 }
 
-.row {
-    margin-left: 20px;
-}
-
 /* Zoekbalk: Kamertype en Zoeken knop */
 #kamerSelect, #buttonZoek {
     background-color: #5C5CFF !important;
