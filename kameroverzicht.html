@@ -6,14 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kameroverzicht</title>
     <script>
-        
+        // naardedb() gaat alle bestanden kamers uit de DB halen
         function naardedb() {
             fetch("https://yc2301hotelbackend.azurewebsites.net/getKamerinfo/a")
             .then(r => r.json())
             .then(d => verwerk(d) )
-
         }
-
+        // reserveerKamer() gaat informatie van de gekozen kamer voor reserveren door sturen naar reserveringspagina.html (met de gebruiker)
         function reserveerKamer(kamerid, kamerprijs, kamertype) {
             fetch("https://yc2301hotelbackend.azurewebsites.net/dbreserveerkamer/"+kamerid)
             sessionStorage.kamerid = kamerid
@@ -21,20 +20,15 @@
             sessionStorage.kamertype = kamertype
             window.location.href="reserveringspagina.html"
         }
+        // topprommatuur() geeft de gebruiker een "cat fact" als ze een kamer als 'favoriet' heeft gekeuzen
         kamerTypekeuze = '';
-                
-
         function topprogrammatuur(defoto, rij){
             defoto.src="ster2.png";
             fetch('https://catfact.ninja/fact')
             .then(u=>u.json())
             .then(cf=>document.getElementById("feit"+rij).innerHTML=cf.fact)
-            
         }
-
-        function boekKamer() {
-
-        }
+        // verwerk(data) vult kamer informatie van de DB in een tabel
         function verwerk(data){
             let bodyelement = document.getElementById("kameroverview");
             var tb = document.createElement("TB");
@@ -46,7 +40,6 @@
             kamerTypekeuze = urlParams.get('typekamer');
             
             for(var x =0; x < data.length; x++){
-                // "<h3>"+"-Kamer type :"+data[x][1]+", Kamer prijs: "+data[x][2]+", Kamer beschrijving: "+data[x][3]+", Kamer foto: "+data[x][4]+", Kamer nummer: "+data[x][5]+"</h3>";
                 var tr = document.createElement("TR");
                 var td1 = document.createElement("TD");
                 td1.innerHTML = data[x][1] + "<br> <img id=stertransparant width=30px onclick=\"topprogrammatuur(this, "+data[x][0]+")\" src=stertransparant.png><div id=feit"+data[x][0]+" ></div>";
@@ -62,8 +55,7 @@
                 td6.innerHTML = "<button onclick='reserveerKamer("+data[x][0]+", "+data[x][2]+", `"+data[x][1]+"`)'>Reserveer Kamer</button>";
                 var td7 = data[x][7];
                 var td8 = data[x][8];
-                //alert(data[x][1]);
-
+                // check als de kamer in de vorige 20 minuten was gereserveerd of niet. gereserveerd binnen 20 minuten = niet laten zien. checkt ook als de gebruiker heeft gefiltered op kamertype van index.html. 
                 if((time-td8 > 1200 || time-td8 == null) && td7 == null && kamerTypekeuze == null) {
                     tr.appendChild(td1);
                     tr.appendChild(td2);
@@ -87,45 +79,24 @@
             }
             sortTable();
         }
-            // function slaKameroptypeOp(){
-            // var kamertype = document.getElementById("kamerVeldtype").value
-            // fetch("http://yc2301hotelbackend.azurewebsites.net/sendKamerinfo"+kamertype)
-        // }
-
-        function getTime() { 
-
-            // document.getElementById("demo").innerHTML = time;
-        }
-
+    // sortTable() sorteert tabel op kamertype   
     function sortTable() {
         var table, rows, switching, i, x, y, shouldSwitch;
         table = document.getElementById("kameroverview");
         switching = true;
-        /*Make a loop that will continue until
-        no switching has been done:*/
         while (switching) {
-            //start by saying: no switching is done:
             switching = false;
             rows = table.rows;
-            /*Loop through all table rows (except the
-            first, which contains table headers):*/
             for (i = 1; i < (rows.length - 1); i++) {
-                //start by saying there should be no switching:
                 shouldSwitch = false;
-                /*Get the two elements you want to compare,
-                one from current row and one from the next:*/
                 x = rows[i].getElementsByTagName("TD")[0];
                 y = rows[i + 1].getElementsByTagName("TD")[0];
-                //check if the two rows should switch place:
                 if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                    //if so, mark as a switch and break the loop:
                     shouldSwitch = true;
                     break;
                 }
             }
             if (shouldSwitch) {
-                /*If a switch has been marked, make the switch
-                and mark that a switch has been done:*/
                 rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
                 switching = true;
             }
@@ -143,7 +114,7 @@
 
 </head>
 <body>
-
+    <!-- Navbar HTML/CSS -->
     <nav class="row navbar navbar-inverse navbar-static-top navbar-expand-lg navbar-light bg-light pb-5 mb-5">
         <div class="col-lg-12" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
@@ -167,12 +138,11 @@
             </ul>
         </div>
         </nav>
-
+    <!-- Form voor kamer aan maken -->
     <form action="https://yc2301hotelbackend.azurewebsites.net/sendKamerinfo">
         <div class="container mb-5">
             <div class="row">
                 <div class="col-12">
-                    <!-- <button onclick="naardedb()">Kamers Laten Zien</button> -->
                     <h4 id="Reserveringtitel">Kameroverzicht Capital Hotel</h4>
                 </div>
                 <div class="col-12 mb-3">
@@ -206,7 +176,7 @@
             </div>
         </div>
     </form>
-
+    <!-- tabel die wordt ingevuld met alle kamers -->
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -226,17 +196,6 @@
                         </tr>
                     </thead>
                     <tbody id="kameroverview">
-                    <!-- <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr> -->
                     </tbody>
                 </table>
             </div>
@@ -244,19 +203,14 @@
     </div>
 
     <footer class="text-center text-lg-start">
-        <!-- Grid container -->
         <div class="container p-4">
-          <!--Grid row-->
           <div class="row">
-            <!--Grid column-->
             <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
               <h5 class="text-uppercase">Capital Hotels</h5>
             </div>
-            <!--Grid column-->
             <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
               <h5 class="text-uppercase"><a href="contact.html">Contact</a></h5>
             </div>
-            <!--Grid column-->
             <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
               <h5 class="text-uppercase">Social Media</h5>
               <p>
@@ -264,12 +218,8 @@
                 <a href="#">Instagram</a>
               </p>
             </div>
-            <!--Grid column-->
           </div>
-          <!--Grid row-->
         </div>
-        <!-- Grid container -->
-      
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.1);">
           <p>© 2023:

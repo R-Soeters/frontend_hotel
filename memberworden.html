@@ -100,68 +100,8 @@
     </div>
     </nav>
     <div class="container">
-      <div class="row">
-
-        <div class="col-lg-6">
-
-          <h3>Member worden? Leuk!</h3><br>
-          <h5>Vul hier je gegevens in:</h5>
-
-          <form id="memberWorden">
-            <br>
-            <div class="form-group mb-3">
-              <label for="kemail"><b>E-mailadres</b></label>
-              <input type="email" name="kemail" class="form-control" id="kemaili" aria-describedby="emailHelp" placeholder="E-mailadres" required>
-            </div>
-
-            <div class="form-group mb-3">
-              <label for="kland"><b>Wachtwoord</b></label>
-              <input type="password" name=kland class="form-control" id="kwachtwoordi" placeholder="Wachtwoord" required>
-            </div>   
-            
-            <div class="form-group mb-3">
-              <label for="kvoornaam"><b>Voornaam</b></label>
-              <input type="text" name="kvoornaam" class="form-control" id="kvoornaami" aria-describedby="emailHelp" placeholder="Voornaam" required>
-            </div>
-            
-            <div class="form-group mb-3">
-              <label for="kachternaam"><b>Achternaam</b></label>
-              <input type="text" name="kachternaam" class="form-control" id="kachternaami" aria-describedby="emailHelp" placeholder="Achternaam" required>
-            </div>
-            
-            <div class="form-group mb-3">
-              <label for="kvoorvoegsel"><b>Voorvoegsel</b></label>
-              <input type="text" name="kvoorvoegsel" class="form-control" id="kvoorvoegseli" aria-describedby="emailHelp" placeholder="Voorvoegsel" maxlength="10">
-            </div>    
-            
-            <div class="form-group mb-3">
-              <label for="kadres"><b>Straatnaam en huisnummer</b></label>
-              <input type="text" name="kadres" class="form-control" id="kadresi" aria-describedby="adresHelp" placeholder="Straatnaam + huisnummer" required>
-            </div>
-            
-            <div class="form-group mb-3">
-              <label for="kpcode"><b>Postcode</b></label>
-              <input type="text" name=kpcode class="form-control" id="kpcodei" placeholder="Postcode" required>
-            </div>
-            
-            <div class="form-group mb-3">
-              <label for="kland"><b>Land</b></label>
-              <input type="text" name=kland class="form-control" id="klandi" placeholder="Land" required>
-            </div>
-            
-            <div class="form-group mb-3">
-              <label for="ktel"><b>Telefoonnummer</b></label>
-              <input type="tel" name=ktel class="form-control" id="kteli" aria-describedby="emailHelp" placeholder="06-xxxxxxxx" required>
-
-            </div>
-
-            <button type="submit" class="btn btn-primary" id="knoprechts" onclick="checkMember()">
-              Word Member!
-            </button>
-          </form>
-        </div>
-
-          <div class="col-lg-6">
+      <div class="row2">
+          <div class="col-5">
           <h3>Ben je al member?</h3><br>
           <h5>Je kunt hier inloggen:</h5>
           <br>
@@ -172,29 +112,88 @@
 
           <div class="form-group mb-3">
             <label for="kland"><b>Wachtwoord</b></label>
-            <input type="password" name=kland class="form-control" id="kwachtwoordi" placeholder="Wachtwoord" required>
+            <input type="text" name=kland class="form-control" id="kwachtwoordi" placeholder="Wachtwoord" required>
           </div>  
-          <button type="submit" class="btn btn-primary" id="knoprechts" onclick="checkMember()">
+          <button type="submit" id="knoprechts" onclick="checkMember()">
             Log in
           </button> 
-        </div>
-      </div>
     </div>
+    </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+          <div class="col-9">
+
+            <h3>Member worden? Leuk!</h3><br>
+            <h5>Vul hier je gegevens in:</h5>
+
+            <form id="memberWorden">
+              <br>
+              <div class="form-group mb-3">
+                <label for="kemail"><b>E-mailadres</b></label>
+                <input type="email" name="kemail" class="form-control" id="kemaili" aria-describedby="emailHelp" placeholder="E-mailadres" required>
+              </div>
+
+              <div class="form-group mb-3">
+                <label for="kland"><b>Wachtwoord</b></label>
+                <input type="text" name=kland class="form-control" id="kwachtwoordi" placeholder="Wachtwoord" required>
+              </div>   
+              
+              <div class="form-group mb-3">
+                <label for="kvoornaam"><b>Voornaam</b></label>
+                <input type="text" name="kvoornaam" class="form-control" id="kvoornaami" aria-describedby="emailHelp" placeholder="Voornaam" required>
+              </div>
+              
+              <div class="form-group mb-3">
+                <label for="kachternaam"><b>Achternaam</b></label>
+                <input type="text" name="kachternaam" class="form-control" id="kachternaami" aria-describedby="emailHelp" placeholder="Achternaam" required>
+              </div>
+              
+              <div class="form-group mb-3">
+                <label for="kvoorvoegsel"><b>Voorvoegsel</b></label>
+                <input type="text" name="kvoorvoegsel" class="form-control" id="kvoorvoegseli" aria-describedby="emailHelp" placeholder="Voorvoegsel" maxlength="10">
+              </div>    
+              
+              <div class="form-group mb-3">
+                <label for="kadres"><b>Straatnaam en huisnummer</b></label>
+                <input type="text" name="kadres" class="form-control" id="kadresi" aria-describedby="adresHelp" placeholder="Straatnaam + huisnummer" required>
+              </div>
+              
+              <div class="form-group mb-3">
+                <label for="kpcode"><b>Postcode</b></label>
+                <input type="text" name=kpcode class="form-control" id="kpcodei" placeholder="Postcode" required>
+              </div>
+              
+              <div class="form-group mb-3">
+                <label for="kland"><b>Land</b></label>
+                <input type="text" name=kland class="form-control" id="klandi" placeholder="Land" required>
+              </div>
+              
+              <div class="form-group mb-3">
+                <label for="ktel"><b>Telefoonnummer</b></label>
+                <input type="tel" name=ktel class="form-control" id="kteli" aria-describedby="emailHelp" placeholder="06-xxxxxxxx" required>
+
+              </div>
+
+              <button type="submit" id="knoprechts" onclick="checkMember()">
+                Word Member!
+              </button>
+            </form>
+          </div>
+        </div>
+    </div>
+
     
     <footer class="text-center text-lg-start">
-      <!-- Grid container -->
       <div class="container p-4">
-        <!--Grid row-->
         <div class="row">
-          <!--Grid column-->
           <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
             <h5 class="text-uppercase">Capital Hotels</h5>
           </div>
-          <!--Grid column-->
           <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
             <h5 class="text-uppercase"><a href="contact.html">Contact</a></h5>
           </div>
-          <!--Grid column-->
           <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
             <h5 class="text-uppercase">Social Media</h5>
             <p>
@@ -202,12 +201,8 @@
               <a href="#">Instagram</a>
             </p>
           </div>
-          <!--Grid column-->
         </div>
-        <!--Grid row-->
       </div>
-      <!-- Grid container -->
-    
       <!-- Copyright -->
       <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.1);">
         <p>© 2023:
