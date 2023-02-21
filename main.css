@@ -18,6 +18,10 @@
     margin: 5px;
 }
 
+.row {
+    margin-left: 20px;
+}
+
 /* Zoekbalk: Kamertype en Zoeken knop */
 #kamerSelect, #buttonZoek {
     background-color: #5C5CFF !important;
@@ -56,13 +60,12 @@
 
 /* div met de geschiedenis */
 #history {
-padding: 10px;
-width: 100%;
-height: 100%;
-background-color: #f7b76e;
-border-style: solid;
-border-width: 2px;
-border-color: black;
+    padding: 10px;
+    background-color: #f7b76e;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    margin-right: 25px;
 }
 
 /* Foto van hotel in geschiedenis */
@@ -76,26 +79,25 @@ border-color: black;
 /* div over wellness */
 #wellness {
     padding: 10px;
-    width: 100%;
-    height: 100%;
     background-color: #FFCCCB;
     border-style: solid;
     border-width: 2px;
     border-color: black;
+    margin-right: 25px;
 }
 
 /* foto's in de wellness div */
 #saunafoto {
-    margin-top:75px;
+    margin-top: 75px;
     width: 250px;
     height: 250px;
     margin-left: 25px;
 }
 
 #massagefoto {
-margin-top: 25px;
-width: 200px;
-height: 200px; 
+    margin-top: 25px;
+    width: 200px;
+    height: 200px; 
 }
 
 /* Footer CSS */
