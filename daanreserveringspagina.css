@@ -1,19 +1,18 @@
-#Reserveringsoverzichttitel{
-    color:grey
+/* Boek nu knop */
+#knoprechts{
+    float: right;
+    margin-right: 1px;
+    background-color: #5C5CFF;
+    border: none;
+    margin-right: 10px;
+    text-align: center;
+    color: white;
+    padding: 15px;
+    border-radius: 10px !important;
 }
 
-
-#knoprechts{
-float: right;
-margin-right: 1px;
-background-color: #8A8AFF;
-border: none;
-margin-bottom: 50px !important;
-height: 75px !important;
-width: 125px !important;
-text-align: center;
-color: white;
-
+#knoprechts:hover {
+    background-color: #8A8AFF;
 }
 
 #eenpersoonskamer{
@@ -21,18 +20,10 @@ color: white;
     width: 300px;;
 }
 
-tr{
-    color: grey;
-}
-
 tbody tr {
     border-color: black;
     border-width: 3px;
     background-color: #FFCCCB;
-}
-
-#datumtekst{
-    color: grey
 }
 
 .form-group-col-lg-2{
@@ -60,13 +51,9 @@ margin-left: -640px;
     color:orange !important;
 }
 
-.form-control{
-    color: grey !important;
-}
-
 .dropdown{
-margin-left: 18px;
-margin-top: -10px;
+    margin-left: 18px;
+    margin-top: -10px;
 }
 
 .navbar {
@@ -83,11 +70,17 @@ margin-top: -10px;
 }
 */
 
-#memberknop{
+/* Member worden knop */
+#memberknop {
     margin-left: 850px;
     position: absolute;
-    top: 0px;
-    right: 50px;
+    top: 20px;
+    right: 20px;
+    background-color: #5C5CFF;
+}
+
+#memberknop:hover {
+    background-color: #8A8AFF;
 }
 
 /* Footer CSS */
@@ -103,7 +96,7 @@ footer {
     color: gray !important;
 }
 
-a, p {
+footer a, p {
     color: gray !important;
     text-decoration:  none !important;
 }

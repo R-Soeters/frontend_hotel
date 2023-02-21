@@ -1,0 +1,82 @@
+/* Navbar CSS */
+.navbar {
+    background-image: url("hotelbanner1.jpg");
+    background-repeat: no-repeat;
+}
+
+#memberknop{
+    margin-left: 850px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+h2 {
+    text-align: center;
+    color: gray;
+}
+
+/* Footer CSS */
+footer {
+    margin-top: 100px;
+    background-color: rgb(217, 231, 250);
+    border: solid;
+    border-width: 1px;
+    border-color: darkgray;
+
+}
+
+.text-uppercase {
+    color: gray;
+}
+
+footer a, p {
+    color: gray;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: black;
+}
+
+/* Tabel bedankt voor je boeking */
+tr{
+    color: grey;
+}
+
+tbody tr {
+    border-color: black;
+    border-width: 3px;
+    background-color: #FFCCCB;
+}
+
+#outputdatabse{
+    width: 1100px;
+}
+
+#kamerinformatie{
+    
+}
+
+.table{
+width: 650px;
+height: 200px;;
+margin-left: auto;
+margin-right: auto;
+margin-top: 50px;
+}
+
+/* div over extra info */
+#extrainfo {
+    padding: 10px;
+    width: 1100px;
+    height: 275px;;
+    background-color: #FFCCCB;
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+    margin-top: 75px !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
