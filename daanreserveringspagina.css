@@ -104,3 +104,7 @@ footer a, p {
 a:hover {
     color: black !important;
 }
+
+#modalknop{
+    background-color: #5C5CFF !important;
+}
