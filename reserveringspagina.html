@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reserveringspagina</title>
+    <title>Capital Hotels | Je reservering</title>
     
     <script>
+      // fetchkamer() pakt de informatie van de kamer die de gebruiker heeft net gekozen (op kameroverzicht.html) vanuit de database
       function fetchkamer(){ 
         let kamerid = sessionStorage.getItem("kamerid");
         fetch("https://yc2301hotelbackend.azurewebsites.net/dbfetchkamer/"+kamerid)
         .then(r => r.json())
         .then(d => verwerk(d))
       }
-
+      // verwerk(data) vult de gekozen kamer data in een tabel
       function verwerk(data){
         let kamerType = data[0][1];
         let kamerPrijs = data[0][2];
@@ -31,13 +32,14 @@
         var tb = document.createElement("TB");
         }
       fetchkamer();
-
+      
+      // sendgastgegevensenboekkamer() gaan alle ingevulde informatie (over de nieuwe member een gekozen kamer) naar de database om een nieuwe member en boeking aan te maken.
       function sendgastgegevensenboekkamer() {
         let startdata = new Date(document.getElementById("startdat").value);
         let einddata = new Date(document.getElementById("einddat").value);
         let kamerprijs = sessionStorage.getItem("kamerprijs");
         let timediff = einddata.getTime() - startdata.getTime();
-        let daydiff = Math.floor(timediff / (1000*3600*24)); //last number are miliseconds in a day, total is rounded to a whole number
+        let daydiff = Math.floor(timediff / (1000*3600*24)); 
         startdata = document.getElementById("startdat").value;
         einddata = document.getElementById("einddat").value;
 
@@ -80,8 +82,6 @@
         } else {
           alert("Einddatum moet later zijn dan de begindatum");
         }
-        //window.location.href="boekingsbevestiging.html";
-        
       }
 
     </script>
@@ -93,6 +93,7 @@
 </head>
 
 <body>
+  <!-- HTML/CSS Navbar -->
   <nav class="row navbar navbar-inverse navbar-static-top navbar-expand-lg navbar-light bg-light pb-5 mb-5">
     <div class="col-lg-12" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
@@ -122,7 +123,7 @@
     </nav>
 
     <h4 id="Reserveringsoverzichttitel">Reserveringsoverzicht</h4>
-
+    <!-- Tabel voor data van de gekozen kamer -->
     <table class="table">
         <thead>
           <tr>
@@ -146,7 +147,6 @@
             <td>
                 <br>
                 <tekst id="kBeschrijving"></tekst> 
-                <!-- <b class="tekst">Faciliteiten:</b> <tekst class="tekst">TV, eenpersoonsbed, mini-bar, kluisje, douche. Ontbijt inbegrepen.</tekst> -->
                 <br>
                 <b>Prijs:</b> <tekst class="tekst">vanaf €<b id=kPrijs></b> per nacht</tekst>
                 <br>
@@ -155,7 +155,7 @@
         </tr>
         </tbody>
       </table>
-    
+    <!-- HTML voor alle invoervelden voor member/boeking -->
       </div>
       <br><br><br>
       <div class="form-check">
@@ -170,13 +170,13 @@
           <label for="kbegindat">begindatum:</label>
       
           <input type="date" id="startdat" name="kbegindat"
-             value="2023-02-07"
+             value=""
              min="2023-01-01" max="2025-12-31">
     
           <label for="keinddat">einddatum:</label>
       
           <input type="date" id="einddat" name="keinddat"
-             value="2023-02-07"
+             value=""
              min="2023-01-01" max="2025-12-31">
         </div>
         
@@ -201,7 +201,7 @@
           <input type="text" name=kpcode class="form-control" id="kpcodei" placeholder="Postcode" required>
         </div>
         <div class="form-group">
-          <label for="kland"><b>Land woonplaats</b></label>
+          <label for="kland"><b>Woonplaats</b></label>
           <input type="text" name=kland class="form-control" id="klandi" placeholder="Land" required>
         </div>       
         </div>
@@ -227,30 +227,29 @@
           <input type="hidden" id="kamid" name="kamerid">
           <input type="hidden" id="totprijs" name="totaleprijs">
         </div>
-          <!-- Boek nu button verplaatst binnen de form-->
         <div>
           <button type="submit" id="knoprechts" onclick="sendgastgegevensenboekkamer();">
               Boek nu!
           </button>
         </div>
       <br>
-
+  
+      
+        </div>
+      </div>
+    </div>
+  </div>
      </div>
 
      <footer class="text-center text-lg-start">
-      <!-- Grid container -->
       <div class="container p-4">
-        <!--Grid row-->
         <div class="row">
-          <!--Grid column-->
           <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
             <h5 class="text-uppercase">Capital Hotels</h5>
           </div>
-          <!--Grid column-->
           <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
             <h5 class="text-uppercase"><a href="contact.html">Contact</a></h5>
           </div>
-          <!--Grid column-->
           <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
             <h5 class="text-uppercase">Social Media</h5>
             <p>
@@ -258,12 +257,8 @@
               <a href="#">Instagram</a>
             </p>
           </div>
-          <!--Grid column-->
         </div>
-        <!--Grid row-->
       </div>
-      <!-- Grid container -->
-    
       <!-- Copyright -->
       <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.1);">
         <p>© 2023:

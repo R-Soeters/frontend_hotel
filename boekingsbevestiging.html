@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Capital Hotels | Je boeking</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <link href="boekingsbevestiging.css" rel="stylesheet" type="text/css">
@@ -39,33 +39,50 @@
         <table class="table">
             <thead>
               <tr>
-                <th scope="col" class="tekstbovenaantabel">Boekingsinformatie</th>
-                <th scope="col" class="tekstbovenaantabel">To do: output database</th>
+                <!--<th scope="col" class="tekstbovenaantabel">To do: output database</th> !-->
               </tr>
             </thead>
           <tbody id="kamerinformatie">
               <tr>
                 <td>
-                  Kamertype: <span id="btype"></span> <br>
-                  Aankomst: <span id="baankomst"></span> <br>
-                  Vertrek: <span id="bvertrek"></span> <br>
-                  Prijs: <span id="bprijs"></span> <br>
+                 <h4> Kamertype:</h4> 
+                  <h4>Aankomst:</h4>  
+                  <h4>Vertrek: </h4>  
+                  <h4>Prijs:</h4>  
                 </td>
+
                   <th scope="row" id="outputdatabse">
                     <!-- Zet hier de gegevens die uit de database komen neer-->
-                    gegeven 1 <br>
+                    <!-- gegeven 1 <br>
                     gegeven 2 <br>
                     gegeven 3 <br>
-                    gegeven 4 <br>
+                    gegeven 4 <br> -->
                   </th>   
+
+                  <td scope="row" id="outputdatabse"> 
+                    <h4><span id="btype"></span> </h4>
+                    <h4><span id="baankomst"></span></h4>
+                    <h4><span id="bvertrek"></span></h4>
+                    <h4><span id="bprijs"></span></h4>
+                  </td>   
+
               </tr>
             </tbody>
-        </table>
+          </table>
+
+          <!-- Button trigger modal -->
+          <div id="rewardknop" ALIGN="center">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Rewards
+</button>
+</div>
+
 
         <div id="extrainfo">
-          <p>
+          <p><h5>
             Er is een boekingsbevestiging gestuurd naar je e-mailadres. Annuleren kan vrijblijvend tot 24 uur voordat je boeking begint / voor aankomst. Heb je vragen of opmerkingen? Neem gerust contact met ons op via capitalhotelinfo@gmail.com of 06 12345678.<br>
             <br>
+            <img id="minibar" src="minibar.jpg">
             Bekijk ook de optionele faciliteiten die u kunt bijboeken:<br>
             1. Fles champagne in de minibar bij aankomst (€25,00)<br>
             2. Lunchpakketten (€7,50 per lunchpakket)<br>
@@ -73,16 +90,11 @@
             4. Uitchecken mogelijk tot 15.00 (€15,00 extra)<br>
             <br>
             Neem voor het bijboeken van optionele faciliteiten contact op via ons mailadres of telefoonnummer.
+            </h5>
           </p>
         </div>
       </div>
     </div>
-  
-
-
-
-
-
     <script>
         function vulData(){
             let allData = sessionStorage.getItem("Data");
@@ -97,20 +109,36 @@
         window.onload = vulData();
     </script>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Claim uw korting!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          U heeft een boeking gemaakt. Na uw derde boeking ontvangt u 5% korting op uw vierde boeking. 
+          Zie voor meer informatie uw memberaccountpagina of neem contact op met de receptie.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="modalknop" data-bs-dismiss="modal">Venster sluiten</button>
+      </div>
+    </div>
+  </div>
+</div>
+        
+
+
 <footer class="text-center text-lg-start">
-    <!-- Grid container -->
     <div class="container p-4">
-      <!--Grid row-->
       <div class="row">
-        <!--Grid column-->
         <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
           <h5 class="text-uppercase">Capital Hotels</h5>
         </div>
-        <!--Grid column-->
         <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
           <h5 class="text-uppercase"><a href="contact.html">Contact</a></h5>
         </div>
-        <!--Grid column-->
         <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
           <h5 class="text-uppercase">Social Media</h5>
           <p>
@@ -118,12 +146,9 @@
             <a href="#">Instagram</a>
           </p>
         </div>
-        <!--Grid column-->
       </div>
-      <!--Grid row-->
     </div>
-    <!-- Grid container -->
-  
+
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.1);">
       <p>© 2023:
