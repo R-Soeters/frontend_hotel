@@ -11,22 +11,38 @@
         var mijnPost = {};
           mijnPost.email = document.getElementById("kemaili").value
           mijnPost.wachtwoord = document.getElementById("kwachtwoordi").value
-          
-          var mijnPostjson = JSON.stringify(mijnPost);
+        
+        var mijnPostjson = JSON.stringify(mijnPost);
           console.log(mijnPostjson);
-          fetch("http://localhost:5000/memberLogin", {
+          fetch("https://yc2301hotelbackend.azurewebsites.net/memberLogin", {
                   method: 'POST',
                   headers: {
                       'Content-Type': 'application/json',
                   },
                   body: mijnPostjson
               })
-              .then((res) => { 
-                console.log(res);
-                // sessionStorage.setItem("Data", data);
-                // window.location.href="boekingsbevestiging.html"
-                });
+              .then(r => r.json())
+              .then(d => verifyLogin(d))
+    
       };
+
+      function verifyLogin(loginStatus){
+        console.log(loginStatus)
+        if (loginStatus){
+          document.cookie = "SameSite=None; memberId="+loginStatus;
+          
+          var koekje = readCookie("memberId")
+          console.log(koekje)
+          window.location.href="memberaccount.html"
+        }
+        else {
+          alert("Uw E-mail of wachtwoord is onjuist.")
+        }
+      }
+
+    function readCookie(koekjeNaam) {
+      return (koekjeNaam= new RegExp('(?:^|;\s)' + ('' + koekjeNaam).replace(/[-[]{}()+?.,\^$|#\s]/g, '\$&') + '=([^;]*)').exec(document.cookie)) && koekjeNaam[1];
+    }
     </script>
 
     <link href="memberworden.css" rel="stylesheet" type="text/css">
@@ -67,12 +83,12 @@
           <br>
           <div class="form-group mb-3">
             <label for="kemail"><b>E-mailadres</b></label>
-            <input type="email" name="kemail" class="form-control" id="kemaili" aria-describedby="emailHelp" placeholder="E-mailadres" required>
+            <input type="email" name="kemail" class="form-control" id="kemaili" placeholder="E-mailadres" required>
           </div>
 
           <div class="form-group mb-3">
             <label for="kwachtwoord"><b>Wachtwoord</b></label>
-            <input type="text" name="kwachtwoord" class="form-control" id="kwachtwoordi" placeholder="Wachtwoord" required>
+            <input type="password" name="kwachtwoord" class="form-control" id="kwachtwoordi" placeholder="Wachtwoord" required>
           </div>  
           <button type="submit" id="knoprechts" onclick="checkLogin()">
             Log in
