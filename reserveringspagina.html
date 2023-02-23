@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Capital Hotels | Je reservering</title>
-
+    <script src="globalevars.js"></script>
     <script>
       // fetchkamer() pakt de informatie van de kamer die de gebruiker heeft net gekozen (op kameroverzicht.html) vanuit de database
       function fetchkamer() {
         let kamerid = sessionStorage.getItem("kamerid");
-        fetch("http://localhost:5000/dbfetchkamer/" + kamerid)
+        fetch(testURL + "/dbfetchkamer/" + kamerid)
           .then((r) => r.json())
           .then((d) => verwerk(d));
       }
@@ -68,16 +68,13 @@
           var gegevensjson = JSON.stringify(gegevens);
 
           let bevestigingsdata = [];
-          fetch(
-            "https://yc2301hotelbackend.azurewebsites.net/sendGastgegevens",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: gegevensjson,
-            }
-          )
+          fetch(testURL + "/sendGastgegevens", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: gegevensjson,
+          })
             .then((res) => res.json())
             .then((data) => {
               console.log(data);

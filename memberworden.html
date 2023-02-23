@@ -1,189 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="globalevars.js"></script>
     <title>Capital Hotels | Word Member</title>
-    
+
     <script>
       function checkMember() {
-        fetch("http://localhost:5000/checkMember/a")
-        .then(r => r.json())
-        .then(d => checkDubbeleemail(d))
+        fetch(testURL + "/checkMember/a")
+          .then((r) => r.json())
+          .then((d) => checkDubbeleemail(d));
       }
 
       function checkDubbeleemail(data) {
         var duplicate = false;
-        for (var x=0; x < data.length; x++) {
+        for (var x = 0; x < data.length; x++) {
           if (data[x][0] == document.getElementById("kemaili").value) {
-          duplicate = true;
-          console.log(data[x][0]+" is een duplicate.");
-          break
+            duplicate = true;
+            console.log(data[x][0] + " is een duplicate.");
+            break;
           }
         }
 
         if (duplicate == true) {
-          alert("Dit e-mailadres is al in gebruik."+data[x][0]);
-        }
-
-        else {
+          alert("Dit e-mailadres is al in gebruik." + data[x][0]);
+        } else {
           slaMemberop();
         }
-
-        }
-
-        console.log("Uw gegevens zijn opgeslagen!");
-
-      
-      window.onload = function() {
-        document.getElementById("memberWorden").addEventListener('submit', function(ev){
-        ev.preventDefault()
-    })
       }
-      function slaMemberop(){
-        var mijnPost = {}
-          mijnPost.voornaam = document.getElementById("kvoornaami").value
-          mijnPost.kachternaam = document.getElementById("kachternaami").value
-          mijnPost.voorvoegsel = document.getElementById("kvoorvoegseli").value
-          mijnPost.adres = document.getElementById("kadresi").value
-          mijnPost.postcode = document.getElementById("kpcodei").value
-          mijnPost.land = document.getElementById("klandi").value
-          mijnPost.tel = document.getElementById("kteli").value
-          mijnPost.email = document.getElementById("kemaili").value
-          mijnPost.wachtwoord = document.getElementById("kwachtwoordi").value
-          
-          var mijnPostjson = JSON.stringify(mijnPost)
-          fetch('http://localhost:5000/saveMember', {
-          method: 'POST',
-          headers: {
-          'Content-Type': 'application/json',
-          },
-          body: mijnPostjson
-          })
 
-  .then(res => {
-    console.log(res);
-    window.location.href='memberaccount.html';
-  })
+      console.log("Uw gegevens zijn opgeslagen!");
+
+      window.onload = function () {
+        document
+          .getElementById("memberWorden")
+          .addEventListener("submit", function (ev) {
+            ev.preventDefault();
+          });
+      };
+      function slaMemberop() {
+        var mijnPost = {};
+        mijnPost.voornaam = document.getElementById("kvoornaami").value;
+        mijnPost.kachternaam = document.getElementById("kachternaami").value;
+        mijnPost.voorvoegsel = document.getElementById("kvoorvoegseli").value;
+        mijnPost.adres = document.getElementById("kadresi").value;
+        mijnPost.postcode = document.getElementById("kpcodei").value;
+        mijnPost.land = document.getElementById("klandi").value;
+        mijnPost.tel = document.getElementById("kteli").value;
+        mijnPost.email = document.getElementById("kemaili").value;
+        mijnPost.wachtwoord = document.getElementById("kwachtwoordi").value;
+
+        var mijnPostjson = JSON.stringify(mijnPost);
+        fetch(testURL + "/saveMember", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: mijnPostjson,
+        }).then((res) => {
+          console.log(res);
+          window.location.href = "memberaccount.html";
+        });
       }
     </script>
 
-  <link href="main.css" rel="stylesheet" type="text/css">
-    <link href="memberworden.css" rel="stylesheet" type="text/css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <link href="main.css" rel="stylesheet" type="text/css" />
+    <link href="memberworden.css" rel="stylesheet" type="text/css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-</head>
-
-<body>
-
-  <nav class="row navbar navbar-inverse navbar-static-top navbar-expand-lg navbar-light bg-light pb-5 mb-5">
-    <div class="col-lg-12" id="navbarSupportedContent">
+  <body>
+    <nav
+      class="row navbar navbar-inverse navbar-static-top navbar-expand-lg navbar-light bg-light pb-5 mb-5"
+    >
+      <div class="col-lg-12" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="navbar-brand">Capital Hotels <span class="sr-only"></span></li>
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">Home <span class="sr-only"></span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="kameroverzicht.html">Kameroverzicht</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="boekingsoverzicht.html">Boekingsoverzicht</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="memberaccount.html">Dedicated Member</a>
+          <li class="navbar-brand">
+            Capital Hotels <span class="sr-only"></span>
           </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html"
+              >Home <span class="sr-only"></span
+            ></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="kameroverzicht.html">Kameroverzicht</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="boekingsoverzicht.html"
+              >Boekingsoverzicht</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="memberaccount.html">Dedicated Member</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
           </li>
         </ul>
-    </div>
+      </div>
     </nav>
 
     <div class="container">
       <div class="row">
-          <div class="col-6">
+        <div class="col-6">
+          <h4>Member worden? Leuk!</h4>
+          <br />
+          <h5>Vul hier je gegevens in:</h5>
 
-            <h4>Member worden? Leuk!</h4><br>
-            <h5>Vul hier je gegevens in:</h5>
-
-            <form id="memberWorden">
-              <br>
-              <div class="form-group mb-3">
-                <label for="kemail"><b>E-mailadres</b></label>
-                <input type="email" name="kemail" class="form-control" id="kemaili" aria-describedby="emailHelp" placeholder="E-mailadres" required>
-              </div>
-
-              <div class="form-group mb-3">
-                <label for="kland"><b>Wachtwoord</b></label>
-                <input type="password" name="kland" class="form-control" id="kwachtwoordi" placeholder="Wachtwoord" required>
-              </div>   
-              
-              <div class="form-group mb-3">
-                <label for="kvoornaam"><b>Voornaam</b></label>
-                <input type="text" name="kvoornaam" class="form-control" id="kvoornaami" aria-describedby="emailHelp" placeholder="Voornaam" required>
-              </div>
-              
-              <div class="form-group mb-3">
-                <label for="kachternaam"><b>Achternaam</b></label>
-                <input type="text" name="kachternaam" class="form-control" id="kachternaami" aria-describedby="emailHelp" placeholder="Achternaam" required>
-              </div>
-              
-              <div class="form-group mb-3">
-                <label for="kvoorvoegsel"><b>Voorvoegsel</b></label>
-                <input type="text" name="kvoorvoegsel" class="form-control" id="kvoorvoegseli" aria-describedby="emailHelp" placeholder="Voorvoegsel" maxlength="10">
-              </div>    
-              
-              <div class="form-group mb-3">
-                <label for="kadres"><b>Straatnaam en huisnummer</b></label>
-                <input type="text" name="kadres" class="form-control" id="kadresi" aria-describedby="adresHelp" placeholder="Straatnaam + huisnummer" required>
-              </div>
-              
-              <div class="form-group mb-3">
-                <label for="kpcode"><b>Postcode</b></label>
-                <input type="text" name=kpcode class="form-control" id="kpcodei" placeholder="Postcode" required>
-              </div>
-              
-              <div class="form-group mb-3">
-                <label for="kland"><b>Land</b></label>
-                <input type="text" name=kland class="form-control" id="klandi" placeholder="Land" required>
-              </div>
-              
-              <div class="form-group mb-3">
-                <label for="ktel"><b>Telefoonnummer</b></label>
-                <input type="tel" name=ktel class="form-control" id="kteli" aria-describedby="emailHelp" placeholder="06-xxxxxxxx" required>
-
-              </div>
-
-              <button type="submit" class="btn btn-primary" id="knoprechts" onclick="checkMember()">
-                Word Member!
-              </button>
-            </form>
-          </div>
-
-          <div class="col-6">
-            <h4>Ben je al member?</h4><br>
-            <h5>Je kunt hier inloggen:</h5>
-            <br>
+          <form id="memberWorden">
+            <br />
             <div class="form-group mb-3">
-              <label for="kemail"><b>E-mailadres / Gebruikersnaam</b></label>
-              <input type="email" name="kemail" class="form-control" id="kemaili" aria-describedby="emailHelp" placeholder="E-mailadres" required>
+              <label for="kemail"><b>E-mailadres</b></label>
+              <input
+                type="email"
+                name="kemail"
+                class="form-control"
+                id="kemaili"
+                aria-describedby="emailHelp"
+                placeholder="E-mailadres"
+                required
+              />
             </div>
-  
+
             <div class="form-group mb-3">
               <label for="kland"><b>Wachtwoord</b></label>
-              <input type="password" name="kland" class="form-control" id="kwachtwoordi" placeholder="Wachtwoord" required>
-            </div>  
-            <button type="submit" class="btn btn-primary" id="knoprechts" onclick="checkMember()">
-              Log in
-            </button> 
+              <input
+                type="password"
+                name="kland"
+                class="form-control"
+                id="kwachtwoordi"
+                placeholder="Wachtwoord"
+                required
+              />
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="kvoornaam"><b>Voornaam</b></label>
+              <input
+                type="text"
+                name="kvoornaam"
+                class="form-control"
+                id="kvoornaami"
+                aria-describedby="emailHelp"
+                placeholder="Voornaam"
+                required
+              />
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="kachternaam"><b>Achternaam</b></label>
+              <input
+                type="text"
+                name="kachternaam"
+                class="form-control"
+                id="kachternaami"
+                aria-describedby="emailHelp"
+                placeholder="Achternaam"
+                required
+              />
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="kvoorvoegsel"><b>Voorvoegsel</b></label>
+              <input
+                type="text"
+                name="kvoorvoegsel"
+                class="form-control"
+                id="kvoorvoegseli"
+                aria-describedby="emailHelp"
+                placeholder="Voorvoegsel"
+                maxlength="10"
+              />
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="kadres"><b>Straatnaam en huisnummer</b></label>
+              <input
+                type="text"
+                name="kadres"
+                class="form-control"
+                id="kadresi"
+                aria-describedby="adresHelp"
+                placeholder="Straatnaam + huisnummer"
+                required
+              />
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="kpcode"><b>Postcode</b></label>
+              <input
+                type="text"
+                name="kpcode"
+                class="form-control"
+                id="kpcodei"
+                placeholder="Postcode"
+                required
+              />
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="kland"><b>Land</b></label>
+              <input
+                type="text"
+                name="kland"
+                class="form-control"
+                id="klandi"
+                placeholder="Land"
+                required
+              />
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="ktel"><b>Telefoonnummer</b></label>
+              <input
+                type="tel"
+                name="ktel"
+                class="form-control"
+                id="kteli"
+                aria-describedby="emailHelp"
+                placeholder="06-xxxxxxxx"
+                required
+              />
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-primary"
+              id="knoprechts"
+              onclick="checkMember()"
+            >
+              Word Member!
+            </button>
+          </form>
+        </div>
+
+        <div class="col-6">
+          <h4>Ben je al member?</h4>
+          <br />
+          <h5>Je kunt hier inloggen:</h5>
+          <br />
+          <div class="form-group mb-3">
+            <label for="kemail"><b>E-mailadres / Gebruikersnaam</b></label>
+            <input
+              type="email"
+              name="kemail"
+              class="form-control"
+              id="kemaili"
+              aria-describedby="emailHelp"
+              placeholder="E-mailadres"
+              required
+            />
           </div>
 
+          <div class="form-group mb-3">
+            <label for="kland"><b>Wachtwoord</b></label>
+            <input
+              type="password"
+              name="kland"
+              class="form-control"
+              id="kwachtwoordi"
+              placeholder="Wachtwoord"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            id="knoprechts"
+            onclick="checkMember()"
+          >
+            Log in
+          </button>
         </div>
+      </div>
     </div>
 
-    
     <footer class="text-center text-lg-start">
       <div class="container p-4">
         <div class="row">
@@ -196,19 +300,17 @@
           <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
             <h5 class="text-uppercase">Social Media</h5>
             <p>
-              <a href="#">Facebook</a><br>
+              <a href="#">Facebook</a><br />
               <a href="#">Instagram</a>
             </p>
           </div>
         </div>
       </div>
       <!-- Copyright -->
-      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.1);">
-        <p>© 2023:
-        <a href="#">Capital Hotels</a></p>
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.1)">
+        <p>© 2023: <a href="#">Capital Hotels</a></p>
       </div>
       <!-- Copyright -->
     </footer>
-
-</body>
+  </body>
 </html>
