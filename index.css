@@ -1,0 +1,91 @@
+#reservering {
+    border-style: solid;
+    border-width: 1px;
+    border-color: darkgray;
+}
+
+#hotelphoto {
+    margin: 25px 0px 0px 0px;
+}
+
+.form-group {
+    margin: 5px;
+}
+
+/* Zoekbalk: Kamertype en Zoeken knop */
+#kamerSelect, #buttonZoek {
+    background-color: #5C5CFF !important;
+    border: none;
+    margin: 20px 0px 20px 0px;
+    color: white;
+    border-radius: 5px;
+}
+
+#kamerSelect {
+    padding: 5px;
+    margin-top: 30px;
+}
+
+#buttonZoek {
+    padding: 8px;
+}
+
+#kamerSelect:hover, #buttonZoek:hover {
+    background-color: #8A8AFF !important;
+}
+
+/* Zoekbalk: aantal gasten knopjes CSS */
+.input-group-btn {
+    padding: 5px;
+}
+
+.btn, button {
+    background-color: #5C5CFF;
+    padding: 8px;
+}
+
+.btn:hover, button:hover {
+    background-color: #8A8AFF !important;
+}
+
+/* div met de geschiedenis */
+#history {
+    padding: 10px;
+    background-color: #f7b76e;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    margin-right: 25px;
+}
+
+/* Foto van hotel in geschiedenis */
+#Oudhotel {
+    width: 300px;
+    height: 300px;
+    margin-left: 110px;
+    margin-top: 25px;
+}
+
+/* div over wellness */
+#wellness {
+    padding: 10px;
+    background-color: #FFCCCB;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    margin-right: 25px;
+}
+
+/* foto's in de wellness div */
+#saunafoto {
+    margin-top: 75px;
+    width: 250px;
+    height: 250px;
+    margin-left: 25px;
+}
+
+#massagefoto {
+    margin-top: 25px;
+    width: 200px;
+    height: 200px; 
+}
