@@ -14,7 +14,7 @@
         
         var mijnPostjson = JSON.stringify(mijnPost);
           console.log(mijnPostjson);
-          fetch("https://yc2301hotelbackend.azurewebsites.net/memberLogin", {
+          fetch("http://localhost:5000/memberLogin", {
                   method: 'POST',
                   headers: {
                       'Content-Type': 'application/json',
