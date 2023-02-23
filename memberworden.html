@@ -8,7 +8,7 @@
     
     <script>
       function checkMember() {
-        fetch("https://yc2301hotelbackend.azurewebsites.net/checkMember/a")
+        fetch("http://localhost:5000/checkMember/a")
         .then(r => r.json())
         .then(d => checkDubbeleemail(d))
       }
@@ -54,7 +54,7 @@
           mijnPost.wachtwoord = document.getElementById("kwachtwoordi").value
           
           var mijnPostjson = JSON.stringify(mijnPost)
-          fetch('https://yc2301hotelbackend.azurewebsites.net/saveMember', {
+          fetch('http://localhost:5000/saveMember', {
           method: 'POST',
           headers: {
           'Content-Type': 'application/json',
