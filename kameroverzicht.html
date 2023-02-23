@@ -1,232 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Capital Hotels | Kameroverzicht</title>
     <script>
-        // naardedb() gaat alle bestanden kamers uit de DB halen
-        function naardedb() {
-            fetch("https://yc2301hotelbackend.azurewebsites.net/getKamerinfo/a")
-            .then(r => r.json())
-            .then(d => verwerk(d) )
+      // naardedb() gaat alle bestanden kamers uit de DB halen
+      function naardedb() {
+        fetch("http://localhost:5000/getKamerinfo/a")
+          .then((r) => r.json())
+          .then((d) => verwerk(d));
+      }
+      // reserveerKamer() gaat informatie van de gekozen kamer voor reserveren door sturen naar reserveringspagina.html (met de gebruiker)
+      function reserveerKamer(kamerid, kamerprijs, kamertype) {
+        fetch("http://localhost:5000/dbreserveerkamer/" + kamerid);
+        sessionStorage.kamerid = kamerid;
+        sessionStorage.kamerprijs = kamerprijs;
+        sessionStorage.kamertype = kamertype;
+        window.location.href = "reserveringspagina.html";
+      }
+      // topprommatuur() geeft de gebruiker een "cat fact" als ze een kamer als 'favoriet' heeft gekeuzen
+      kamerTypekeuze = "";
+      function topprogrammatuur(defoto, rij) {
+        defoto.src = "ster2.png";
+        fetch("https://catfact.ninja/fact")
+          .then((u) => u.json())
+          .then(
+            (cf) => (document.getElementById("feit" + rij).innerHTML = cf.fact)
+          );
+      }
+      // verwerk(data) vult kamer informatie van de DB in een tabel
+      function verwerk(data) {
+        let bodyelement = document.getElementById("kameroverview");
+        var tb = document.createElement("TB");
+        const currentTime = new Date();
+        let time = parseInt(currentTime.getTime() / 1000);
+
+        const queryString = window.location.search;
+        urlParams = new URLSearchParams(queryString);
+        kamerTypekeuze = urlParams.get("typekamer");
+
+        for (var x = 0; x < data.length; x++) {
+          var tr = document.createElement("TR");
+          var td1 = document.createElement("TD");
+          td1.innerHTML =
+            data[x][1] +
+            '<br> <img id=stertransparant width=30px onclick="topprogrammatuur(this, ' +
+            data[x][0] +
+            ')" src=stertransparant.png><div id=feit' +
+            data[x][0] +
+            " ></div>";
+          var td2 = document.createElement("TD");
+          td2.innerHTML = data[x][2];
+          var td3 = document.createElement("TD");
+          td3.innerHTML = data[x][3];
+          var td4 = document.createElement("TD");
+          td4.innerHTML = "<img class='img-fluid' src=" + data[x][4] + ">";
+          var td5 = document.createElement("TD");
+          td5.innerHTML = data[x][5];
+          var td6 = document.createElement("TD");
+          td6.innerHTML =
+            "<button onclick='reserveerKamer(" +
+            data[x][0] +
+            ", " +
+            data[x][2] +
+            ", `" +
+            data[x][1] +
+            "`)'>Reserveer Kamer</button>";
+          var td7 = data[x][7];
+          var td8 = data[x][8];
+          // check als de kamer in de vorige 20 minuten was gereserveerd of niet. gereserveerd binnen 20 minuten = niet laten zien. checkt ook als de gebruiker heeft gefiltered op kamertype van index.html.
+          if (
+            (time - td8 > 1200 || time - td8 == null) &&
+            td7 == null &&
+            kamerTypekeuze == null
+          ) {
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            tr.appendChild(td4);
+            tr.appendChild(td5);
+            tr.appendChild(td6);
+            bodyelement.appendChild(tr);
+          } else if (
+            (time - td8 > 1200 || time - td8 == null) &&
+            td7 == null &&
+            data[x][1] == kamerTypekeuze
+          ) {
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            tr.appendChild(td4);
+            tr.appendChild(td5);
+            tr.appendChild(td6);
+            bodyelement.appendChild(tr);
+          } else {
+            continue;
+          }
         }
-        // reserveerKamer() gaat informatie van de gekozen kamer voor reserveren door sturen naar reserveringspagina.html (met de gebruiker)
-        function reserveerKamer(kamerid, kamerprijs, kamertype) {
-            fetch("https://yc2301hotelbackend.azurewebsites.net/dbreserveerkamer/"+kamerid)
-            sessionStorage.kamerid = kamerid
-            sessionStorage.kamerprijs = kamerprijs
-            sessionStorage.kamertype = kamertype
-            window.location.href="reserveringspagina.html"
-        }
-        // topprommatuur() geeft de gebruiker een "cat fact" als ze een kamer als 'favoriet' heeft gekeuzen
-        kamerTypekeuze = '';
-        function topprogrammatuur(defoto, rij){
-            defoto.src="ster2.png";
-            fetch('https://catfact.ninja/fact')
-            .then(u=>u.json())
-            .then(cf=>document.getElementById("feit"+rij).innerHTML=cf.fact)
-        }
-        // verwerk(data) vult kamer informatie van de DB in een tabel
-        function verwerk(data){
-            let bodyelement = document.getElementById("kameroverview");
-            var tb = document.createElement("TB");
-            const currentTime = new Date();
-            let time = parseInt(currentTime.getTime()/1000);
-            
-            const queryString = window.location.search;
-            urlParams = new URLSearchParams(queryString);
-            kamerTypekeuze = urlParams.get('typekamer');
-            
-            for(var x =0; x < data.length; x++){
-                var tr = document.createElement("TR");
-                var td1 = document.createElement("TD");
-                td1.innerHTML = data[x][1] + "<br> <img id=stertransparant width=30px onclick=\"topprogrammatuur(this, "+data[x][0]+")\" src=stertransparant.png><div id=feit"+data[x][0]+" ></div>";
-                var td2 = document.createElement("TD");
-                td2.innerHTML = data[x][2];
-                var td3 = document.createElement("TD");
-                td3.innerHTML = data[x][3];
-                var td4 = document.createElement("TD");
-                td4.innerHTML = "<img class='img-fluid' src="+data[x][4]+">";
-                var td5 = document.createElement("TD");
-                td5.innerHTML = data[x][5];
-                var td6 = document.createElement("TD");
-                td6.innerHTML = "<button onclick='reserveerKamer("+data[x][0]+", "+data[x][2]+", `"+data[x][1]+"`)'>Reserveer Kamer</button>";
-                var td7 = data[x][7];
-                var td8 = data[x][8];
-                // check als de kamer in de vorige 20 minuten was gereserveerd of niet. gereserveerd binnen 20 minuten = niet laten zien. checkt ook als de gebruiker heeft gefiltered op kamertype van index.html. 
-                if((time-td8 > 1200 || time-td8 == null) && td7 == null && kamerTypekeuze == null) {
-                    tr.appendChild(td1);
-                    tr.appendChild(td2);
-                    tr.appendChild(td3);
-                    tr.appendChild(td4);
-                    tr.appendChild(td5);
-                    tr.appendChild(td6);
-                    bodyelement.appendChild(tr);
-                 } else if ((time-td8 > 1200 || time-td8 == null) && td7 == null && data[x][1] == kamerTypekeuze) {
-                    tr.appendChild(td1);
-                    tr.appendChild(td2);
-                    tr.appendChild(td3);
-                    tr.appendChild(td4);
-                    tr.appendChild(td5);
-                    tr.appendChild(td6);
-                    bodyelement.appendChild(tr);
-                 }
-                else {
-                    continue
-                }
-            }
-            sortTable();
-        }
-    // sortTable() sorteert tabel op kamertype   
-    function sortTable() {
+        sortTable();
+      }
+      // sortTable() sorteert tabel op kamertype
+      function sortTable() {
         var table, rows, switching, i, x, y, shouldSwitch;
         table = document.getElementById("kameroverview");
         switching = true;
         while (switching) {
-            switching = false;
-            rows = table.rows;
-            for (i = 1; i < (rows.length - 1); i++) {
-                shouldSwitch = false;
-                x = rows[i].getElementsByTagName("TD")[0];
-                y = rows[i + 1].getElementsByTagName("TD")[0];
-                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                    shouldSwitch = true;
-                    break;
-                }
+          switching = false;
+          rows = table.rows;
+          for (i = 1; i < rows.length - 1; i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("TD")[0];
+            y = rows[i + 1].getElementsByTagName("TD")[0];
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+              shouldSwitch = true;
+              break;
             }
-            if (shouldSwitch) {
-                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                switching = true;
-            }
+          }
+          if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+          }
         }
-    }
-    naardedb();
-
-    
-
+      }
+      naardedb();
     </script>
-    <link href="kameroverzicht.css" rel="stylesheet" type="text/css">
+    <link href="kameroverzicht.css" rel="stylesheet" type="text/css" />
     <script src="jquery-3.6.1.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-
-</head>
-<body>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
     <!-- Navbar HTML/CSS -->
-    <nav class="row navbar navbar-inverse navbar-static-top navbar-expand-lg navbar-light bg-light pb-5 mb-5">
-        <div class="col-lg-12" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="navbar-brand">Capital Hotels <span class="sr-only"></span></li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Home <span class="sr-only"></span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="kameroverzicht.html">Kameroverzicht</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="boekingsoverzicht.html">Boekingsoverzicht</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="memberaccount.html">Dedicated Member</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="contact.html">Contact</a>
-              </li>
-              <a href="memberworden.html"><button type="button" class="btn btn-primary" id="memberknop">Member worden</button></a>
-            </ul>
-        </div>
-        </nav>
+    <nav
+      class="row navbar navbar-inverse navbar-static-top navbar-expand-lg navbar-light bg-light pb-5 mb-5"
+    >
+      <div class="col-lg-12" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="navbar-brand">
+            Capital Hotels <span class="sr-only"></span>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html"
+              >Home <span class="sr-only"></span
+            ></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="kameroverzicht.html">Kameroverzicht</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="boekingsoverzicht.html"
+              >Boekingsoverzicht</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="memberaccount.html">Dedicated Member</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <a href="memberworden.html"
+            ><button type="button" class="btn btn-primary" id="memberknop">
+              Member worden
+            </button></a
+          >
+        </ul>
+      </div>
+    </nav>
     <!-- Form voor kamer aan maken -->
-    <form action="https://yc2301hotelbackend.azurewebsites.net/sendKamerinfo">
-        <div class="container mb-5">
-            <div class="row">
-                <div class="col-12">
-                    <h4 id="Reserveringtitel">Kameroverzicht Capital Hotel</h4>
-                </div>
-                <div class="col-12 mb-3">
-                    <label for="ftype" class="form-label">Kamertype:</label>
-                    <select name="ftype" id="ftype" value="" class="form-control">
-                        <option value="1 persoonskamer">Eénpersoonskamer</option>
-                        <option value="2 persoonskamer">Tweepersoonskamer</option>
-                        <option value="familiekamer">Familiekamer</option>
-                        <option value="mindervalidekamer">Mindervalidekamer</option>
-                    </select>
-                </div>
-                <div class="col-12 mb-3">
-                    <label for="fprijs" class="form-label">Prijs:</label>
-                    <input type="number" step="0.01" id="fprijs" name="fprijs" value="" class="form-control" placeholder="Vul hier een prijs in">
-                </div>
-                <div class="col-12 mb-3">
-                    <label for="fbeschrijving">Kamerbeschrijving:</label>
-                    <input type="text" id="fbeschrijving" name="fbeschrijving" value="" class="form-control" placeholder="Vul hier je kamerbeschrijving in">
-                </div>
-                <div class="col-12 mb-3">
-                    <label for="ffoto">Kamerfoto:</label>
-                    <input type="text" id="ffoto" name="ffoto" value="" class="form-control" placeholder="Plak hier de URL van je kamerfoto">
-                </div>
-                <div class="col-12 mb-3">
-                    <label for="fnummer">Kamernummer:</label>
-                    <input type="number" step="1" id="fnummer" name="fnummer" value="" class="form-control" placeholder="Vul hier het kamernummer in">
-                </div>
-                <div class="col-12">
-                    <button class="btn btn-primary" type="submit" id="knopnieuwekamer">Nieuwe kamer aanmaken</button>
-                </div>
-            </div>
+    <form action="http://localhost:5000/sendKamerinfo">
+      <div class="container mb-5">
+        <div class="row">
+          <div class="col-12">
+            <h4 id="Reserveringtitel">Kameroverzicht Capital Hotel</h4>
+          </div>
+          <div class="col-12 mb-3">
+            <label for="ftype" class="form-label">Kamertype:</label>
+            <select name="ftype" id="ftype" value="" class="form-control">
+              <option value="1 persoonskamer">Eénpersoonskamer</option>
+              <option value="2 persoonskamer">Tweepersoonskamer</option>
+              <option value="familiekamer">Familiekamer</option>
+              <option value="mindervalidekamer">Mindervalidekamer</option>
+            </select>
+          </div>
+          <div class="col-12 mb-3">
+            <label for="fprijs" class="form-label">Prijs:</label>
+            <input
+              type="number"
+              step="0.01"
+              id="fprijs"
+              name="fprijs"
+              value=""
+              class="form-control"
+              placeholder="Vul hier een prijs in"
+            />
+          </div>
+          <div class="col-12 mb-3">
+            <label for="fbeschrijving">Kamerbeschrijving:</label>
+            <input
+              type="text"
+              id="fbeschrijving"
+              name="fbeschrijving"
+              value=""
+              class="form-control"
+              placeholder="Vul hier je kamerbeschrijving in"
+            />
+          </div>
+          <div class="col-12 mb-3">
+            <label for="ffoto">Kamerfoto:</label>
+            <input
+              type="text"
+              id="ffoto"
+              name="ffoto"
+              value=""
+              class="form-control"
+              placeholder="Plak hier de URL van je kamerfoto"
+            />
+          </div>
+          <div class="col-12 mb-3">
+            <label for="fnummer">Kamernummer:</label>
+            <input
+              type="number"
+              step="1"
+              id="fnummer"
+              name="fnummer"
+              value=""
+              class="form-control"
+              placeholder="Vul hier het kamernummer in"
+            />
+          </div>
+          <div class="col-12">
+            <button class="btn btn-primary" type="submit" id="knopnieuwekamer">
+              Nieuwe kamer aanmaken
+            </button>
+          </div>
         </div>
+      </div>
     </form>
     <!-- tabel die wordt ingevuld met alle kamers -->
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h4 id="kameroverzichttitel">Kameroverzicht</h4>
-                <div id="filters"></div>
-            </div>
-            <div class="col-12">
-                <table class="table">
-                    <thead>
-                        <tr class="titels">
-                            <th scope="col">Kamertype</th>
-                            <th scope="col">Kamerprijs</th>
-                            <th scope="col">Kamerbeschrijving</th>
-                            <th scope="col">Kamerfoto</th>
-                            <th scope="col">Kamernummer</th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody id="kameroverview">
-                    </tbody>
-                </table>
-            </div>
+      <div class="row">
+        <div class="col-12">
+          <h4 id="kameroverzichttitel">Kameroverzicht</h4>
+          <div id="filters"></div>
         </div>
+        <div class="col-12">
+          <table class="table">
+            <thead>
+              <tr class="titels">
+                <th scope="col">Kamertype</th>
+                <th scope="col">Kamerprijs</th>
+                <th scope="col">Kamerbeschrijving</th>
+                <th scope="col">Kamerfoto</th>
+                <th scope="col">Kamernummer</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody id="kameroverview"></tbody>
+          </table>
+        </div>
+      </div>
     </div>
 
     <footer class="text-center text-lg-start">
-        <div class="container p-4">
-          <div class="row">
-            <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
-              <h5 class="text-uppercase">Capital Hotels</h5>
-            </div>
-            <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
-              <h5 class="text-uppercase"><a href="contact.html">Contact</a></h5>
-            </div>
-            <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
-              <h5 class="text-uppercase">Social Media</h5>
-              <p>
-                <a href="#">Facebook</a><br>
-                <a href="#">Instagram</a>
-              </p>
-            </div>
+      <div class="container p-4">
+        <div class="row">
+          <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+            <h5 class="text-uppercase">Capital Hotels</h5>
+          </div>
+          <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+            <h5 class="text-uppercase"><a href="contact.html">Contact</a></h5>
+          </div>
+          <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+            <h5 class="text-uppercase">Social Media</h5>
+            <p>
+              <a href="#">Facebook</a><br />
+              <a href="#">Instagram</a>
+            </p>
           </div>
         </div>
-        <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.1);">
-          <p>© 2023:
-          <a href="#">Capital Hotels</a></p>
-        </div>
-        <!-- Copyright -->
-      </footer>
-       
-</body>
+      </div>
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.1)">
+        <p>© 2023: <a href="#">Capital Hotels</a></p>
+      </div>
+      <!-- Copyright -->
+    </footer>
+  </body>
 </html>

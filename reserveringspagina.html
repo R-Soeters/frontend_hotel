@@ -10,7 +10,7 @@
       // fetchkamer() pakt de informatie van de kamer die de gebruiker heeft net gekozen (op kameroverzicht.html) vanuit de database
       function fetchkamer(){ 
         let kamerid = sessionStorage.getItem("kamerid");
-        fetch("https://yc2301hotelbackend.azurewebsites.net/dbfetchkamer/"+kamerid)
+        fetch("http://localhost:5000/dbfetchkamer/"+kamerid)
         .then(r => r.json())
         .then(d => verwerk(d))
       }
@@ -65,7 +65,7 @@
           var gegevensjson = JSON.stringify(gegevens);
 
           let bevestigingsdata = [];
-          fetch("https://yc2301hotelbackend.azurewebsites.net/sendGastgegevens", {
+          fetch("http://localhost:5000/sendGastgegevens", {
                   method: 'POST',
                   headers: {
                       'Content-Type': 'application/json',
