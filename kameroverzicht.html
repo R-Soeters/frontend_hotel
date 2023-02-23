@@ -5,16 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Capital Hotels | Kameroverzicht</title>
+    <script src="globalevars.js"></script>
     <script>
       // naardedb() gaat alle bestanden kamers uit de DB halen
       function naardedb() {
-        fetch("http://localhost:5000/getKamerinfo/a")
+        fetch(testURL + "/getKamerinfo/a")
           .then((r) => r.json())
           .then((d) => verwerk(d));
       }
       // reserveerKamer() gaat informatie van de gekozen kamer voor reserveren door sturen naar reserveringspagina.html (met de gebruiker)
       function reserveerKamer(kamerid, kamerprijs, kamertype) {
-        fetch("http://localhost:5000/dbreserveerkamer/" + kamerid);
+        fetch(testURL + "/dbreserveerkamer/" + kamerid);
         sessionStorage.kamerid = kamerid;
         sessionStorage.kamerprijs = kamerprijs;
         sessionStorage.kamertype = kamertype;
