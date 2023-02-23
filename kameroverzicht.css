@@ -1,30 +1,8 @@
-/* Navbar CSS */
-.navbar {
-    background-image: url("hotelbanner1.jpg");
-    background-repeat: no-repeat;
-}
-
-#memberknop{
-    margin-left: 850px;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: #5C5CFF;
-}
-
-#memberknop:hover {
-    background-color: #8A8AFF;
-}
-
+/* Kameroverzicht titel boven tabel */
 h4 {
     margin-top: 5px !important;
-    color: grey !important;
     margin-left: 10px;
-}
-
-footer {
-    margin-top: auto;
-    width: 100%;
+    color: gray !important;
 }
 
 /* Tabel die alle kamers genereerd */
@@ -71,27 +49,5 @@ table {
 
 .knoppen:hover, button:hover, #knopnieuwekamer:hover {
     background-color: #8A8AFF;
-}
-
-/* Footer CSS */
-footer {
-    margin-top: 30px;
-    background-color: rgb(217, 231, 250);
-    border: solid;
-    border-width: 1px;
-    border-color: darkgray;
-}
-
-.text-uppercase {
-    color: gray;
-}
-
-footer a, p {
-    color: gray;
-    text-decoration: none;
-}
-
-footer a:hover {
-    color: black;
 }
 

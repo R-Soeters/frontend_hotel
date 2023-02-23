@@ -1,10 +1,10 @@
 /* Boek nu knop */
-#knoprechts{
+#knoprechts {
     float: right;
-    margin-right: 1px;
     background-color: #5C5CFF;
     border: none;
     margin-right: 10px;
+    margin-bottom: 20px !important;
     text-align: center;
     color: white;
     padding: 15px;
@@ -15,96 +15,34 @@
     background-color: #8A8AFF;
 }
 
-#eenpersoonskamer{
-    height: 200px;
-    width: 300px;;
-}
-
 tbody tr {
     border-color: black;
     border-width: 3px;
     background-color: #FFCCCB;
 }
 
-.form-group-col-lg-2{
-margin-left: -640px;
+h4 {
+    color: gray !important;
 }
 
-.form-groupcol-lg-2{
-    margin-left: -620px;
-}
-
-.form-check{
-    margin-left: 18px;
+.form-check {
     color: orange;
     font-size: large;
-    margin-top: -85px;
 }
 
-.form-group{
+.form-group {
     width: 500px;
-    margin-left:18px;
     color: grey;
 }
 
-#ondertekst{
+#ondertekst {
     color:orange !important;
 }
 
-.dropdown{
-    margin-left: 18px;
-    margin-top: -10px;
+#kType {
+    width: 150px;
 }
 
-.navbar {
-    background-image: url("hotelbanner1.jpg");
-    background-repeat: no-repeat;
-}
-
-/* #membernavbar{
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    float: right;
-    margin-left: 850px;
-    position: fixed; 
-    background-color: grey;
-}
-*/
-
-/* Member worden knop */
-#memberknop {
-    margin-left: 850px;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: #5C5CFF;
-}
-
-#memberknop:hover {
-    background-color: #8A8AFF;
-}
-
-/* Footer CSS */
-footer {
-    margin-top: 80px;
-    background-color: rgb(217, 231, 250) !important;
-    border: solid !important;
-    border-width: 1px !important;
-    border-color: darkgray !important;
-}
-
-.text-uppercase {
-    color: gray !important;
-}
-
-footer a, p {
-    color: gray !important;
-    text-decoration:  none !important;
-}
-
-a:hover {
-    color: black !important;
-}
-
-#modalknop{
+#modalknop {
     background-color: #5C5CFF !important;
 }
