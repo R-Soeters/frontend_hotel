@@ -8,60 +8,22 @@
 }
 
 #img_left {
-    width: 800px;
-    height: 523px;
+    max-width: 557px;
     margin-left: 1px;
     margin-top: 50px;
 }
 
 #contactgegevens {
-    width: 550px;
-    height: 400px;
-    margin-top: 50px;
-    margin-left: 1px;
+    max-width: 550px;
+    margin: 50px 0px 50px 1px;
 }
 
 #bewegendemap {
     margin-top: 15px;
     margin-left: 5px;
+    width: 50%;
 }
 
 h4 {
     margin-top: 20px;
-}
-
-/* Footer CSS */
-footer {
-    margin-top: 130px;
-    background-color: rgb(217, 231, 250);
-    border: solid;
-    border-width: 1px;
-    border-color: darkgray;
-}
-
-footer a, footer h5, footer p {
-    color: gray !important;
-    text-decoration: none;
-}
-
-footer a:hover {
-    color: black;
-}
-
-/* Navbar CSS */
-.navbar {
-    background-image: url("hotelbanner1.jpg");
-    background-repeat: no-repeat;
-}
-
-#memberknop {
-    margin-left: 850px;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: #5C5CFF;
-}
-
-#memberknop:hover {
-    background-color: #8A8AFF;
 }

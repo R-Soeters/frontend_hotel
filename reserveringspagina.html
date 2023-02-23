@@ -1,94 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capital Hotels | Je reservering</title>
-    
-    <script>
-      // fetchkamer() pakt de informatie van de kamer die de gebruiker heeft net gekozen (op kameroverzicht.html) vanuit de database
-      function fetchkamer(){ 
-        let kamerid = sessionStorage.getItem("kamerid");
-        fetch("https://yc2301hotelbackend.azurewebsites.net/dbfetchkamer/"+kamerid)
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capital Hotels | Je reservering</title>
+
+  <script>
+    // fetchkamer() pakt de informatie van de kamer die de gebruiker heeft net gekozen (op kameroverzicht.html) vanuit de database
+    function fetchkamer() {
+      let kamerid = sessionStorage.getItem("kamerid");
+      fetch("https://yc2301hotelbackend.azurewebsites.net/dbfetchkamer/" + kamerid)
         .then(r => r.json())
         .then(d => verwerk(d))
+    }
+    // verwerk(data) vult de gekozen kamer data in een tabel
+    function verwerk(data) {
+      let kamerType = data[0][1];
+      let kamerPrijs = data[0][2];
+      let kamerBeschrijving = data[0][3];
+      let kamerFoto = data[0][4];
+      let kamerNummer = data[0][5];
+
+      document.getElementById("kType").innerHTML = kamerType;
+      document.getElementById("kPrijs").innerHTML = kamerPrijs;
+      document.getElementById("kBeschrijving").innerHTML = kamerBeschrijving;
+      document.getElementById("kFoto").innerHTML = "<img src=" + kamerFoto + " class='img-fluid'>";
+      document.getElementById("kNummer").innerHTML = kamerNummer;
+
+      let bodyelement = document.getElementById("kamerinformatie");
+      var tb = document.createElement("TB");
+    }
+    fetchkamer();
+
+    // sendgastgegevensenboekkamer() gaan alle ingevulde informatie (over de nieuwe member een gekozen kamer) naar de database om een nieuwe member en boeking aan te maken.
+    function sendgastgegevensenboekkamer() {
+      let startdata = new Date(document.getElementById("startdat").value);
+      let einddata = new Date(document.getElementById("einddat").value);
+      let kamerprijs = sessionStorage.getItem("kamerprijs");
+      let timediff = einddata.getTime() - startdata.getTime();
+      let daydiff = Math.floor(timediff / (1000 * 3600 * 24));
+      startdata = document.getElementById("startdat").value;
+      einddata = document.getElementById("einddat").value;
+
+      if (daydiff > 0) {
+        let totaleprijs = Math.floor((daydiff * kamerprijs) * 100) / 100;
+        let kamerid2 = sessionStorage.getItem("kamerid");
+        document.getElementById("kamid").value = kamerid2;
+        document.getElementById("totprijs").value = totaleprijs;
+        var gegevens = {};
+        gegevens.kvoornaam = document.getElementById("kvoornaami").value;
+        gegevens.kachternaam = document.getElementById("kachternaami").value;
+        gegevens.kvoorvoegsel = document.getElementById("kvoorvoegseli").value;
+        gegevens.kadres = document.getElementById("kadresi").value;
+        gegevens.kpcode = document.getElementById("kpcodei").value;
+        gegevens.kland = document.getElementById("klandi").value;
+        gegevens.kemail = document.getElementById("kemaili").value;
+        gegevens.ktel = document.getElementById("kteli").value;
+        gegevens.kbetaalmethode = document.getElementById("kbetaalmethodei").value;
+        gegevens.kstartdata = startdata;
+        gegevens.keinddata = einddata;
+        gegevens.ktotaleprijs = totaleprijs;
+        gegevens.kkamerid = kamerid2;
+        var gegevensjson = JSON.stringify(gegevens);
+
+        let bevestigingsdata = [];
+        fetch("https://yc2301hotelbackend.azurewebsites.net/sendGastgegevens", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: gegevensjson
+        })
+          .then(res => res.json())
+          .then((data) => {
+            console.log(data);
+            sessionStorage.setItem("Data", data);
+            window.location.href = "boekingsbevestiging.html";
+          });
+
+      } else {
+        alert("Einddatum moet later zijn dan de begindatum");
       }
-      // verwerk(data) vult de gekozen kamer data in een tabel
-      function verwerk(data){
-        let kamerType = data[0][1];
-        let kamerPrijs = data[0][2];
-        let kamerBeschrijving = data[0][3];
-        let kamerFoto = data[0][4];
-        let kamerNummer = data[0][5];
+    }
 
-        document.getElementById("kType").innerHTML = kamerType;
-        document.getElementById("kPrijs").innerHTML = kamerPrijs;
-        document.getElementById("kBeschrijving").innerHTML = kamerBeschrijving;
-        document.getElementById("kFoto").innerHTML = "<img src="+kamerFoto+">";
-        document.getElementById("kNummer").innerHTML = kamerNummer;
+  </script>
 
-        let bodyelement = document.getElementById("kamerinformatie");
-        var tb = document.createElement("TB");
-        }
-      fetchkamer();
- 
-      // sendgastgegevensenboekkamer() gaan alle ingevulde informatie (over de nieuwe member een gekozen kamer) naar de database om een nieuwe member en boeking aan te maken.
-      function sendgastgegevensenboekkamer () {
-        let startdata = new Date(document.getElementById("startdat").value);
-        let einddata = new Date(document.getElementById("einddat").value);
-        let kamerprijs = sessionStorage.getItem("kamerprijs");
-        let timediff = einddata.getTime() - startdata.getTime();
-        let daydiff = Math.floor(timediff / (1000*3600*24)); 
-        startdata = document.getElementById("startdat").value;
-        einddata = document.getElementById("einddat").value;
-
-        if (daydiff > 0) {
-          let totaleprijs = Math.floor((daydiff*kamerprijs)*100) / 100;
-          let kamerid2 = sessionStorage.getItem("kamerid");
-          document.getElementById("kamid").value = kamerid2;
-          document.getElementById("totprijs").value = totaleprijs;
-          var gegevens = {};
-          gegevens.kvoornaam = document.getElementById("kvoornaami").value;
-          gegevens.kachternaam = document.getElementById("kachternaami").value;
-          gegevens.kvoorvoegsel = document.getElementById("kvoorvoegseli").value;
-          gegevens.kadres = document.getElementById("kadresi").value;
-          gegevens.kpcode = document.getElementById("kpcodei").value;
-          gegevens.kland = document.getElementById("klandi").value;
-          gegevens.kemail = document.getElementById("kemaili").value;
-          gegevens.ktel = document.getElementById("kteli").value;
-          gegevens.kbetaalmethode = document.getElementById("kbetaalmethodei").value;
-          gegevens.kstartdata = startdata;
-          gegevens.keinddata = einddata;
-          gegevens.ktotaleprijs = totaleprijs;
-          gegevens.kkamerid = kamerid2;
-          var gegevensjson = JSON.stringify(gegevens);
-
-          let bevestigingsdata = [];
-          fetch("https://yc2301hotelbackend.azurewebsites.net/sendGastgegevens", {
-                  method: 'POST',
-                  headers: {
-                      'Content-Type': 'application/json',
-                  },
-                  body: gegevensjson
-              })
-              .then(res => res.json())
-              .then((data) => { 
-                console.log(data);
-                sessionStorage.setItem("Data", data);
-                window.location.href="boekingsbevestiging.html";
-                });
-          
-        } else {
-          alert("Einddatum moet later zijn dan de begindatum");
-        }
-      }
-      
-    </script>
-
-    <link href="daanreserveringspagina.css" rel="stylesheet" type="text/css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  <link href="main.css" rel="stylesheet" type="text/css">
+  <link href="daanreserveringspagina.css" rel="stylesheet" type="text/css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
 
 </head>
 
@@ -96,126 +101,122 @@
   <!-- HTML/CSS Navbar -->
   <nav class="row navbar navbar-inverse navbar-static-top navbar-expand-lg navbar-light bg-light pb-5 mb-5">
     <div class="col-lg-12" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="navbar-brand">Capital Hotels <span class="sr-only"></span></li>
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">Home <span class="sr-only"></span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="kameroverzicht.html">Kameroverzicht</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="boekingsoverzicht.html">Boekingsoverzicht</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="memberaccount.html">Dedicated Member</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
-            </li>
-            <li>
-              <a href="Memberworden.html"><button type="button" class="btn btn-primary" id="memberknop">Member worden</button></a>
-            </li>
-        </ul>
+      <ul class="navbar-nav mr-auto">
+        <li class="navbar-brand">Capital Hotels <span class="sr-only"></span></li>
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">Home <span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="kameroverzicht.html">Kameroverzicht</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="boekingsoverzicht.html">Boekingsoverzicht</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="memberaccount.html">Dedicated Member</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+        </li>
+        <li>
+          <a href="loginpagina.html"><button type="button" class="btn btn-primary" id="loginknop">Login</button></a>
+          <a href="Memberworden.html"><button type="button" class="btn btn-primary" id="memberknop">Member
+              worden</button></a>
+        </li>
+      </ul>
     </div>
-   
- 
-    </nav>
+  </nav>
 
-    <h4 id="Reserveringsoverzichttitel">Reserveringsoverzicht</h4>
-    <!-- Tabel voor data van de gekozen kamer -->
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col" class="tekstbovenaantabel">Foto</th>
-            <th scope="col" class="tekstbovenaantabel">Kamernummer</th>
-            <th scope="col" class="tekstbovenaantabel">Kamertype</th>
-            <th scope="col" class="tekstbovenaantabel">Beschrijving</th>
-
-          </tr>
-        </thead>
-        <tbody id="kamerinformatie">
-          <tr>
-
-            <td id="kFoto"><img src="kFoto"></td>
-
-            <th scope="row" id="kNummer"> <br>
-            </th>
-
-            <td id="kType"><b></b>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h4 id="Reserveringsoverzichttitel">Reserveringsoverzicht</h4>
+        <!-- Tabel voor data van de gekozen kamer -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col" class="tekstbovenaantabel">Foto</th>
+              <th scope="col" class="tekstbovenaantabel">Kamernummer</th>
+              <th scope="col" class="tekstbovenaantabel">Kamertype</th>
+              <th scope="col" class="tekstbovenaantabel">Beschrijving</th>
+            </tr>
+          </thead>
+          <tbody id="kamerinformatie">
+            <tr>
+              <td id="kFoto"><img src="kFoto"></td>
+              <th scope="row" id="kNummer">
+              </th>
+              <td id="kType"><b></b>
               </td>
-            <td>
-                <br>
-                <tekst id="kBeschrijving"></tekst> 
-                <br>
-                <b>Prijs:</b> <tekst class="tekst">vanaf €<b id=kPrijs></b> per nacht</tekst>
-                <br>
-                <br>
-            </td>     
-        </tr>
-        </tbody>
-      </table>
-    <!-- HTML voor alle invoervelden voor member/boeking -->
-      </div>
-      <br><br><br>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-        <label class="form-check-label" for="defaultCheck1">
-         <b>Ik ben member</b>
-        </label>
-      </div>
-      <br>
-        <br><br><br><br>
-        <div class="form-check">
+              <td>
+                <tekst id="kBeschrijving"></tekst><br>
+                <b>Prijs:</b>
+                <tekst class="tekst">vanaf €<b id=kPrijs></b> per nacht</tekst>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- HTML voor alle invoervelden voor member/boeking -->
+
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+          <label class="form-check-label" for="defaultCheck1">
+            <b>Ik ben member</b>
+          </label>
+        </div>
+
+        <div class="form-check mb-3">
           <label for="kbegindat">begindatum:</label>
-      
-          <input type="date" id="startdat" name="kbegindat"
-             value=""
-             min="2023-01-01" max="2025-12-31">
-    
+
+          <input type="date" id="startdat" name="kbegindat" value="" min="2023-01-01" max="2025-12-31">
+
           <label for="keinddat">einddatum:</label>
-      
-          <input type="date" id="einddat" name="keinddat"
-             value=""
-             min="2023-01-01" max="2025-12-31">
+
+          <input type="date" id="einddat" name="keinddat" value="" min="2023-01-01" max="2025-12-31">
         </div>
-        
-        <div class="form-group">
+
+        <div class="form-group mb-3">
           <label for="kvoornaam"><b>Voornaam</b></label>
-          <input type="text" name="kvoornaam" class="form-control" id="kvoornaami" aria-describedby="emailHelp" placeholder="Voornaam" required>
+          <input type="text" name="kvoornaam" class="form-control" id="kvoornaami" aria-describedby="emailHelp"
+            placeholder="Voornaam" required>
         </div>
-        <div class="form-group">
+        <div class="form-group mb-3">
           <label for="kachternaam"><b>Achternaam</b></label>
-          <input type="text" name="kachternaam" class="form-control" id="kachternaami" aria-describedby="emailHelp" placeholder="Achternaam" required>
+          <input type="text" name="kachternaam" class="form-control" id="kachternaami" aria-describedby="emailHelp"
+            placeholder="Achternaam" required>
         </div>
-        <div class="form-group">
+        <div class="form-group mb-3">
           <label for="kvoorvoegsel"><b>Voorvoegsel</b></label>
-          <input type="text" name="kvoorvoegsel" class="form-control" id="kvoorvoegseli" aria-describedby="emailHelp" placeholder="Voorvoegsel" required>
-        </div>    
-        <div class="form-group">
-          <label for="kadres"><b>Straatnaam en huisnummer</b></label>
-          <input type="text" name="kadres" class="form-control" id="kadresi" aria-describedby="adresHelp" placeholder="Straatnaam + huisnummer" required>
+          <input type="text" name="kvoorvoegsel" class="form-control" id="kvoorvoegseli" aria-describedby="emailHelp"
+            placeholder="Voorvoegsel" required>
         </div>
-        <div class="form-group">
+        <div class="form-group mb-3">
+          <label for="kadres"><b>Straatnaam en huisnummer</b></label>
+          <input type="text" name="kadres" class="form-control" id="kadresi" aria-describedby="adresHelp"
+            placeholder="Straatnaam + huisnummer" required>
+        </div>
+        <div class="form-group mb-3">
           <label for="kpcode"><b>Postcode</b></label>
           <input type="text" name=kpcode class="form-control" id="kpcodei" placeholder="Postcode" required>
         </div>
-        <div class="form-group">
+        <div class="form-group mb-3">
           <label for="kland"><b>Woonplaats</b></label>
           <input type="text" name=kland class="form-control" id="klandi" placeholder="Land" required>
-        </div>       
         </div>
-        <div class="form-group">
+        <div class="form-group mb-3">
           <label for="kemail"><b>E-mailadres</b></label>
-          <input type="email" name="kemail" class="form-control" id="kemaili" aria-describedby="emailHelp" placeholder="E-mailadres" required>
+          <input type="email" name="kemail" class="form-control" id="kemaili" aria-describedby="emailHelp"
+            placeholder="E-mailadres" required>
           <small id="ondertekst" class="form-text text-muted">Uw mailadres blijft altijd privé</small>
         </div>
-        <div class="form-group">
+        <div class="form-group mb-3">
           <label for="ktel"><b>Telefoonnummer</b></label>
-          <input type="tel" name=ktel class="form-control" id="kteli" aria-describedby="emailHelp" placeholder="06-xxxxxxxxxx" required>
+          <input type="tel" name=ktel class="form-control" id="kteli" aria-describedby="emailHelp"
+            placeholder="06-xxxxxxxxxx" required>
           <small id="ondertekst" class="form-text text-muted">Bij voorkeur uw mobiele telefoonnummer</small>
         </div>
-        <div class="form-group">
+        <div class="form-group mb-3">
           <label for="kbetaalmethode"><b>Betaalmethoden</b></label>
           <br><br>
           <div class="dropdown">
@@ -228,45 +229,43 @@
           <input type="hidden" id="totprijs" name="totaleprijs">
         </div>
         <div>
-          <button type="submit" id="knoprechts" onclick="sendgastgegevensenboekkamer();" data-bs-toggle="modal" data-bs-target="#exampleModal">
-              Boek nu!
+          <button type="submit" id="knoprechts" onclick="sendgastgegevensenboekkamer();" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">
+            Boek nu!
           </button>
         </div>
-      <br>
-  
-      
-        </div>
+        <br>
       </div>
     </div>
   </div>
-     </div>
 
-     <footer class="text-center text-lg-start">
-      <div class="container p-4">
-        <div class="row">
-          <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
-            <h5 class="text-uppercase">Capital Hotels</h5>
-          </div>
-          <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
-            <h5 class="text-uppercase"><a href="contact.html">Contact</a></h5>
-          </div>
-          <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
-            <h5 class="text-uppercase">Social Media</h5>
-            <p>
-              <a href="#">Facebook</a><br>
-              <a href="#">Instagram</a>
-            </p>
-          </div>
+  <footer class="text-center text-lg-start">
+    <div class="container p-4">
+      <div class="row">
+        <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Capital Hotels</h5>
+        </div>
+        <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+          <h5 class="text-uppercase"><a href="contact.html">Contact</a></h5>
+        </div>
+        <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Social Media</h5>
+          <p>
+            <a href="#">Facebook</a><br>
+            <a href="#">Instagram</a>
+          </p>
         </div>
       </div>
-      <!-- Copyright -->
-      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.1);">
-        <p>© 2023:
-        <a href="#">Capital Hotels</a></p>
-      </div>
-      <!-- Copyright -->
-    </footer>
-    
+    </div>
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.1);">
+      <p>© 2023:
+        <a href="#">Capital Hotels</a>
+      </p>
+    </div>
+    <!-- Copyright -->
+  </footer>
+
 </body>
 
 </html>
