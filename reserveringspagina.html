@@ -32,9 +32,9 @@
         var tb = document.createElement("TB");
         }
       fetchkamer();
-      
+ 
       // sendgastgegevensenboekkamer() gaan alle ingevulde informatie (over de nieuwe member een gekozen kamer) naar de database om een nieuwe member en boeking aan te maken.
-      function sendgastgegevensenboekkamer() {
+      function sendgastgegevensenboekkamer () {
         let startdata = new Date(document.getElementById("startdat").value);
         let einddata = new Date(document.getElementById("einddat").value);
         let kamerprijs = sessionStorage.getItem("kamerprijs");
@@ -76,14 +76,14 @@
               .then((data) => { 
                 console.log(data);
                 sessionStorage.setItem("Data", data);
-                window.location.href="boekingsbevestiging.html"
+                window.location.href="boekingsbevestiging.html";
                 });
           
         } else {
           alert("Einddatum moet later zijn dan de begindatum");
         }
       }
-
+      
     </script>
 
     <link href="daanreserveringspagina.css" rel="stylesheet" type="text/css">
@@ -201,7 +201,7 @@
           <input type="text" name=kpcode class="form-control" id="kpcodei" placeholder="Postcode" required>
         </div>
         <div class="form-group">
-          <label for="kland"><b>Land woonplaats</b></label>
+          <label for="kland"><b>Woonplaats</b></label>
           <input type="text" name=kland class="form-control" id="klandi" placeholder="Land" required>
         </div>       
         </div>
@@ -228,12 +228,17 @@
           <input type="hidden" id="totprijs" name="totaleprijs">
         </div>
         <div>
-          <button type="submit" id="knoprechts" onclick="sendgastgegevensenboekkamer();">
+          <button type="submit" id="knoprechts" onclick="sendgastgegevensenboekkamer();" data-bs-toggle="modal" data-bs-target="#exampleModal">
               Boek nu!
           </button>
         </div>
       <br>
-
+  
+      
+        </div>
+      </div>
+    </div>
+  </div>
      </div>
 
      <footer class="text-center text-lg-start">
