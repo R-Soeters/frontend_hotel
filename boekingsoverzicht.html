@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capital Hotels | Je boekingsoverzicht</title>
+    <script src="globalevars.js"></script>
     <script>
         // naardedb() pakt informatie van alle geboekte kamers
         function naardedb() {
-            fetch("https://yc2301hotelbackend.azurewebsites.net/getgeboekteKamerinfo/a")
+            fetch(backendURL+"/getgeboekteKamerinfo/a")
             .then(r => r.json())
             .then(d => verwerk(d) )
 

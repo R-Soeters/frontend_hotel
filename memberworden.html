@@ -9,7 +9,7 @@
 
     <script>
       function checkMember() {
-        fetch(testURL + "/checkMember/a")
+        fetch(backendURL + "/checkMember/a")
           .then((r) => r.json())
           .then((d) => checkDubbeleemail(d));
       }
@@ -53,7 +53,7 @@
         mijnPost.wachtwoord = document.getElementById("kwachtwoordi").value;
 
         var mijnPostjson = JSON.stringify(mijnPost);
-        fetch(testURL + "/saveMember", {
+        fetch(backendURL + "/saveMember", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -9,13 +9,13 @@
     <script>
       // naardedb() gaat alle bestanden kamers uit de DB halen
       function naardedb() {
-        fetch(testURL + "/getKamerinfo/a")
+        fetch(backendURL + "/getKamerinfo/a")
           .then((r) => r.json())
           .then((d) => verwerk(d));
       }
       // reserveerKamer() gaat informatie van de gekozen kamer voor reserveren door sturen naar reserveringspagina.html (met de gebruiker)
       function reserveerKamer(kamerid, kamerprijs, kamertype) {
-        fetch(testURL + "/dbreserveerkamer/" + kamerid);
+        fetch(backendURL + "/dbreserveerkamer/" + kamerid);
         sessionStorage.kamerid = kamerid;
         sessionStorage.kamerprijs = kamerprijs;
         sessionStorage.kamertype = kamertype;
@@ -36,7 +36,7 @@
         let bodyelement = document.getElementById("kameroverview");
         var tb = document.createElement("TB");
         const currentTime = new Date();
-        let time = parseInt(currentTime.getTime() / 1000);
+        let time = parseInt(currentTime.getTime()/1000);
 
         const queryString = window.location.search;
         urlParams = new URLSearchParams(queryString);
@@ -45,38 +45,21 @@
         for (var x = 0; x < data.length; x++) {
           var tr = document.createElement("TR");
           var td1 = document.createElement("TD");
-          td1.innerHTML =
-            data[x][1] +
-            '<br> <img id=stertransparant width=30px onclick="topprogrammatuur(this, ' +
-            data[x][0] +
-            ')" src=stertransparant.png><div id=feit' +
-            data[x][0] +
-            " ></div>";
+          td1.innerHTML = data[x][1] + "<br> <img id=stertransparant width=30px onclick=\"topprogrammatuur(this, "+data[x][0]+")\" src=stertransparant.png><div id=feit"+data[x][0]+" ></div>";
           var td2 = document.createElement("TD");
           td2.innerHTML = data[x][2];
           var td3 = document.createElement("TD");
           td3.innerHTML = data[x][3];
           var td4 = document.createElement("TD");
-          td4.innerHTML = "<img class='img-fluid' src=" + data[x][4] + ">";
+          td4.innerHTML = "<img class='img-fluid' src="+data[x][4]+">";
           var td5 = document.createElement("TD");
           td5.innerHTML = data[x][5];
           var td6 = document.createElement("TD");
-          td6.innerHTML =
-            "<button onclick='reserveerKamer(" +
-            data[x][0] +
-            ", " +
-            data[x][2] +
-            ", `" +
-            data[x][1] +
-            "`)'>Reserveer Kamer</button>";
+          td6.innerHTML = "<button onclick='reserveerKamer("+data[x][0]+", "+data[x][2]+", `"+data[x][1]+"`)'>Reserveer Kamer</button>";
           var td7 = data[x][7];
           var td8 = data[x][8];
           // check als de kamer in de vorige 20 minuten was gereserveerd of niet. gereserveerd binnen 20 minuten = niet laten zien. checkt ook als de gebruiker heeft gefiltered op kamertype van index.html.
-          if (
-            (time - td8 > 1200 || time - td8 == null) &&
-            td7 == null &&
-            kamerTypekeuze == null
-          ) {
+          if ((time - td8 > 1200 || time - td8 == null) && td7 == null && kamerTypekeuze == null) {
             tr.appendChild(td1);
             tr.appendChild(td2);
             tr.appendChild(td3);
@@ -84,11 +67,7 @@
             tr.appendChild(td5);
             tr.appendChild(td6);
             bodyelement.appendChild(tr);
-          } else if (
-            (time - td8 > 1200 || time - td8 == null) &&
-            td7 == null &&
-            data[x][1] == kamerTypekeuze
-          ) {
+          } else if ((time - td8 > 1200 || time - td8 == null) && td7 == null && data[x][1] == kamerTypekeuze) {
             tr.appendChild(td1);
             tr.appendChild(td2);
             tr.appendChild(td3);
@@ -148,6 +127,7 @@
           }
         }
       }
+      
       naardedb();
       
     </script>
@@ -209,7 +189,7 @@
       </div>
     </nav>
     <!-- Form voor kamer aan maken -->
-    <form action= "https://yc2301hotelbackend.azurewebsites.net/sendKamerinfo">
+    <form action= "https://hotelbackend1.azurewebsites.net/sendKamerinfo">
       <div class="container mb-5">
         <div class="row">
           <div class="col-12">
@@ -297,7 +277,8 @@
                 <th scope="col"></th>
               </tr>
             </thead>
-            <tbody id="kameroverview"></tbody>
+            <tbody id="kameroverview">
+            </tbody>
           </table>
         </div>
       </div>

@@ -15,7 +15,7 @@
     var memberid = {};
     memberid.id = sessionStorage.getItem("state");
     var memberjson = JSON.stringify(memberid);
-    fetch(testURL+"/sendmembergegevens",{
+    fetch(backendURL+"/sendmembergegevens",{
       method: 'POST',
       headers: { 
         'Content-Type' :  'application/json'
@@ -32,7 +32,7 @@
       document.getElementById("mVoornaam2").innerHTML = memberVoornaam;
     }
 
-    fetch(testURL+"/sendboekinggegevens",{
+    fetch(backendURL+"/sendboekinggegevens",{
       method: 'POST',
       headers: { 
         'Content-Type' :  'application/json'
